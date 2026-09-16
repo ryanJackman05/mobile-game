@@ -22,6 +22,16 @@ adb logcat -s Unity
 # [Boot] SM-S911B | Android OS 15 / API-35 | Vulkan | 1080x2340 @ 425 dpi
 ```
 
+## Uninstall steps
+```bash
+adb uninstall com.ryanJackman.coolMobileGame
+
+adb install -r Builds/MyGame-dev.apk > docs/CA1/install-proof.txt
+
+adb shell monkey -p com.ryanJackman.coolMobileGame 1
+```
+
+
 confirmed boot debug output: `[Boot] samsung SM-A137F | Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1) | Vulkan | 1080x2408 @ 450 dpi`
 
 ___
