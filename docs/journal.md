@@ -18,3 +18,9 @@ Selected Idea:
 
 The main cut list of this project will be (in increasing order of importance):
 - difficulty curves
+
+16-09-2026
+
+ CPU main thread ms: 6ms
+ SetPass calls: 0 (?)
+ GC allocated in frame: 4, 36B
