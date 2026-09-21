@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 179791694}
   - component: {fileID: 179791693}
+  - component: {fileID: 179791695}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -163,6 +164,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179791695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179791692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33924ce9a4952ae4fb802be3929260b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TapSwipeInput
+  swipeDp: 50
+  tapMax: 0.3
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
