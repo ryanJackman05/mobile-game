@@ -14,6 +14,8 @@ public class TapSwipeInput : MonoBehaviour
 
     void Update()
     {
+        if (LifecycleGuard.IsPaused) return; // PAUSE MENU CHECK
+        
         foreach (var t in Touch.activeTouches)
         {
             // Check for an ongoing hold

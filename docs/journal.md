@@ -24,3 +24,13 @@ The main cut list of this project will be (in increasing order of importance):
  CPU main thread ms: 6ms
  SetPass calls: 0 (?)
  GC allocated in frame: 4, 36B
+
+21-09-2026
+Checklist
+| Test | Expected | |
+|------|----------|-|
+| Press Home, wait 10 s, return | Paused, panel visible, audio silent, progress saved | |
+| Pull the notification shade down and up | Paused | |
+| Neighbour calls you, you hang up | Paused, game resumes only on Resume | |
+| Screen off with the power button, back on | Paused | |
+| Force stop from Settings, relaunch | Progress restored from the save | |
