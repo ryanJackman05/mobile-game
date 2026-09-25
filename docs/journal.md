@@ -34,3 +34,7 @@ Checklist
 | Neighbour calls you, you hang up | Paused, game resumes only on Resume | |
 | Screen off with the power button, back on | Paused | |
 | Force stop from Settings, relaunch | Progress restored from the save | |
+
+25-09-26
+
+did a little bit more. getting the car moving and trying to test on mobile was taking too long, so once I knew the touch detection was working as expected, I attached a KeyboardInput script and a PLayerInput Component to allow testing the game on my PC with rudimentary controls. This will speed up development a lot. Haptics are ready to be wired in later once things are added.
