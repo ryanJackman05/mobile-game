@@ -1,5 +1,5 @@
 # Title & one-line pitch
-[Working Title]
+## Ride or Die
 A highway endless runner where you manuever your car to avoid or fight off endless number of zombies, all while driving to salvation.
 
 # Aesthetics (target player feelings/experiences)
@@ -7,7 +7,7 @@ The player should feel thrilled and excited. There will be jumps, tight spaces, 
 
 Location types? At least one. - Desert, city, tunnel, suburban
 
-When the player loses - stall? zombie horde chasing car?
+When the player loses, what happens - stall & menu popup? zombie horde chasing car animation?
 
 # Core mechanics (3–5 verbs/systems)
 Driving/Steering (core action)
@@ -28,7 +28,9 @@ Zombies will be trying to jump onto the player's car, and will damage the car un
 
 Pickups (such as one-use power ups, or repair boxes) will be placed in hard-to-reach spots (determined by the "chunks" during random generation) such as at the top of a ramp, or between a tight space.
 
-Scraping too many obstacles or hitting too many zombies consequetively will bring down the speed, and the player will lose if the speed goes below a certain threshold. The player will also lose if they crash into a hazard, or flip the car on a jump
+Scraping too many obstacles or hitting too many zombies consequetively will bring down the speed, and the player will lose if the speed goes below a certain threshold. The player will also lose if they crash into a hazard, or flip the car on a jump.
+
+Driving out of bounds? Invisible wall easiest
 
 # Progression & content (levels/biomes/sessions; run length)
 level environments will change as time goes on, correlating with the difficulty level. There should be a theoretical "limit" to the difficulty, but a run can still go on forever.
@@ -38,11 +40,16 @@ level environments will change as time goes on, correlating with the difficulty 
 # Performance budget (target frame-time, memory, load time)
 30FPS minimum (33.3ms)
 
+Memory (???GB)
+
+Load time: < 10 secs
+
 # Monetisation (if any) & ethics notes
 None
 
 # Risks & cuts list 
 ### top of list is first to go, and will be marked with X when omitted
+- missions
 - difficulty curves
 - Jumps
 - unique zombie variants

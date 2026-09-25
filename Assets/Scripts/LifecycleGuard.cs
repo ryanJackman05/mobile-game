@@ -21,6 +21,6 @@ public class LifecycleGuard : MonoBehaviour
         IsPaused = value;
         Time.timeScale = value ? 0f : 1f;
         AudioListener.pause = value;
-        PausedChanged?.Invoke(value);
+        PausedChanged?.Invoke(value); // invoke the pauseChanged event ^^^ look at top
     }
 }

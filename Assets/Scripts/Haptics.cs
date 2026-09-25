@@ -7,7 +7,7 @@ public class Haptics : MonoBehaviour
     public static bool Enabled
     {
         get => PlayerPrefs.GetInt(Key, 1) == 1;
-        set { PlayerPrefs.SetInt(Key, value ? 1 : 0); PlayerPrefs.Save(); }
+        set { PlayerPrefs.SetInt(Key, value ? 1 : 0); PlayerPrefs.Save(); } // value (bool): passed into Enabled setter when called as a method
     }
 
     public static void Pulse() // TODO triger on jump, zombie hit, powerup collect
