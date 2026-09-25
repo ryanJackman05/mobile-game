@@ -57,3 +57,10 @@ None
 - repair power up
 
 `Vertical-slice by W6: 1 biome, 10+ chunks, mission system, Android device build.`
+
+Stretch/Specific goals:
+- game over condition & restart
+- gradual game acceleration (no tuning or cap)
+- zombies jump & attach to car
+- zombies can be knocked off
+- Rudimentary audio system & some sounds
