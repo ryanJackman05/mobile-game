@@ -9,6 +9,8 @@ public class TapSwipeInput : MonoBehaviour
     public float tapMax = 0.3f;     // seconds
     public float holdMinTime = 0.1f; // Minimum time required for a long press
 
+    public static float xAxisHold = 0;
+
     void OnEnable() => EnhancedTouchSupport.Enable();
     void OnDisable() => EnhancedTouchSupport.Disable();
 
@@ -24,7 +26,9 @@ public class TapSwipeInput : MonoBehaviour
                 // If it's been held long enough
                 if (t.time - t.startTime >= holdMinTime)
                 {
-                    Debug.Log("Hold at " + t.screenPosition);
+                    float xMag = ((t.screenPosition.x / Screen.width) - 0.5f) * 2;
+                    Debug.Log("Hold at " + t.screenPosition.x + '('+xMag+')');
+                    GameManager.current.playerMovement.currentTurn = xMag; // TODO - ensure limits can't exceed 0-1
                 }
                 continue; // Keep skipping the rest of the loop for active touches
             }
