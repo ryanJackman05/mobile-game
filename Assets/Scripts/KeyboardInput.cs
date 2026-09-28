@@ -18,6 +18,6 @@ public class KeyboardInput : MonoBehaviour
     void OnMove(InputValue value)
     {
         Vector2 move = value.Get<Vector2>();
-        GameManager.current.playerMovement.currentTurn = move.x;
+        GameManager.current.playerCar.currentTurn = move.x;
     }
 }

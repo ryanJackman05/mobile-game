@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager current; // singleton
-    public PlayerMovement playerMovement;
-    public float currentSpeed;
+    [FormerlySerializedAs("playerMovement")] public PlayerCarController playerCar; // Player will assign itself at start.
+    [SerializeField] private float startSpeed;
+    public static float currentSpeed;
     // public ObjectPool<Zom>
     // public ObjectPool<item>
     // public ObjectPool<Obstacle> // 2 of each variant should be good
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     {
         if(current != null) Destroy((this));
         current = this;
+        
+        currentSpeed = startSpeed;
     }
 
     // Update is called once per frame
@@ -28,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         // Initialise Pools
         // reset values & difficulty
+        // Check playerCar exists
         // playerCar.reset
         
         // place starting obstacles / zombies

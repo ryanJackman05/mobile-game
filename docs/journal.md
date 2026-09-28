@@ -40,3 +40,11 @@ Checklist
 did a little bit more. getting the car moving and trying to test on mobile was taking too long, so once I knew the touch detection was working as expected, I attached a KeyboardInput script and a PLayerInput Component to allow testing the game on my PC with rudimentary controls. This will speed up development a lot. Haptics are ready to be wired in later once things are added.
 
 commented out main game loop methods, may need further additions but looks good for now
+
+28-05
+
+created car test model
+
+created ramp, rudimentary jumps work
+
+game props will use new MoveWithWorld component to "scroll" to emulate the car driving.

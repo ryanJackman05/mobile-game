@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerCarController : MonoBehaviour
 {
+    [SerializeField] private Transform roadCheck;
     public float turnMult;
     public float driveForce;
     public float currentTurn;
@@ -11,14 +12,22 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody>();
-        GameManager.current.playerMovement = this;
+        GameManager.current.playerCar = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        body.AddForce(transform.forward * driveForce);
-        transform.Rotate(0, currentTurn * turnMult, 0); 
+        if(LifecycleGuard.IsPaused) return;
+        // check that front wheels are on ground
+        if(Physics.Raycast(roadCheck.position, Vector3.down, .6f))
+        {
+            Vector3 transformForward = transform.forward;
+            transformForward.Scale(new Vector3(1, 0, 1));
+            body.linearVelocity = transformForward * -GameManager.currentSpeed;
+            transform.Rotate(0, currentTurn * turnMult, 0);
+        }
+
         // TODO use addForceAtpoint instead? OR manipulate car rig via scripts, depending on how car ends up being built.
     }
     // might be needed to assist lifting the car on a jump ramp

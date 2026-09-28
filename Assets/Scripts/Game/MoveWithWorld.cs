@@ -15,7 +15,7 @@ public class MoveWithWorld : MonoBehaviour
     {
         if (!LifecycleGuard.IsPaused)
         {
-            transform.Translate(0, 0, GameManager.current.currentSpeed * Time.deltaTime); // move object, independent from own movement.
+            transform.Translate(0, 0, GameManager.currentSpeed * Time.deltaTime); // move object, independent from own movement.
         }
     }
 }
