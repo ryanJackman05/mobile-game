@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
     [FormerlySerializedAs("playerMovement")] public PlayerCarController playerCar; // Player will assign itself at start.
     [SerializeField] private float startSpeed;
     public static float currentSpeed;
-    // public ObjectPool<Zom>
+
+    private Pool zombiePool;
+    [SerializeField] GameObject zombiePrefab;
     // public ObjectPool<item>
     // public ObjectPool<Obstacle> // 2 of each variant should be good
     
@@ -17,6 +19,8 @@ public class GameManager : MonoBehaviour
         current = this;
         
         currentSpeed = startSpeed;
+        zombiePool = new Pool(zombiePrefab);
+        zombiePool.CreatePool(10);
     }
 
     // Update is called once per frame
