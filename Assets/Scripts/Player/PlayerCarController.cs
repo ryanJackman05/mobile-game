@@ -24,8 +24,9 @@ public class PlayerCarController : MonoBehaviour
         {
             Vector3 transformForward = transform.forward;
             transformForward.Scale(new Vector3(1, 0, 1));
-            body.linearVelocity = transformForward * -GameManager.currentSpeed;
-            transform.Rotate(0, currentTurn * turnMult, 0);
+            roadCheck.localEulerAngles = new Vector3(0, currentTurn * 60, 0);
+            body.AddForceAtPosition((roadCheck.forward * turnMult /* * -GameManager.currentSpeed*/) + (transformForward * -GameManager.currentSpeed), roadCheck.position);
+            //transform.Rotate(0, currentTurn * turnMult, 0);
         }
 
         // TODO use addForceAtpoint instead? OR manipulate car rig via scripts, depending on how car ends up being built.
