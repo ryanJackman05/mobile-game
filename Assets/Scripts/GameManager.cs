@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float startSpeed;
     public static float currentSpeed;
 
-    private Pool zombiePool;
+    private Pool zombiePool, obstaclePool, itemPool;
     [SerializeField] GameObject zombiePrefab;
+    [SerializeField] GameObject[] obstaclePrefabs; // todo perhaps convert to multiple small pools later, one for each specific obstacle type, and one large pool for basic props
+    
     // public ObjectPool<item>
     // public ObjectPool<Obstacle> // 2 of each variant should be good
     
@@ -19,8 +21,11 @@ public class GameManager : MonoBehaviour
         current = this;
         
         currentSpeed = startSpeed;
+        
+        // initialise pools
         zombiePool = new Pool(zombiePrefab);
         zombiePool.CreatePool(10);
+        obstaclePool = new Pool(obstaclePrefabs);
     }
 
     // Update is called once per frame

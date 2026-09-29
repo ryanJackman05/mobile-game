@@ -3,22 +3,39 @@ using UnityEngine;
 
 public class Pool
 {
-    public readonly GameObject objectToPool;
+    public readonly GameObject[] objectsToPool;
     private int preferredMax;
     public bool isCapped;
     List<GameObject> pool;
 
     public Pool(GameObject objectToPool)
     {
-        this.objectToPool = objectToPool;
+        this.objectsToPool = new GameObject[1];
+        this.objectsToPool[0] = objectToPool;
+    }
+
+    public Pool(GameObject[] objectsToPool)
+    {
+        for (int i = 0; i < objectsToPool.Length; i++)
+        {
+            if (objectsToPool[i] == null)
+            {
+                Debug.LogError("Pool object "+i+" is null");
+                return;
+            }
+        }
+        this.objectsToPool = objectsToPool;
     }
     
     public void CreatePool(int num)
     {
         pool = new List<GameObject>(num);
+        preferredMax = num;
         for (int i = 0; i < num; i++)
         {
-            pool.Add(GameObject.Instantiate(objectToPool));
+            GameObject o = GameObject.Instantiate(objectsToPool[Random.Range(0, objectsToPool.Length)]);
+            pool.Add(o);
+            o.SetActive(false);
         }
 
         //foreach (var g in pool) Debug.Log("?????");
@@ -26,7 +43,7 @@ public class Pool
 
     public GameObject spawn(Vector3 position, Quaternion rotation)
     {
-        foreach (var p_object in pool)
+        foreach (var p_object in pool) // check for inactive instances first
         {
             if (p_object != null)
             {
@@ -39,8 +56,11 @@ public class Pool
                 }
             }
         }
+        // all instances active
+        if(isCapped) return null; // capped?
 
-        GameObject o = GameObject.Instantiate(objectToPool);
+        // pool not capped. Create new
+        GameObject o = GameObject.Instantiate(objectsToPool[Random.Range(0, objectsToPool.Length)]);
         pool.Add(o);
         return o;
     }
