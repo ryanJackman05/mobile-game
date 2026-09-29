@@ -52,6 +52,7 @@ public class Pool
                     p_object.transform.position = position;
                     p_object.transform.rotation = rotation;
                     p_object.SetActive(true);
+                    Debug.Log("Spawned " + p_object.name);
                     return p_object;
                 }
             }
@@ -62,6 +63,8 @@ public class Pool
         // pool not capped. Create new
         GameObject o = GameObject.Instantiate(objectsToPool[Random.Range(0, objectsToPool.Length)]);
         pool.Add(o);
+        o.transform.position = position;
+        o.transform.rotation = rotation;
         return o;
     }
 

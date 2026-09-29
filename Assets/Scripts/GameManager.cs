@@ -6,7 +6,11 @@ public class GameManager : MonoBehaviour
     public static GameManager current; // singleton
     [FormerlySerializedAs("playerMovement")] public PlayerCarController playerCar; // Player will assign itself at start.
     [SerializeField] private float startSpeed;
+    [SerializeField] private float startWidth;
     public static float currentSpeed;
+    public static float roadWidth;
+    
+    float zombieDistance; // distance until next zombie spawn
 
     private Pool zombiePool, obstaclePool, itemPool;
     [SerializeField] GameObject zombiePrefab;
@@ -21,6 +25,7 @@ public class GameManager : MonoBehaviour
         current = this;
         
         currentSpeed = startSpeed;
+        roadWidth = startWidth;
         
         // initialise pools
         zombiePool = new Pool(zombiePrefab);
@@ -32,9 +37,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // if in play
-        // for each item{
-        // scroll (move) item
-        // REPEAT FOR ZOMBIES. Their AI should handle their movement relative to the road
+        // loop timers for spawning stuff
+        // if spawn,
+        // randomise spawning type/num based on difficulty
+        
+        zombieDistance += Time.deltaTime * currentSpeed;
+        if(zombieDistance <= 0) SpawnZombie();
     }
 
     void NewGame() //TODO
@@ -58,5 +66,18 @@ public class GameManager : MonoBehaviour
         
         // bring up end screen menu
         // TODO - Decide if end screen moves straight to a new scene with car ready, or if it lingers on stopped car
+    }
+
+    void SpawnZombie()
+    {
+        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 20), Quaternion.identity);
+        
+        // reset timer
+        zombieDistance = Random.Range(20,30);
+    }
+
+    void SpawnObstacle()
+    {
+        
     }
 }

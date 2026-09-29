@@ -48,3 +48,11 @@ created car test model
 created ramp, rudimentary jumps work
 
 game props will use new MoveWithWorld component to "scroll" to emulate the car driving.
+
+29-09
+
+introduced & implemented basic object Pool
+
+improved the car handling, this is likely how it wil stay for the final project
+
+added terrain
