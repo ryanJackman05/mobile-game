@@ -13,6 +13,8 @@ public class MoveWithWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.z < -10) gameObject.SetActive(false);
+        
         if (!LifecycleGuard.IsPaused)
         {
             transform.Translate(0, 0, GameManager.currentSpeed * Time.deltaTime); // move object, independent from own movement.
