@@ -56,3 +56,9 @@ introduced & implemented basic object Pool
 improved the car handling, this is likely how it wil stay for the final project
 
 added terrain
+
+30-09
+ worst-frame main-thread ms = 38ms
+ the tallest marker name = PostLateUpdate.FinishFramerendering
+ top three hierarchy entries = PostLateUpdate.FinishFramerendering, PhysicsFixedUpdate, PresentAfterDraw
+  GC.Collect no
