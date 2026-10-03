@@ -12,6 +12,11 @@ public class RenderScaleProbe : MonoBehaviour
 
     void Start()
     {
+        if (!Debug.isDebugBuild)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         _urp = GraphicsSettings.currentRenderPipeline
             as UniversalRenderPipelineAsset;
         _full = _urp.renderScale;
