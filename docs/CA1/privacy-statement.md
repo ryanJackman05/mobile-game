@@ -6,26 +6,25 @@
 **Last Updated:** 3 October 2026
 **Privacy Contact:** gameDev@company.com
 **Privacy Policy URL:** gameDev.com/info/policy
+**Game Version**: 0.1.0
 
 ## 1. Introduction
 
-This Privacy Policy explains how [Developer or Company Name] handles information in connection with [Game Name], a single-player mobile game for Android devices.
+This Privacy Policy explains how RJ handles information in connection with Ride or Die, a single-player mobile game for Android devices.
 
 The game is designed for offline play and does not offer user accounts, advertising, or in-app purchases.
 
-We aim to be transparent about the information the game accesses, stores, or transmits. This policy will be updated if the game's features or data practices change.
+We aim to be transparent about the information the game accesses, stores, or transmits. This policy and all relevant notices will be updated when the game's features or data practices change.
+
+All info in this document is correct for version 0.1.0 of Ride or Die.
 
 ## 2. Information We Collect
 
-**Information collected directly by the developer**
-
-[Confirm whether the game collects any personal information directly. If none is collected, state this only after verification.]
-
 **Gameplay and device information**
 
-The game may store gameplay progress, preferences, settings, or other game-related information locally on the device, depending on its implementation.
+The game does not store gameplay progress, preferences, settings, or other game-related data persistently on the device.
 
-[Confirm exactly what information is stored locally and whether it is removed when the app or its data is uninstalled or cleared.]
+Any and all data stored locally by this application will be removed upon uninstalling the game.
 
 **Analytics and diagnostic information**
 
@@ -48,11 +47,9 @@ Any information handled by the game will be used only for purposes applicable to
 
 The game is designed for single-player offline gameplay.
 
-[VERIFY: Confirm whether the game makes any network requests, including requests made by third-party libraries, platform services, or diagnostic tools.]
+The game does not transmit user information to the developer or third parties. Gameplay data is stored locally on the device.
 
-[If verified that no information is transmitted from the game to the developer or third parties, replace this section with: "The game does not transmit user information to the developer or third parties. Gameplay data is stored locally on the device."]
-
-[If network requests or third-party services are present, describe the information transmitted, recipients, purposes, and relevant service providers here.]
+The play time & status of the game may be logged and stored onto Google Play cloud services via a connected Google Play account. The game itself does not collect nor share any of the user's personal information.
 
 ## 5. Advertising and Purchases
 
@@ -120,7 +117,7 @@ The latest version will be available at [Public Privacy Policy URL]. The updated
 
 For questions about this Privacy Policy or the game's data practices, contact:
 
-**Developer:** [Developer or Company Name]
-**Game:** [Game Name]
+**Developer:** RJ
+**Game:** Ride or Die
 **Email:** [Privacy Contact Email]
 **Website:** [Developer Website, if applicable]
