@@ -62,3 +62,7 @@ added terrain
  the tallest marker name = PostLateUpdate.FinishFramerendering
  top three hierarchy entries = PostLateUpdate.FinishFramerendering, PhysicsFixedUpdate, PresentAfterDraw
   GC.Collect no
+
+03-10 
+worked a lot today on the CA1 spec requirements.
+I used a privacy policy generator website to make a Privacy Policy and Data Safety statemet for the game. I was dissatisfied with the unclear wording, so changed it to a ChatGPT-generated version.

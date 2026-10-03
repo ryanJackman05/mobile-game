@@ -1,4 +1,4 @@
-# mobile-game [Title Undecided]
+# mobile-game (Ride or Die)
 Project for Labs and CA development in the Mobile Game Development module
 
 ## Option Number 
