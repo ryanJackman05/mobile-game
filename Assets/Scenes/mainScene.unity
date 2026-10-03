@@ -4586,7 +4586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd3dc58a31d77140bda6cae5e8e34df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RenderScaleProbe
-  lowScale: 0.5
+  lowScale: 0.4
 --- !u!1 &2044811553
 GameObject:
   m_ObjectHideFlags: 0

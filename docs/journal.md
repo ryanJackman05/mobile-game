@@ -66,3 +66,17 @@ added terrain
 03-10 
 worked a lot today on the CA1 spec requirements.
 I used a privacy policy generator website to make a Privacy Policy and Data Safety statemet for the game. I was dissatisfied with the unclear wording, so changed it to a ChatGPT-generated version.
+
+04-10
+actually continued the labs today. Did not realise the labs contained so much work on the CA1 files.
+
+For the Part D: RenderScaleProbe test, here are the values
+Before Toggle
+Main Thread CPU time: between 17 - 33 ms
+Gfx.WaitForPresentOnGfxThread: wild jumping between 8 - 25 ms
+
+After toggle
+Main Thread CPU time: early hovered around 16.7, before spikes started appearing again, less frequently than before.
+Gfx.WaitForPresentOnGfxThread: average of 8-10 ms
+
+Conclusion: more consistent time ms and less spikes on both CPU and GPU at low res, GPU bound.
