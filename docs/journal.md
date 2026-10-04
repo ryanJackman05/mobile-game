@@ -79,4 +79,4 @@ After toggle
 Main Thread CPU time: early hovered around 16.7, before spikes started appearing again, less frequently than before.
 Gfx.WaitForPresentOnGfxThread: average of 8-10 ms
 
-Conclusion: more consistent time ms and less spikes on both CPU and GPU at low res, GPU bound.
+Conclusion: more consistent time ms and less spikes on both CPU and GPU at low res, but minimum frame time did not drop very far. First conclusion is GPU-bound, but I think this may instead point to not enough happening in game as of this version (no textures, simple models, etc)
