@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +9,8 @@ public class GameManager : MonoBehaviour
     [FormerlySerializedAs("playerMovement")] public PlayerCarController playerCar; // Player will assign itself at start.
     [SerializeField] private float startSpeed;
     [SerializeField] private float startWidth;
+    [SerializeField] private Vector2 zombieDistanceRange;
+    
     public static float currentSpeed;
     public static float roadWidth;
     
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LifecycleGuard.IsPaused) return;
         // if in play
         // loop timers for spawning stuff
         // if spawn,
@@ -73,7 +78,15 @@ public class GameManager : MonoBehaviour
         zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 20), Quaternion.identity);
         
         // reset timer
-        zombieDistance = Random.Range(20,30);
+        zombieDistance = Random.Range(zombieDistanceRange.x, zombieDistanceRange.y);
+    }
+
+    public void SpawnTen()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 20), Quaternion.identity);
+        }
     }
 
     void SpawnObstacle()
