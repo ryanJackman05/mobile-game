@@ -67,4 +67,4 @@ Certificate fingerprints:
 
 ### AI Assistance
 AI was not used to generate any code at the current build version of the game 0.2.0
-AI was used to generate a template Data Privacy Statement for CA1
+AI was used to generate a template Data Privacy Statement for CA1, which was mostly cut save for the top and bottom info segments.
