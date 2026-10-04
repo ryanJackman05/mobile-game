@@ -787,6 +787,7 @@ GameObject:
   - component: {fileID: 179791697}
   - component: {fileID: 179791699}
   - component: {fileID: 179791698}
+  - component: {fileID: 179791700}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -902,6 +903,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de52ed9c62a3242488238a4786a32249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeyboardInput
+--- !u!114 &179791700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179791692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfdba50d50f60844b982dfddd6f384be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FrameTimeSampler
 --- !u!1 &274680594
 GameObject:
   m_ObjectHideFlags: 0

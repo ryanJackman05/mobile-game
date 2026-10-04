@@ -79,4 +79,9 @@ After toggle
 Main Thread CPU time: early hovered around 16.7, before spikes started appearing again, less frequently than before.
 Gfx.WaitForPresentOnGfxThread: average of 8-10 ms
 
-Conclusion: more consistent time ms and less spikes on both CPU and GPU at low res, but minimum frame time did not drop very far. First conclusion is GPU-bound, but I think this may instead point to not enough happening in game as of this version (no textures, simple models, etc)
+Conclusion: more consistent time ms and less spikes on both CPU and GPU at low res, but minimum frame time did not drop very far. First conclusion is GPU-bound, but it may also point to not enough happening in game as of this version (no textures, simple models, etc)
+
+REST (no menu yet)
+2026/10/04 18:02:38.984 25221 25241 Info Unity [Baseline] avg 18.85 ms  p99 33.69 ms
+GAMEPLAY (no high intensity case for this build, as the SpawnMany button is hidden)
+2026/10/04 18:04:19.375 25221 25241 Info Unity [Baseline] avg 18.93 ms  p99 33.63 ms

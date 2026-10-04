@@ -17,7 +17,8 @@ public class TapSwipeInput : MonoBehaviour
     void Update()
     {
         if (LifecycleGuard.IsPaused) return; // PAUSE MENU CHECK
-        
+
+        GameManager.current.playerCar.currentTurn = 0;
         foreach (var t in Touch.activeTouches)
         {
             // Check for an ongoing hold
@@ -36,8 +37,8 @@ public class TapSwipeInput : MonoBehaviour
             float px = swipeDp * Mathf.Max(Screen.dpi, 160f) / 160f;
             Vector2 d = t.screenPosition - t.startScreenPosition;
             
-            if (d.magnitude >= px) Debug.Log("Swiped " + d.normalized); // TODO - do I need to remove swipe detection for end-of-hold? (Refer to Lab 2A)
-            else if (t.time - t.startTime < tapMax) Debug.Log("Tap");
+            //if (d.magnitude >= px) Debug.Log("Swiped " + d.normalized); // TODO - do I need to remove swipe detection for end-of-hold? (Refer to Lab 2A)
+            //else if (t.time - t.startTime < tapMax) Debug.Log("Tap");
         }
     }
 }
