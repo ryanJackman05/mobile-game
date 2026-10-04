@@ -1,6 +1,6 @@
 | Device | Android | Serial (last 4) | Install result | Notes |
 |--------|---------|-----------------|----------------|-------|
-| My A13 | 14 | 2TRP | Success, versionCode 2 | occasional frame jumps |
+| My SM-A137F | 14 | 2TRP | Success, versionCode 2 | occasional frame jumps |
 | Friend's A12 | 13 | KMXR | Success | nothing unusual. one noticeable frame jump at the beginning & occasional frame jumps |
 
 Other device command outputs:
