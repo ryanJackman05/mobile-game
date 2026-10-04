@@ -79,6 +79,7 @@ mono_crash.*
 *.unitypackage
 *.unitypackage.meta
 *.app
+/releases
 !/releases/*.apk
 
 # Crashlytics generated file
