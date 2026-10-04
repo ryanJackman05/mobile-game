@@ -20,5 +20,10 @@ Features:
 The control scheme is simple and intuitive, with the left and right sides of the screen dedicated to controlling the steering of your car. Where you're going you don't need brakes. There is an optional gyro steering mode.
 
 How far can you make it? Try to beat your high score and drive further into the apocalypse...
+
+No ads
+No In-App purchases
+No online play
+No personal data recorded
  
 *Official specs: app icon 512×512, 32-bit PNG (with alpha), max 1024 KB; feature graphic 1024×500, JPEG or 24-bit PNG (no alpha).*
