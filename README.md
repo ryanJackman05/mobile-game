@@ -33,7 +33,7 @@ adb shell monkey -p com.ryanJackman.coolMobileGame 1
 
 
 confirmed boot debug output: `[Boot] samsung SM-A137F | Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1) | Vulkan | 1080x2408 @ 450 dpi`
-
+API Level - Android 8.0 (API Level 26) [Default by unity]
 ___
 
 "C:\Users\ryanj\My Stuff\Unity\Keystores\mygame-release.keystore"
