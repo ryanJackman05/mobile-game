@@ -85,3 +85,22 @@ REST (no menu yet)
 2026/10/04 18:02:38.984 25221 25241 Info Unity [Baseline] avg 18.85 ms  p99 33.69 ms
 GAMEPLAY (no high intensity case for this build, as the SpawnMany button is hidden)
 2026/10/04 18:04:19.375 25221 25241 Info Unity [Baseline] avg 18.93 ms  p99 33.63 ms
+
+5-10
+Optimisations noted to focus on for Lab 5A:
+- One manager ticks a List<ITickable>; hundreds of Update methods cost call overhead​
+- Disable components that have nothing to do this frame​
+- Never GetComponent, Find or Camera.main in a loop; cache in Awake​
+- Use FixedUpdate only for physics; keep it light​
+
+- Awaitable: Implement basic timers for reference, so they can be used instead of Coroutines if needed later.
+    (Ask Pino if suitable for project)
+
+- Ensure that Prewarm to the worst wave in Awake, behind the loading screen​
+- add comment: Reset state on SPAWN: health, velocity, trails, timers​
+- Cap the pool and log if you exceed it (compare to lab implementation)
+
+Potential issues/checks:
+  - Stale references: a released enemy is still targeted by another script​
+  - Particle systems and trail renderers need Clear() on release​ (unlikely for this project)
+  - A Rigidbody keeps its velocity; be sure to zero it on spawn​
