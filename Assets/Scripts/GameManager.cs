@@ -13,12 +13,13 @@ public class GameManager : MonoBehaviour
     [FormerlySerializedAs("playerMovement")] public PlayerCarController playerCar; // Player will assign itself at start.
     [SerializeField] private float startSpeed;
     [SerializeField] private float startWidth;
-    [SerializeField] private Vector2 zombieDistanceRange;
+    [SerializeField] private Vector2 spawnDistanceRange;
     
     public static float currentSpeed;
     public static float roadWidth;
     
     float zombieDistance; // distance until next zombie spawn
+    float obstacleDistance; // 
 
     private Pool zombiePool, obstaclePool, itemPool;
     [SerializeField] GameObject zombiePrefab;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         zombiePool = new Pool(zombiePrefab);
         zombiePool.CreatePool(10);
         obstaclePool = new Pool(obstaclePrefabs);
+        obstaclePool.CreatePool(10);
     }
 
     // Update is called once per frame
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
         
         zombieDistance += Time.deltaTime * currentSpeed;
         if(zombieDistance <= 0) SpawnZombie();
+        obstacleDistance += Time.deltaTime * currentSpeed;
+        if(obstacleDistance <= 0) SpawnObstacle();
     }
 
     void NewGame() //TODO
@@ -118,7 +122,7 @@ public class GameManager : MonoBehaviour
         zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 20), Quaternion.identity);
         
         // reset timer
-        zombieDistance = Random.Range(zombieDistanceRange.x, zombieDistanceRange.y);
+        zombieDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
     }
 
     public void SpawnTen()
@@ -131,6 +135,9 @@ public class GameManager : MonoBehaviour
 
     void SpawnObstacle()
     {
+        obstaclePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 20), Quaternion.identity);
         
+        // reset timer
+        obstacleDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
     }
 }
