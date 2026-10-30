@@ -1655,6 +1655,7 @@ GameObject:
   - component: {fileID: 417864546}
   - component: {fileID: 417864545}
   - component: {fileID: 417864544}
+  - component: {fileID: 417864547}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -1705,6 +1706,9 @@ MonoBehaviour:
   turnMult: 10
   driveForce: 25
   currentTurn: 0
+  health: 0
+  maxHealth: 0
+  startMaxHealth: 0
 --- !u!4 &417864546
 Transform:
   m_ObjectHideFlags: 0
@@ -1723,6 +1727,18 @@ Transform:
   - {fileID: 2044811554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &417864547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417864543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed52f6a57ba7e96428773f636e965699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveWithWorld
 --- !u!1 &485631576
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,6 +2822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67e4f625db52ad40b4435c6029a6043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  state: 0
   playerCar: {fileID: 0}
   startSpeed: -10
   startWidth: 3
@@ -4996,8 +5013,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8556930137433257901, guid: 7e2a61f1c77f0de47b5c849d22e7b95b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6986320400820102740}
   m_SourcePrefab: {fileID: 100100000, guid: 7e2a61f1c77f0de47b5c849d22e7b95b, type: 3}
+--- !u!1 &6986320400820102739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556930137433257901, guid: 7e2a61f1c77f0de47b5c849d22e7b95b, type: 3}
+  m_PrefabInstance: {fileID: 6986320400820102738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6986320400820102740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986320400820102739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1391dc4b12dcb2449b6224ccff1d0ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -6,6 +6,10 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager current; // singleton
+    public enum GameState { Playing, Paused, GameOver } 
+    public GameState state;
+    public event System.Action<GameState> StateChanged;
+
     [FormerlySerializedAs("playerMovement")] public PlayerCarController playerCar; // Player will assign itself at start.
     [SerializeField] private float startSpeed;
     [SerializeField] private float startWidth;
@@ -61,14 +65,24 @@ public class GameManager : MonoBehaviour
         // start obstacle interval timer
         
         // play
+        state = GameState.Playing;
+        StateChanged?.Invoke(GameState.Playing); 
+    }
+
+    public void Pause() // can be called by LifeCycleGuard to trigger pause state. 
+    {
+        state = GameState.Paused;
+        StateChanged?.Invoke(GameState.Paused); // todo Unsure if this state will be used by anything
     }
 
     void GameOver()
     {
-        // immediately pause scrolling
-        // stop object spawning (might be dependant on scrolling anyway, TBD)
+        // immediately slow down scrolling
+        // stop object spawning (might be dependent on scrolling anyway, TBD)
         // play death animation/scene (allowing the camera to move if needed)
         
+        state = GameState.GameOver;
+        StateChanged?.Invoke(GameState.GameOver);
         // bring up end screen menu
         // TODO - Decide if end screen moves straight to a new scene with car ready, or if it lingers on stopped car
     }

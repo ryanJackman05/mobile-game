@@ -6,6 +6,8 @@ public class PlayerCarController : MonoBehaviour
     public float turnMult;
     public float driveForce;
     public float currentTurn;
+    
+    public int health, maxHealth, startMaxHealth;
 
     private Rigidbody body;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,6 +33,7 @@ public class PlayerCarController : MonoBehaviour
 
         // TODO use addForceAtpoint instead? OR manipulate car rig via scripts, depending on how car ends up being built.
     }
+    
     // might be needed to assist lifting the car on a jump ramp
     void Jump()
     {
@@ -46,5 +49,14 @@ public class PlayerCarController : MonoBehaviour
     void Turn(float amount)
     {
         transform.Rotate(0, amount, 0);
+    }
+
+    void Crash() // called by crash colliders on car body
+    {
+        
+    }
+    void Die() // called when HP is below 0
+    {
+        
     }
 }
