@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public enum GameState { Playing, Paused, GameOver } 
     public GameState state;
     public event System.Action<GameState> StateChanged;
+    private CancellationTokenSource _cts;
 
     [FormerlySerializedAs("playerMovement")] public PlayerCarController playerCar; // Player will assign itself at start.
     [SerializeField] private float startSpeed;
@@ -62,9 +63,18 @@ public class GameManager : MonoBehaviour
     {
         // Initialise Pools
         zombiePool.Reset();
+        obstaclePool.Reset();
+        // todo itemPool.Reset();
+        
         // reset values & difficulty
+        if (_cts != null){
+            _cts.Cancel(); _cts.Dispose(); _cts = null; } // completely reset the cancel token
+
+        currentSpeed = startSpeed;
+        
         // Check playerCar exists
         // playerCar.reset
+        playerCar.ResetCar();
         
         // place starting obstacles / zombies
         // start obstacle interval timer
@@ -84,7 +94,9 @@ public class GameManager : MonoBehaviour
     {
         if (state == GameState.GameOver)  return;
         // immediately slow down scrolling
-        _ = SlowDown(destroyCancellationToken); // assigns awaitable to var so the following code can continue
+        
+        _cts = new CancellationTokenSource();
+        _ = SlowDown(_cts.Token); // assigns awaitable to var so the following code can continue
         
         // stop object spawning (might be dependent on scrolling anyway, TBD)
         
@@ -112,6 +124,12 @@ public class GameManager : MonoBehaviour
 
             // Pauses *only* this method until the next frame
             await Awaitable.NextFrameAsync(cancellationToken);
+        }
+        
+        if (_cts != null && _cts.Token == cancellationToken)
+        {
+            _cts.Dispose();
+            _cts = null; 
         }
 
         Debug.Log("The float has finally hit 0!");

@@ -88,7 +88,7 @@ public class Pool
                 GameObject.Destroy(o);
             }
             pool.Capacity = preferredMax;
-            DisableAll();
         }
+        DisableAll();
     }
 }

@@ -63,4 +63,13 @@ public class PlayerCarController : MonoBehaviour
     {
         
     }
+
+    public void ResetCar()
+    {
+        body.constraints = RigidbodyConstraints.FreezePositionZ;
+        body.linearVelocity = Vector3.zero;
+        body.angularVelocity = Vector3.zero;
+        transform.position = Vector3.up * 1.2f;
+        transform.rotation = Quaternion.identity;
+    }
 }

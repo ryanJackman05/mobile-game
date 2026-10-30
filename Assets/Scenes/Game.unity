@@ -1686,7 +1686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &398669767
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1947,7 +1947,7 @@ Transform:
   m_GameObject: {fileID: 417864543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.95, y: 1.27, z: 0}
+  m_LocalPosition: {x: 0, y: 1.262, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3450,7 +3450,7 @@ MonoBehaviour:
   playerCar: {fileID: 0}
   startSpeed: -10
   startWidth: 3
-  spawnDistanceRange: {x: 1, y: 1}
+  spawnDistanceRange: {x: 20, y: 30}
   zombiePrefab: {fileID: 8556930137433257901, guid: 7e2a61f1c77f0de47b5c849d22e7b95b, type: 3}
   obstaclePrefabs:
   - {fileID: 2125570243}
@@ -5225,7 +5225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1687978006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6104,16 +6104,16 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 417864546}
+  - {fileID: 976563032}
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 179791694}
   - {fileID: 1198200855}
   - {fileID: 326189046}
-  - {fileID: 417864546}
   - {fileID: 116694960}
   - {fileID: 509199157}
-  - {fileID: 976563032}
   - {fileID: 6986320400820102738}
   - {fileID: 802097361261456793}
   - {fileID: 5512484146784935154}
