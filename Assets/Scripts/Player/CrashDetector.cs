@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CrashDetector : MonoBehaviour
 {
+    [SerializeField] bool withConstraints;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,6 +19,6 @@ public class CrashDetector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // assume correct layer interaction exclusions - > check project config and gameobject layer
-        SendMessageUpwards("Crash");
+        SendMessageUpwards("Crash", withConstraints);
     }
 }

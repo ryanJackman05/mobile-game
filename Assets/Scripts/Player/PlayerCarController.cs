@@ -54,8 +54,9 @@ public class PlayerCarController : MonoBehaviour
         transform.Rotate(0, amount, 0);
     }
 
-    void Crash() // called by crash colliders on car body
+    void Crash(bool withConstraints) // called by crash colliders on car body
     {
+        body.constraints = withConstraints ? RigidbodyConstraints.FreezePositionZ : RigidbodyConstraints.None; // loosen constraints for physics
         GameManager.current.GameOver();
     }
     void Die() // called when HP is below 0
