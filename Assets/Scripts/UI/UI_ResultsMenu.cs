@@ -16,5 +16,5 @@ public class UI_ResultsMenu : MonoBehaviour
             panel.SetActive(false);
     }
     
-    public void OnRestartPressed() => GameManager.current.Restart();
+    public void OnRestartPressed() => GameManager.current.NewGame();
 }

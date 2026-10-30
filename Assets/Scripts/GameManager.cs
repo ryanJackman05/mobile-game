@@ -58,9 +58,10 @@ public class GameManager : MonoBehaviour
         if(obstacleDistance <= 0) SpawnObstacle();
     }
 
-    void NewGame() //TODO
+    public void NewGame() //TODO
     {
         // Initialise Pools
+        zombiePool.Reset();
         // reset values & difficulty
         // Check playerCar exists
         // playerCar.reset

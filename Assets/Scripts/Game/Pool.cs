@@ -68,12 +68,27 @@ public class Pool
         return o;
     }
 
-    public void Reset() // reset to preferred max
+    public void DisableAll()
+    {
+        // pool.Clear() removes all links, does not delete items
+        Debug.Log(pool.Capacity);
+        foreach (var p_object in pool){
+            p_object.SetActive(false);
+        }
+    }
+
+    public void Reset() // reset pool count to preferred max
     {
         if (pool.Count > preferredMax)
         {
+            List<GameObject> extras = pool.GetRange(preferredMax, pool.Count - preferredMax);
             //pool.RemoveRange(pool.Count, preferredMax - pool.Count);
-            pool.TrimExcess();
+            foreach (var o in extras){
+                pool.Remove(o);
+                GameObject.Destroy(o);
+            }
+            pool.Capacity = preferredMax;
+            DisableAll();
         }
     }
 }
