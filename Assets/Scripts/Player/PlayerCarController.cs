@@ -27,7 +27,10 @@ public class PlayerCarController : MonoBehaviour
             Vector3 transformForward = transform.forward;
             transformForward.Scale(new Vector3(1, 0, 1));
             roadCheck.localEulerAngles = new Vector3(0, currentTurn * 60, 0);
-            body.AddForceAtPosition((roadCheck.forward * turnMult /* * -GameManager.currentSpeed*/) + (transformForward * -GameManager.currentSpeed), roadCheck.position);
+            body.AddForceAtPosition(transformForward * -GameManager.currentSpeed, roadCheck.position); // car rolls regardless of game state
+            
+            if (GameManager.current.state == GameManager.GameState.Playing) // car can only be steered in play
+                body.AddForceAtPosition((roadCheck.forward * turnMult /* * -GameManager.currentSpeed*/), roadCheck.position);
             //transform.Rotate(0, currentTurn * turnMult, 0);
         }
 
@@ -53,7 +56,7 @@ public class PlayerCarController : MonoBehaviour
 
     void Crash() // called by crash colliders on car body
     {
-        
+        GameManager.current.GameOver();
     }
     void Die() // called when HP is below 0
     {

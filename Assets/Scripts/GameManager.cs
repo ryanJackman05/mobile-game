@@ -1,4 +1,4 @@
-using System;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -72,20 +72,46 @@ public class GameManager : MonoBehaviour
     public void Pause() // can be called by LifeCycleGuard to trigger pause state. 
     {
         state = GameState.Paused;
-        StateChanged?.Invoke(GameState.Paused); // todo Unsure if this state will be used by anything
+        StateChanged?.Invoke(GameState.Paused); // todo check if this state will be used by anything
     }
 
-    void GameOver()
+    public void GameOver()
     {
+        if (state == GameState.GameOver)  return;
         // immediately slow down scrolling
+        _ = SlowDown(destroyCancellationToken); // assigns awaitable to var so the following code can continue
+        
         // stop object spawning (might be dependent on scrolling anyway, TBD)
+        
+        
         // play death animation/scene (allowing the camera to move if needed)
         
         state = GameState.GameOver;
         StateChanged?.Invoke(GameState.GameOver);
-        // bring up end screen menu
-        // TODO - Decide if end screen moves straight to a new scene with car ready, or if it lingers on stopped car
+        
+        // bring up end screen menu, lingering on stopped scene todo might be called by StateChanged elsewhere
+        
+        Debug.Log("Game Over");
     }
+    private async Awaitable SlowDown(CancellationToken cancellationToken)
+    {
+        float rate = currentSpeed / 5;
+        Debug.Log("Slowing down");
+
+        while (currentSpeed < 0) // remember speed is stored in negatives
+        {
+            if (cancellationToken.IsCancellationRequested) return;
+
+            currentSpeed -= rate * Time.deltaTime;
+            if (currentSpeed > 0) currentSpeed = 0; 
+
+            // Pauses *only* this method until the next frame
+            await Awaitable.NextFrameAsync(cancellationToken);
+        }
+
+        Debug.Log("The float has finally hit 0!");
+    }
+    
 
     void SpawnZombie()
     {
