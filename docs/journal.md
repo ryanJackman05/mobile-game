@@ -104,3 +104,6 @@ Potential issues/checks:
   - Stale references: a released enemy is still targeted by another script​
   - Particle systems and trail renderers need Clear() on release​ (unlikely for this project)
   - A Rigidbody keeps its velocity; be sure to zero it on spawn​
+
+1-11
+Finally returned to working on game by continuing lab 5
