@@ -52,7 +52,7 @@ public class Pool
                     p_object.transform.position = position;
                     p_object.transform.rotation = rotation;
                     p_object.SetActive(true);
-                    Debug.Log("Spawned " + p_object.name);
+                    //Debug.Log("Spawned " + p_object.name);
                     return p_object;
                 }
             }

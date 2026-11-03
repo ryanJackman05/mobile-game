@@ -111,3 +111,5 @@ Potential issues/checks:
 Finally returned to working on game by continuing lab 5
 
 3-11 added models for lab 5A and credited sources
+
+Finished Lab 5A
