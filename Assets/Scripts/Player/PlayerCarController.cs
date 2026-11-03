@@ -6,6 +6,8 @@ public class PlayerCarController : MonoBehaviour
     public float turnMult;
     public float driveForce;
     public float currentTurn;
+    
+    public int health, maxHealth, startMaxHealth;
 
     private Rigidbody body;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,12 +27,16 @@ public class PlayerCarController : MonoBehaviour
             Vector3 transformForward = transform.forward;
             transformForward.Scale(new Vector3(1, 0, 1));
             roadCheck.localEulerAngles = new Vector3(0, currentTurn * 60, 0);
-            body.AddForceAtPosition((roadCheck.forward * turnMult /* * -GameManager.currentSpeed*/) + (transformForward * -GameManager.currentSpeed), roadCheck.position);
+            body.AddForceAtPosition(transformForward * -GameManager.currentSpeed, roadCheck.position); // car rolls regardless of game state
+            
+            if (GameManager.current.state == GameManager.GameState.Playing) // car can only be steered in play
+                body.AddForceAtPosition((roadCheck.forward * turnMult /* * -GameManager.currentSpeed*/), roadCheck.position);
             //transform.Rotate(0, currentTurn * turnMult, 0);
         }
 
         // TODO use addForceAtpoint instead? OR manipulate car rig via scripts, depending on how car ends up being built.
     }
+    
     // might be needed to assist lifting the car on a jump ramp
     void Jump()
     {
@@ -46,5 +52,24 @@ public class PlayerCarController : MonoBehaviour
     void Turn(float amount)
     {
         transform.Rotate(0, amount, 0);
+    }
+
+    void Crash(bool withConstraints) // called by crash colliders on car body
+    {
+        body.constraints = withConstraints ? RigidbodyConstraints.FreezePositionZ : RigidbodyConstraints.None; // loosen constraints for physics
+        GameManager.current.GameOver();
+    }
+    void Die() // called when HP is below 0
+    {
+        
+    }
+
+    public void ResetCar()
+    {
+        body.constraints = RigidbodyConstraints.FreezePositionZ;
+        body.linearVelocity = Vector3.zero;
+        body.angularVelocity = Vector3.zero;
+        transform.position = Vector3.up * 1.2f;
+        transform.rotation = Quaternion.identity;
     }
 }

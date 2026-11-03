@@ -29,7 +29,8 @@ public class TapSwipeInput : MonoBehaviour
                 {
                     float xMag = ((t.screenPosition.x / Screen.width) - 0.5f) * 2;
                     Debug.Log("Hold at " + t.screenPosition.x + '('+xMag+')');
-                    GameManager.current.playerCar.currentTurn = xMag; // TODO - ensure limits can't exceed 0-1
+                    int lr = xMag > 0 ? 1 : -1;
+                    GameManager.current.playerCar.currentTurn = lr;
                 }
                 continue; // Keep skipping the rest of the loop for active touches
             }
