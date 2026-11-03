@@ -105,6 +105,8 @@ Potential issues/checks:
   - Particle systems and trail renderers need Clear() on release​ (unlikely for this project)
   - A Rigidbody keeps its velocity; be sure to zero it on spawn​
 
+***No coroutines in project***
+
 1-11
 Finally returned to working on game by continuing lab 5
 
