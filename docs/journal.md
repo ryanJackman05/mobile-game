@@ -112,4 +112,10 @@ Finally returned to working on game by continuing lab 5
 
 3-11 added models for lab 5A and credited sources
 
-Finished Lab 5A
+Finished Lab 5A:
+
+No coroutines found, as I had already implemented the Pool and spawn intervals with a rudimentary timer.
+
+GC Alloc per-spawn: 2.3KB -> 0B
+
+Surprising was that Debug.Log calls created such large memory allocation. Maybe using just a print() call would be smaller.
