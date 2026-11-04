@@ -1,4 +1,5 @@
 using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -11,12 +12,14 @@ public class GameManager : MonoBehaviour
     public event System.Action<GameState> StateChanged;
     private CancellationTokenSource _cts;
 
-    [FormerlySerializedAs("playerMovement")] public PlayerCarController playerCar; // Player will assign itself at start.
+    public TextMeshProUGUI scoreText;
+    public PlayerCarController playerCar; // Player will assign itself at start.
     [SerializeField] private float startSpeed;
     [SerializeField] private float startWidth;
     [SerializeField] private Vector2 spawnDistanceRange;
     
     public static float currentSpeed;
+    private static double currentDistance;
     public static float roadWidth;
     
     float zombieDistance; // distance until next zombie spawn
@@ -48,15 +51,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (LifecycleGuard.IsPaused) return;
+        float dist = Time.deltaTime * currentSpeed; // negative
         // if in play
         // loop timers for spawning stuff
         // if spawn,
         // randomise spawning type/num based on difficulty
         
-        zombieDistance += Time.deltaTime * currentSpeed;
+        zombieDistance += dist;
         if(zombieDistance <= 0) SpawnZombie();
-        obstacleDistance += Time.deltaTime * currentSpeed;
+        obstacleDistance += dist;
         if(obstacleDistance <= 0) SpawnObstacle();
+        
+        currentDistance -= dist;
+        currentSpeed -= (3 * Time.deltaTime / 60);
+        print(currentSpeed);
+        scoreText.text = currentDistance.ToString("F2");
     }
 
     public void NewGame() //TODO
@@ -71,6 +80,7 @@ public class GameManager : MonoBehaviour
             _cts.Cancel(); _cts.Dispose(); _cts = null; } // completely reset the cancel token
 
         currentSpeed = startSpeed;
+        currentDistance = 0;
         
         // Check playerCar exists
         // playerCar.reset
@@ -138,7 +148,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnZombie()
     {
-        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 20), Quaternion.identity);
+        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
         
         // reset timer
         zombieDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
@@ -148,13 +158,13 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 20), Quaternion.identity);
+            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
         }
     }
 
     void SpawnObstacle()
     {
-        obstaclePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 20), Quaternion.identity);
+        obstaclePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
         
         // reset timer
         obstacleDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);

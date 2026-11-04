@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,9 @@ public class LoadScene : MonoBehaviour
 
     public void LoadThisScene()
     {
-        SceneManager.LoadSceneAsync(sceneName);
+        if (SceneLoader.Instance != null)
+            SceneLoader.Instance.Load(sceneName, Application.exitCancellationToken);
+        else
+            SceneManager.LoadSceneAsync(sceneName);
     }
 }

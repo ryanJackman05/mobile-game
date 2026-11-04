@@ -12,3 +12,16 @@ was measured around 2.3KB per spawn.
 
 **Now:** Consistent 0B GC.Alloc for GameManager (The pool manager)
 
+## 5B
+### Cold Starts:
+1066, 931, 997
+Target: 2-3 seconds max
+
+### Time to Interactive:
+2026/11/04 22:18:27.241 6897 6935 Info Unity [perf] interactive 2.83s
+
+### Time to Menu:
+2026/11/04 22:41:53.959 10031 10090 Info Unity [perf] scene MainMenu loaded in 737 ms
+
+### APK Size:
+35.0 MB (ARM32)
