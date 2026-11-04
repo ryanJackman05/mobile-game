@@ -9,6 +9,6 @@ public class Bootstrap : MonoBehaviour
         Application.targetFrameRate = 60;
         DontDestroyOnLoad(gameObject);
     }
-    async Awaitable Start() => await GetComponent<SceneLoader>().Load("MainMenu", CancellationToken.None);
+    async Awaitable Start() => await GetComponent<SceneLoader>().Load("MainMenu",  Application.exitCancellationToken);
 }
 
