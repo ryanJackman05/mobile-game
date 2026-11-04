@@ -16,6 +16,8 @@ public class SceneLoader : MonoBehaviour   // persistent, see Awake
 
     public async Awaitable Load(string scene, CancellationToken ct)
     {
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        
         loadingScreen.SetActive(true);
         var op = SceneManager.LoadSceneAsync(scene);
         op.allowSceneActivation = false;  // progress now stops at 0.9
@@ -27,6 +29,9 @@ public class SceneLoader : MonoBehaviour   // persistent, see Awake
         op.allowSceneActivation = true;
         await op;                         // completes on activation
         loadingScreen.SetActive(false);
+        
+        sw.Stop();
+        Debug.Log($"[perf] scene {scene} loaded in {sw.ElapsedMilliseconds} ms");
     }
     
     // TODO
