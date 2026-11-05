@@ -7,9 +7,13 @@ public class PlayerCarController : MonoBehaviour
     public float driveForce;
     public float currentTurn;
     
-    public int health, maxHealth, startMaxHealth;
+    public int health, maxHealth, startMaxHealth; // todo consider adding / changing to FUEL
 
     private Rigidbody body;
+    
+    
+    void OnEnable() { Wallet.wallet.Changed += UpgradeHealth; UpgradeHealth();}
+    void OnDisable() { Wallet.wallet.Changed -= UpgradeHealth; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,6 +40,28 @@ public class PlayerCarController : MonoBehaviour
 
         // TODO use addForceAtpoint instead? OR manipulate car rig via scripts, depending on how car ends up being built.
     }
+
+    void HitEnemy()
+    {
+        if(Wallet.wallet != null)
+            Wallet.wallet.Earn(25);
+    }
+    void UpgradeHealth()
+    {
+        maxHealth = startMaxHealth + (Wallet.wallet.Level * 10);
+        ChangeHealth(40);
+    }
+
+    void ChangeHealth(int healthChange)
+    {
+        health += healthChange;
+        if(health > maxHealth) 
+            health = maxHealth;
+        else if (health <= 0){
+            health = 0;
+            Die();
+        }
+    }
     
     // might be needed to assist lifting the car on a jump ramp
     void Jump()
@@ -61,7 +87,9 @@ public class PlayerCarController : MonoBehaviour
     }
     void Die() // called when HP is below 0
     {
-        
+        body.constraints = RigidbodyConstraints.None; // loosen constraints for physics
+        GameManager.current.GameOver();
+        // todo unique death
     }
 
     public void ResetCar()

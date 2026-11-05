@@ -733,6 +733,8 @@ GameObject:
   - component: {fileID: 878632561}
   - component: {fileID: 878632562}
   - component: {fileID: 878632563}
+  - component: {fileID: 878632564}
+  - component: {fileID: 878632565}
   m_Layer: 0
   m_Name: App
   m_TagString: Untagged
@@ -781,6 +783,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
   bar: {fileID: 1760225631}
   loadingScreen: {fileID: 283220542}
+--- !u!114 &878632564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878632560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a31042776dc7874694ae45e2d67cbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Wallet
+--- !u!114 &878632565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878632560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6871f42ff865754eb382b055b60462b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WalletPersistence
+  wallet: {fileID: 0}
 --- !u!1 &1760225629
 GameObject:
   m_ObjectHideFlags: 0

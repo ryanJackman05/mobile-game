@@ -19,6 +19,12 @@ public class CrashDetector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // assume correct layer interaction exclusions - > check project config and gameobject layer
-        SendMessageUpwards("Crash", withConstraints);
+        if (other.CompareTag("Enemy")){
+            other.GetComponent<EnemyController>().Kill();
+            SendMessageUpwards("HitEnemy");
+        }
+        else{
+            SendMessageUpwards("Crash", withConstraints);
+        }
     }
 }
