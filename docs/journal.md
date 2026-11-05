@@ -124,3 +124,10 @@ Surprising was that Debug.Log calls created such large memory allocation. Maybe 
 4-11
 Finished Lab 5B
 Need to revist part C & E
+
+5-11
+Finished Lab 6A
+
+Skipped the last step to make up for lost time. I've decided that gameplay balancing and pacing can be handled at a later date.
+
+I have added the Part E instructions to the Gamemanager as a TODO
