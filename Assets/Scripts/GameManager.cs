@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         
         currentDistance -= dist;
         currentSpeed -= (3 * Time.deltaTime / 60);
-        print(currentSpeed);
+        //print(currentSpeed);
         scoreText.text = currentDistance.ToString("F2");
     }
 

@@ -14,4 +14,9 @@ public class UI_WalletHUD : MonoBehaviour
         upgradeLabel.SetText("Upgrade ({0})", Wallet.wallet.NextCost);
         upgradeButton.interactable = Wallet.wallet.Coins >= Wallet.wallet.NextCost;
     }
+
+    public void Upgrade()
+    {
+        Wallet.wallet.TryUpgrade();
+    }
 }
