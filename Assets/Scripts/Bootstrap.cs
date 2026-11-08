@@ -8,6 +8,11 @@ public class Bootstrap : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         DontDestroyOnLoad(gameObject);
+        
+        Telemetry.Log("session_start",
+            ("app_version", Application.version),
+            ("device_model", SystemInfo.deviceModel),
+            ("android", SystemInfo.operatingSystem));
     }
     async Awaitable Start() => await GetComponent<SceneLoader>().Load("MainMenu",  Application.exitCancellationToken);
 }
