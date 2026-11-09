@@ -131,3 +131,7 @@ Finished Lab 6A
 Skipped the last step to make up for lost time. I've decided that gameplay balancing and pacing can be handled at a later date.
 
 I have added the Part E instructions to the Gamemanager as a TODO
+
+9-11
+
+2026/11/09 00:02:31.279 3417 3477 Info Unity [telemetry] 2.47 51e6c34c session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
