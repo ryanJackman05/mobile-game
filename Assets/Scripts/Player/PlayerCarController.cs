@@ -9,16 +9,15 @@ public class PlayerCarController : MonoBehaviour
     
     public int health, maxHealth, startMaxHealth; // todo consider adding / changing to FUEL
 
-    private Rigidbody body;
+    [SerializeField] private Rigidbody body;
     
     
     void OnEnable() { Wallet.wallet.Changed += UpgradeHealth; UpgradeHealth();}
     void OnDisable() { Wallet.wallet.Changed -= UpgradeHealth; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        body = GetComponent<Rigidbody>();
-        GameManager.current.playerCar = this;
+        
     }
 
     // Update is called once per frame
@@ -43,8 +42,11 @@ public class PlayerCarController : MonoBehaviour
 
     void HitEnemy()
     {
-        if(Wallet.wallet != null)
+        if (Wallet.wallet != null)
+        {
             Wallet.wallet.Earn(25);
+            
+        }
     }
     void UpgradeHealth()
     {

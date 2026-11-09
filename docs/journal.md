@@ -135,3 +135,26 @@ I have added the Part E instructions to the Gamemanager as a TODO
 9-11
 
 2026/11/09 00:02:31.279 3417 3477 Info Unity [telemetry] 2.47 51e6c34c session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+
+[telemetry] 1.77 7fe1094d level_start level_id=Game attempt=2 coins=0
+UnityEngine.Debug:Log (object)
+Telemetry:Log (string,System.ValueTuple`2<string, object>[]) (at Assets/Scripts/Telemetry/Telemetry.cs:18)
+GameManager:NewGame () (at Assets/Scripts/GameManager.cs:96)
+GameManager:Awake () (at Assets/Scripts/GameManager.cs:47)
+
+[telemetry] 8.93 2a82a623 level_gameOver level_id=Game time_s=5.899941 coins_earned=0 score=60.0206277668476
+UnityEngine.Debug:Log (object)
+Telemetry:Log (string,System.ValueTuple`2<string, object>[]) (at Assets/Scripts/Telemetry/Telemetry.cs:18)
+GameManager:GameOver () (at Assets/Scripts/GameManager.cs:127)
+PlayerCarController:Crash (bool) (at Assets/Scripts/Player/PlayerCarController.cs:88)
+UnityEngine.Component:SendMessageUpwards (string,object)
+CrashDetector:OnTriggerEnter (UnityEngine.Collider) (at Assets/Scripts/Player/CrashDetector.cs:27)
+
+
+[telemetry] 51.60 af133ca9 upgrade_purchased upgrade_id=speed level=4 cost=337 coins_left=388
+UnityEngine.Debug:Log (object)
+Telemetry:Log (string,System.ValueTuple`2<string, object>[]) (at Assets/Scripts/Telemetry/Telemetry.cs:18)
+Wallet:TryUpgrade () (at Assets/Scripts/Economy/Wallet.cs:22)
+UI_WalletHUD:Upgrade () (at Assets/Scripts/UI/UI_WalletHUD.cs:20)
+UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
+

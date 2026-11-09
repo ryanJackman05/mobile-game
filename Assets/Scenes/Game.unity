@@ -2414,6 +2414,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   startMaxHealth: 100
+  body: {fileID: 417864544}
 --- !u!4 &417864546
 Transform:
   m_ObjectHideFlags: 0
@@ -4211,7 +4212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   state: 0
   scoreText: {fileID: 1397791404}
-  playerCar: {fileID: 0}
+  playerCar: {fileID: 417864545}
   startSpeed: -10
   startWidth: 3
   spawnDistanceRange: {x: 40, y: 50}
