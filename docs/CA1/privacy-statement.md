@@ -14,7 +14,8 @@
 This game collects no personal data about the user. No personal data is stored on the local device, nor shared with any services.
 
 ## Data stored on the device: 
-User preferences and settings (PlayerPrefs keys), and save files will be stored locally. `/storage/emulated/<userid>/Android/data/com.ryanJackman.coolMobileGame/files` when installed on root device storage
+User preferences and settings (PlayerPrefs keys), save files, and gameplay logs will be stored locally. This location is `/storage/emulated/<userid>/Android/data/com.ryanJackman.coolMobileGame/files` when installed on root device storage.
+Telemetry gameplay logs are within this directory at telemetry.log.
 
 ### Local Data (PlayerPrefs) Keys:
 Wallet:

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     float obstacleDistance; // 
     private float roundStartTime;
     private int roundCoinsEarned;
-    private int attempt = 1;
+    private int attempt;
 
     private Pool zombiePool, obstaclePool, itemPool;
     [SerializeField] GameObject zombiePrefab;
@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
             ("time_s", Time.time - roundStartTime),
             ("coins_earned", roundCoinsEarned),
             ("score", currentDistance));
+        // todo add cause ^^^ 
         
         // bring up end screen menu, lingering on stopped scene todo might be called by StateChanged elsewhere
         
