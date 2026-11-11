@@ -164,3 +164,13 @@ Lab 6B Part D: Save and resume proof:
 2. Force-stop and relaunch - Success
 3. Low-memory kill while backgrounded - Success
 4. Log pull - Success
+
+***Reflection due on Due Sun 1 Nov 2026, 23:59 (missed)***
+
+11-11
+
+12-11
+
+13-11
+
+14-11
