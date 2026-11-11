@@ -1,0 +1,38 @@
+2.47 51e6c34c session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+2.36 bedd4b39 session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+2.32 e82c5707 session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+5.34 e82c5707 level_start level_id=Game attempt=1 coins=0
+11.03 e82c5707 level_gameOver level_id=Game time_s=5.602112 coins_earned=0 score=57.0240685641766
+12.03 e82c5707 level_start level_id=Game attempt=2 coins=25
+2.41 7f9010e9 session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+59.63 7f9010e9 level_start level_id=Game attempt=1 coins=25
+85.14 7f9010e9 level_gameOver level_id=Game time_s=25.39544 coins_earned=0 score=270.81927555427
+89.50 7f9010e9 level_start level_id=Game attempt=2 coins=75
+90.88 7f9010e9 level_gameOver level_id=Game time_s=1.378204 coins_earned=0 score=13.9350655190647
+93.10 7f9010e9 level_start level_id=Game attempt=3 coins=75
+104.24 7f9010e9 level_gameOver level_id=Game time_s=11.12467 coins_earned=0 score=114.498279891908
+108.47 7f9010e9 level_start level_id=Game attempt=4 coins=125
+119.21 7f9010e9 level_gameOver level_id=Game time_s=10.7325 coins_earned=0 score=110.262532062829
+120.93 7f9010e9 level_start level_id=Game attempt=5 coins=150
+122.81 7f9010e9 upgrade_purchased upgrade_id=speed level=1 cost=100 coins_left=50
+149.45 7f9010e9 level_gameOver level_id=Game time_s=28.51105 coins_earned=0 score=305.620166512206
+2.42 a5070b6d session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+2.32 83690b76 session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+358.81 83690b76 level_start level_id=Game attempt=1 coins=125
+368.02 83690b76 level_gameOver level_id=Game time_s=9.158691 coins_earned=0 score=93.8629941567779
+372.44 83690b76 level_start level_id=Game attempt=2 coins=150
+374.14 83690b76 level_gameOver level_id=Game time_s=1.691864 coins_earned=0 score=17.1333848312497
+376.52 83690b76 level_start level_id=Game attempt=3 coins=150
+403.82 83690b76 level_gameOver level_id=Game time_s=27.2883 coins_earned=0 score=291.613963514566
+2.44 ddd119ee session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+14.37 ddd119ee level_start level_id=Game attempt=1 coins=225
+45.18 ddd119ee level_gameOver level_id=Game time_s=30.74328 coins_earned=0 score=331.290165781975
+46.84 ddd119ee level_start level_id=Game attempt=2 coins=325
+2.42 0cbd4dc9 session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+5.81 0cbd4dc9 level_start level_id=Game attempt=1 coins=325
+2.35 349827c7 session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+6.19 349827c7 level_start level_id=Game attempt=1 coins=325
+2.38 649cbf0a session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+6.02 649cbf0a level_start level_id=Game attempt=1 coins=350
+2.37 809cdb17 session_start app_version=0.3.1 device_model=samsung SM-A137F android=Android OS 14 / API-34 (UP1A.231005.007/A137FXXSCEZB1)
+6.21 809cdb17 level_start level_id=Game attempt=1 coins=350
