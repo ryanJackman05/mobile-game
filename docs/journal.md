@@ -158,3 +158,9 @@ Wallet:TryUpgrade () (at Assets/Scripts/Economy/Wallet.cs:22)
 UI_WalletHUD:Upgrade () (at Assets/Scripts/UI/UI_WalletHUD.cs:20)
 UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
 
+10-11
+Lab 6B Part D: Save and resume proof:
+1. Background and resume - Success
+2. Force-stop and relaunch - Success
+3. Low-memory kill while backgrounded - Success
+4. Log pull - Success
