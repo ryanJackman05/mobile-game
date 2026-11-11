@@ -99,7 +99,7 @@ public class PlayerCarController : MonoBehaviour
         body.constraints = RigidbodyConstraints.FreezePositionZ;
         body.linearVelocity = Vector3.zero;
         body.angularVelocity = Vector3.zero;
-        transform.position = Vector3.up * 1.2f;
-        transform.rotation = Quaternion.identity;
+        body.position = Vector3.up * 1.2f;
+        body.rotation = Quaternion.identity;
     }
 }
