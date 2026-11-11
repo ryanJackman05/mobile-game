@@ -15,7 +15,13 @@ public class Wallet : MonoBehaviour
     public bool TryUpgrade()
     {
         if (Coins < NextCost) return false;
-        Coins -= NextCost; Level++; Changed?.Invoke(); return true;
+        // success
+        Coins -= NextCost;
+        int cost = NextCost;
+        Level++; 
+        Telemetry.Log("upgrade_purchased", ("upgrade_id", "speed"),
+            ("level", Level), ("cost", cost), ("coins_left", Coins));
+        Changed?.Invoke(); return true;
     }
 
     void Awake()

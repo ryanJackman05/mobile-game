@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6871f42ff865754eb382b055b60462b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WalletPersistence
-  wallet: {fileID: 0}
+  wallet: {fileID: 878632564}
 --- !u!1 &1760225629
 GameObject:
   m_ObjectHideFlags: 0

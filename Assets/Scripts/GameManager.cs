@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     
     float zombieDistance; // distance until next zombie spawn
     float obstacleDistance; // 
+    private float roundStartTime;
+    private int roundCoinsEarned;
+    private int attempt;
 
     private Pool zombiePool, obstaclePool, itemPool;
     [SerializeField] GameObject zombiePrefab;
@@ -37,14 +40,13 @@ public class GameManager : MonoBehaviour
         if(current != null) Destroy((this));
         current = this;
         
-        currentSpeed = startSpeed;
-        roadWidth = startWidth;
-        
         // initialise pools
         zombiePool = new Pool(zombiePrefab);
         zombiePool.CreatePool(10);
         obstaclePool = new Pool(obstaclePrefabs);
         obstaclePool.CreatePool(10);
+        
+        NewGame();
     }
 
     // Update is called once per frame
@@ -80,7 +82,10 @@ public class GameManager : MonoBehaviour
             _cts.Cancel(); _cts.Dispose(); _cts = null; } // completely reset the cancel token
 
         currentSpeed = startSpeed;
+        roadWidth = startWidth;
         currentDistance = 0;
+        roundStartTime = Time.time;
+        roundCoinsEarned = 0;
         
         // Check playerCar exists
         // playerCar.reset
@@ -91,7 +96,11 @@ public class GameManager : MonoBehaviour
         
         // play
         state = GameState.Playing;
-        StateChanged?.Invoke(GameState.Playing); 
+        StateChanged?.Invoke(GameState.Playing);
+        Telemetry.Log("level_start",
+            ("level_id", "Game"),
+            ("attempt", ++attempt),
+            ("coins", Wallet.wallet.Coins));
     }
 
     public void Pause() // can be called by LifeCycleGuard to trigger pause state. 
@@ -115,6 +124,12 @@ public class GameManager : MonoBehaviour
         
         state = GameState.GameOver;
         StateChanged?.Invoke(GameState.GameOver);
+        Telemetry.Log("level_gameOver",
+            ("level_id", "Game"),
+            ("time_s", Time.time - roundStartTime),
+            ("coins_earned", roundCoinsEarned),
+            ("score", currentDistance));
+        // todo add cause ^^^ 
         
         // bring up end screen menu, lingering on stopped scene todo might be called by StateChanged elsewhere
         
