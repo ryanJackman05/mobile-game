@@ -158,7 +158,7 @@ Wallet:TryUpgrade () (at Assets/Scripts/Economy/Wallet.cs:22)
 UI_WalletHUD:Upgrade () (at Assets/Scripts/UI/UI_WalletHUD.cs:20)
 UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
 
-10-11
+11-11
 Lab 6B Part D: Save and resume proof:
 1. Background and resume - Success
 2. Force-stop and relaunch - Success
@@ -167,9 +167,25 @@ Lab 6B Part D: Save and resume proof:
 
 ***Reflection due on Due Sun 1 Nov 2026, 23:59 (missed)***
 
-11-11
-
 12-11
+LAb 7A Part D:
+Perfmode flip working
+2026/11/12 13:36:22.747 5232 5267 Info Unity perf_mode=Balanced, high=False
+2026/11/12 13:39:21.081 5232 5267 Info Unity perf_mode=HighFPS, high=True
+
+Frequent alternation of bottleneck cause, and bottleneck occuring often
+2026/11/12 13:14:25.260 30320 30409 Info Unity [AP] bottleneck=Unknown
+2026/11/12 13:14:25.462 30320 30409 Info Unity [AP] bottleneck=GPU
+2026/11/12 13:14:26.449 30320 30409 Info Unity [AP] bottleneck=Unknown
+2026/11/12 13:14:29.243 30320 30409 Info Unity [AP] bottleneck=GPU
+2026/11/12 13:14:30.698 30320 30409 Info Unity [AP] bottleneck=TargetFrameRate
+2026/11/12 13:14:41.923 30320 30409 Info Unity [AP] bottleneck=GPU
+2026/11/12 13:14:43.759 30320 30409 Info Unity [AP] bottleneck=Unknown
+2026/11/12 13:14:44.427 30320 30409 Info Unity [AP] bottleneck=GPU
+2026/11/12 13:14:45.617 30320 30409 Info Unity [AP] bottleneck=TargetFrameRate
+
+could not provide multiple screenshots due to graphical error when in HighFPS, and 60Hz limit on my phone's display.
+Tried both modes in one profile & Screenshotted that. Transition point labelled.
 
 13-11
 
