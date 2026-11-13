@@ -14,7 +14,7 @@ public class PerformanceMode : MonoBehaviour
         bool high = mode == PerfMode.HighFPS;
         Application.targetFrameRate = high ? 120 : 60;
         var urp = UniversalRenderPipeline.asset;
-        if (urp != null) urp.renderScale = high ? 1f : .75f;
+        if (urp != null) urp.renderScale = high ? .75f : 1f;
         
         PlayerPrefs.SetInt(Key, (int)mode);
         PlayerPrefs.Save();

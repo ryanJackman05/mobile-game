@@ -170,22 +170,33 @@ Lab 6B Part D: Save and resume proof:
 12-11
 LAb 7A Part D:
 Perfmode flip working
+```
 2026/11/12 13:36:22.747 5232 5267 Info Unity perf_mode=Balanced, high=False
 2026/11/12 13:39:21.081 5232 5267 Info Unity perf_mode=HighFPS, high=True
+```
 
-Frequent alternation of bottleneck cause, and bottleneck occuring often
-2026/11/12 13:14:25.260 30320 30409 Info Unity [AP] bottleneck=Unknown
-2026/11/12 13:14:25.462 30320 30409 Info Unity [AP] bottleneck=GPU
-2026/11/12 13:14:26.449 30320 30409 Info Unity [AP] bottleneck=Unknown
-2026/11/12 13:14:29.243 30320 30409 Info Unity [AP] bottleneck=GPU
-2026/11/12 13:14:30.698 30320 30409 Info Unity [AP] bottleneck=TargetFrameRate
-2026/11/12 13:14:41.923 30320 30409 Info Unity [AP] bottleneck=GPU
-2026/11/12 13:14:43.759 30320 30409 Info Unity [AP] bottleneck=Unknown
-2026/11/12 13:14:44.427 30320 30409 Info Unity [AP] bottleneck=GPU
-2026/11/12 13:14:45.617 30320 30409 Info Unity [AP] bottleneck=TargetFrameRate
+Balanced:
+```
+2026/11/13 00:28:18.249 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:19.907 20738 20813 Info Unity [AP] bottleneck=GPU
+2026/11/13 00:28:25.619 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:27.115 20738 20813 Info Unity [AP] bottleneck=GPU
+2026/11/13 00:28:35.990 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:39.657 20738 20813 Info Unity [AP] bottleneck=TargetFrameRate
+```
 
-could not provide multiple screenshots due to graphical error when in HighFPS, and 60Hz limit on my phone's display.
-Tried both modes in one profile & Screenshotted that. Transition point labelled.
+[![Balanced Profile Summary](CA2/baseline/perf-modes/high-fps.png)](target-url)
+
+HighFPS:
+```
+2026/11/13 00:30:20.307 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:30:22.002 20738 20813 Info Unity [AP] bottleneck=TargetFrameRate
+```
+
+[![HighFPS Profile Summary](CA2/baseline/perf-modes/balanced.png)](target-url)
+
+The lack of logs in HighFPS - when both modes had a similar playtime - is likely due to the 60FPS cap caused by my phone's 60Hz screen. The change is essentially just a resolution reduction
+No thermal warnings were triggered during this test, but were confirmed to appear at an earlier time of day
 
 13-11
 
