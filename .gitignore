@@ -113,3 +113,7 @@ InitTestScene*.unity*
 # Key stuff
 *.keystore
 *.jks
+
+# other
+docs/CA2/baseline/thermal-soak/before.data
+docs/CA2/baseline/thermal-soak/after.data
