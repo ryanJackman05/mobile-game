@@ -200,4 +200,10 @@ No thermal warnings were triggered during this test, but were confirmed to appea
 
 13-11
 
+Lab7B:
+
+sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better target.
+
+TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution 
+
 14-11
