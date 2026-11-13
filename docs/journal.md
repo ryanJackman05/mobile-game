@@ -204,6 +204,7 @@ Lab7B:
 
 sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better target.
 
-TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution 
+TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
+TODO Car bounces wildly when ResetCar() called while falling at high speed. Also, sometimes the car object is disabled entirely when the new round starts.
 
 14-11

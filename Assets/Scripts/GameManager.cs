@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float startSpeed;
     [SerializeField] private float startWidth;
     [SerializeField] private Vector2 spawnDistanceRange;
+    [SerializeField] private float interPoleDistance;
     
     public static float currentSpeed;
     private static double currentDistance;
@@ -24,13 +25,16 @@ public class GameManager : MonoBehaviour
     
     float zombieDistance; // distance until next zombie spawn
     float obstacleDistance; // 
+    float poleDistance; // 
+    
     private float roundStartTime;
     private int roundCoinsEarned;
     private int attempt;
 
-    private Pool zombiePool, obstaclePool, itemPool;
+    private Pool zombiePool, obstaclePool, itemPool, propPool, telephonePolePool;
     [SerializeField] GameObject zombiePrefab;
     [SerializeField] GameObject[] obstaclePrefabs; // todo perhaps convert to multiple small pools later, one for each specific obstacle type, and one large pool for basic props
+    [SerializeField] GameObject telephonePolePrefab;
     
     // public ObjectPool<item>
     // public ObjectPool<Obstacle> // 2 of each variant should be good
@@ -45,6 +49,9 @@ public class GameManager : MonoBehaviour
         zombiePool.CreatePool(10);
         obstaclePool = new Pool(obstaclePrefabs);
         obstaclePool.CreatePool(10);
+        
+        telephonePolePool = new Pool(telephonePolePrefab);
+        telephonePolePool.CreatePool(3);
         
         NewGame();
     }
@@ -63,6 +70,8 @@ public class GameManager : MonoBehaviour
         if(zombieDistance <= 0) SpawnZombie();
         obstacleDistance += dist;
         if(obstacleDistance <= 0) SpawnObstacle();
+        poleDistance += dist;
+        if(poleDistance <= 0) SpawnPole();
         
         currentDistance -= dist;
         currentSpeed -= (3 * Time.deltaTime / 60);
@@ -90,6 +99,7 @@ public class GameManager : MonoBehaviour
         // Check playerCar exists
         // playerCar.reset
         playerCar.ResetCar();
+        playerCar.ResetCar();
         
         // place starting obstacles / zombies
         // start obstacle interval timer
@@ -112,8 +122,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         if (state == GameState.GameOver)  return;
-        // immediately slow down scrolling
         
+        // immediately slow down scrolling
         _cts = new CancellationTokenSource();
         _ = SlowDown(_cts.Token); // assigns awaitable to var so the following code can continue
         
@@ -183,6 +193,13 @@ public class GameManager : MonoBehaviour
         
         // reset timer
         obstacleDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
+    }
+    
+    void SpawnPole()
+    {
+        telephonePolePool.spawn(new Vector3(-roadWidth*1.3f, 0, 50), Quaternion.identity);
+        // reset timer
+        poleDistance = interPoleDistance;
     }
 }
 

@@ -43,20 +43,21 @@ public class Pool
 
     public GameObject spawn(Vector3 position, Quaternion rotation)
     {
-        foreach (var p_object in pool) // check for inactive instances first
-        {
-            if (p_object != null)
-            {
-                if (!p_object.activeInHierarchy)
-                {
-                    p_object.transform.position = position;
-                    p_object.transform.rotation = rotation;
-                    p_object.SetActive(true);
-                    //Debug.Log("Spawned " + p_object.name);
-                    return p_object;
-                }
+        int index = Random.Range(0, pool.Count);
+        int startIndex = index;
+        
+        do {
+            var p_object = pool[index];
+            if (!p_object.activeInHierarchy){
+                p_object.transform.position = position;
+                p_object.transform.rotation = rotation;
+                p_object.SetActive(true);
+                //Debug.Log("Spawned " + p_object.name);
+                return p_object;
             }
-        }
+            index = index == pool.Count-1 ? 0 : index+1;
+        } while (index != startIndex);
+        
         // all instances active
         if(isCapped) return null; // capped?
 

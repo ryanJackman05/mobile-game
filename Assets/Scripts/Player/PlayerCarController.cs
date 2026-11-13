@@ -10,6 +10,7 @@ public class PlayerCarController : MonoBehaviour
     public int health, maxHealth, startMaxHealth; // todo consider adding / changing to FUEL
 
     [SerializeField] private Rigidbody body;
+    [SerializeField] private MoveWithWorld moveWithWorld;
     
     
     void OnEnable() { Wallet.wallet.Changed += UpgradeHealth; UpgradeHealth();}
@@ -85,6 +86,7 @@ public class PlayerCarController : MonoBehaviour
     void Crash(bool withConstraints) // called by crash colliders on car body
     {
         body.constraints = withConstraints ? RigidbodyConstraints.FreezePositionZ : RigidbodyConstraints.None; // loosen constraints for physics
+        moveWithWorld.enabled = !withConstraints;
         GameManager.current.GameOver();
     }
     void Die() // called when HP is below 0
@@ -97,9 +99,17 @@ public class PlayerCarController : MonoBehaviour
     public void ResetCar()
     {
         body.constraints = RigidbodyConstraints.FreezePositionZ;
+        moveWithWorld.enabled = false;
+        
         body.linearVelocity = Vector3.zero;
         body.angularVelocity = Vector3.zero;
-        body.position = Vector3.up * 1.2f;
-        body.rotation = Quaternion.identity;
+        transform.position = Vector3.up * 1.2f;
+        transform.rotation = Quaternion.identity;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("OutOfBounds"))
+            GameManager.current.GameOver();
     }
 }
