@@ -1,0 +1,22 @@
+
+Perfmode flip working
+```
+2026/11/12 13:36:22.747 5232 5267 Info Unity perf_mode=Balanced, high=False
+2026/11/12 13:39:21.081 5232 5267 Info Unity perf_mode=HighFPS, high=True
+```
+
+Balanced:
+```
+2026/11/13 00:28:18.249 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:19.907 20738 20813 Info Unity [AP] bottleneck=GPU
+2026/11/13 00:28:25.619 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:27.115 20738 20813 Info Unity [AP] bottleneck=GPU
+2026/11/13 00:28:35.990 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:39.657 20738 20813 Info Unity [AP] bottleneck=TargetFrameRate
+```
+
+HighFPS:
+```
+2026/11/13 00:30:20.307 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:30:22.002 20738 20813 Info Unity [AP] bottleneck=TargetFrameRate
+```

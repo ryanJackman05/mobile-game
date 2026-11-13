@@ -192,5 +192,6 @@ public class GameManager : MonoBehaviour
  * Note: time of the first upgrade, coins at three minutes, upgrades bought.
  * Target: first upgrade inside 2 minutes, roughly the fifth by the end of a 10-minute session on the 100 * 1.5^level curve (100, 150, 225, 337, 506). Tune the earn amount, not the curve, until the first target holds.
  * Journal: earn amount before and after, the numbers above, and one sentence on why the upgrade you chose is felt by the player. Lab B replaces the stopwatch with telemetry.
+ * switch off Adaptive performance logging before the CA2 build).
  */
 //

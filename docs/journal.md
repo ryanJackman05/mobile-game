@@ -158,7 +158,7 @@ Wallet:TryUpgrade () (at Assets/Scripts/Economy/Wallet.cs:22)
 UI_WalletHUD:Upgrade () (at Assets/Scripts/UI/UI_WalletHUD.cs:20)
 UnityEngine.EventSystems.EventSystem:Update () (at ./Library/PackageCache/com.unity.ugui@23caec89ae27/Runtime/UGUI/EventSystem/EventSystem.cs:527)
 
-10-11
+11-11
 Lab 6B Part D: Save and resume proof:
 1. Background and resume - Success
 2. Force-stop and relaunch - Success
@@ -167,10 +167,43 @@ Lab 6B Part D: Save and resume proof:
 
 ***Reflection due on Due Sun 1 Nov 2026, 23:59 (missed)***
 
-11-11
-
 12-11
+LAb 7A Part D:
+Perfmode flip working
+```
+2026/11/12 13:36:22.747 5232 5267 Info Unity perf_mode=Balanced, high=False
+2026/11/12 13:39:21.081 5232 5267 Info Unity perf_mode=HighFPS, high=True
+```
+
+Balanced:
+```
+2026/11/13 00:28:18.249 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:19.907 20738 20813 Info Unity [AP] bottleneck=GPU
+2026/11/13 00:28:25.619 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:27.115 20738 20813 Info Unity [AP] bottleneck=GPU
+2026/11/13 00:28:35.990 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:28:39.657 20738 20813 Info Unity [AP] bottleneck=TargetFrameRate
+```
+
+[![Balanced Profile Summary](CA2/baseline/perf-modes/high-fps.png)](target-url)
+
+HighFPS:
+```
+2026/11/13 00:30:20.307 20738 20813 Info Unity [AP] bottleneck=Unknown
+2026/11/13 00:30:22.002 20738 20813 Info Unity [AP] bottleneck=TargetFrameRate
+```
+
+[![HighFPS Profile Summary](CA2/baseline/perf-modes/balanced.png)](target-url)
+
+The lack of logs in HighFPS - when both modes had a similar playtime - is likely due to the 60FPS cap caused by my phone's 60Hz screen. The change is essentially just a resolution reduction
+No thermal warnings were triggered during this test, but were confirmed to appear at an earlier time of day
 
 13-11
+
+Lab7B:
+
+sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better target.
+
+TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution 
 
 14-11
