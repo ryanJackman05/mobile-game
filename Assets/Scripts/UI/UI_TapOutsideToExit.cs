@@ -1,45 +1,60 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
-// placed on Setting Panel object.
-// TODO should appear, and should disappear when Show is called with false, OR when the player clicks somewhere that ISNT in the bounds of this object
-// perhaps also should be usable on BuildStamp
+// Hides this panel when a new touch begins outside it AND outside all of its children.
+// Used on Settings Panel and BuildLabel (child of Settings Panel), so menus chain correctly.
 public class UI_TapOutsideToExit : MonoBehaviour
 {
     private RectTransform rect;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Camera uiCam; // null for Screen Space - Overlay
+    private static readonly List<RaycastResult> hits = new();
+
+    void Awake()
     {
         rect = GetComponent<RectTransform>();
+        var canvas = GetComponentInParent<Canvas>().rootCanvas;
+        uiCam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
     }
-    
+
     void OnEnable() => EnhancedTouchSupport.Enable();
     void OnDisable() => EnhancedTouchSupport.Disable();
 
-    // Update is called once per frame
     void Update()
     {
         foreach (var t in Touch.activeTouches)
         {
-            // Check for tap
-            if (t.phase != TouchPhase.Ended) 
+            if (t.phase != TouchPhase.Began) continue; // only react to new taps
+
+            if (!IsInside(t.screenPosition))
             {
-                Rect r = rect.rect;
-                r.position = rect.position;
-                if (!r.Contains(t.screenPosition)){ // if any tap outside of menu, disable
-                    Show(false);
-                    return;
-                }
-                // Keep skipping the rest of the loop for active touches
+                Show(false);
+                return;
             }
         }
     }
 
-    public void Show(bool show)
+    bool IsInside(Vector2 screenPos)
     {
-        gameObject.SetActive(show);
+        // 1. Inside this panel's own rectangle
+        if (RectTransformUtility.RectangleContainsScreenPoint(rect, screenPos, uiCam))
+            return true;
+
+        // 2. On any UI element that belongs to this panel (children placed outside its bounds, nested panels)
+        var es = EventSystem.current;
+        if (es == null) return false;
+
+        hits.Clear();
+        es.RaycastAll(new PointerEventData(es) { position = screenPos }, hits);
+        foreach (var h in hits)
+            if (h.gameObject.transform.IsChildOf(transform)) // IsChildOf includes itself
+                return true;
+
+        return false;
     }
+
+    public void Show(bool show) => gameObject.SetActive(show);
 }
