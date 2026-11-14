@@ -54,7 +54,8 @@ FPS = 47.81
 Performance Mode = Standard
 ```
 
-***Lab 8B, build 0.8.0, 14/11/2026***
+## Lab 8B
+***build 0.8.0, 14/11/2026***
 ```bash
 R:\Unity Projects\mobile-game>adb shell am start -W com.ryanJackman.coolMobileGame/com.unity3d.player.UnityPlayerGameActivity
 Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ryanJackman.coolMobileGame/com.unity3d.player.UnityPlayerGameActivity }
