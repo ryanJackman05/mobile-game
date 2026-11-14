@@ -214,5 +214,5 @@ TODO Fuel item and Repair kit item.
 
 14-11
 
-versionCode=100005 minSdk=26 targetSdk=36
-versionName=0.8.0
+TODO Skipping Lab 8B, part CDE, need to return later after more is added to base game
+TODO Async Pack 3: Peer APK Distribution & Survey is now live. It runs to Sun 29 Nov 2026 and feeds the CA3 QA evidence pack:
