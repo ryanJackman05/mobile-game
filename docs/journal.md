@@ -217,3 +217,4 @@ TODO Fuel item and Repair kit item.
 TODO Skipping Lab 8B, part CDE, need to return later after more is added to base game
 TODO Async Pack 3: Peer APK Distribution & Survey is now live. It runs to Sun 29 Nov 2026 and feeds the CA3 QA evidence pack:
 TODO add haptic feedback to actions
+TODO Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate(): forces are currently applied per rendered frame, so car push/steering is frame-rate dependent (stronger in Editor than on A13). Will need turnMult/driveForce retuning after.

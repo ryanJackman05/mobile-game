@@ -101,10 +101,11 @@ public class PlayerCarController : MonoBehaviour
         body.constraints = RigidbodyConstraints.FreezePositionZ;
         moveWithWorld.enabled = false;
         
+        transform.SetPositionAndRotation(Vector3.up * 1.2f, Quaternion.identity);
+        Physics.SyncTransforms(); // push the teleport into physics now, so forces added before the next FixedUpdate use the correct centre of mass
+
         body.linearVelocity = Vector3.zero;
         body.angularVelocity = Vector3.zero;
-        transform.position = Vector3.up * 1.2f;
-        transform.rotation = Quaternion.identity;
     }
 
     void OnTriggerEnter(Collider other)
