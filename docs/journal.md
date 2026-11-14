@@ -204,7 +204,12 @@ Lab7B:
 
 sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better target.
 
+Review of requirements for CA2 (not including Labs)
 TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
 TODO Car bounces wildly when ResetCar() called while falling at high speed. Also, sometimes the car object is disabled entirely when the new round starts.
+TODO Move Upgrade button to MainMenu, make it upgrade player's health OR damage resistance, link player health to fail condition, and make zombies damage the car
+TODO Zombies
+TODO Fuel Meter; new player lose condition. If fuel is not collected often enough, player car Die()
+TODO Fuel item and Repair kit item.
 
 14-11
