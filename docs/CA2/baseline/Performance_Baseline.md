@@ -26,7 +26,7 @@ Target: 2-3 seconds max
 ### APK Size:
 35.0 MB (ARM32)
 
-There will be time inconsistencies due to me failing to perform the After captures immediately after the soak
+Note: There may be time inconsistencies due to me failing to perform the After captures immediately after the soak
 
 | Field | Value                                                                                                          |
 |-------|----------------------------------------------------------------------------------------------------------------|
@@ -41,6 +41,7 @@ There will be time inconsistencies due to me failing to perform the After captur
 | Conditions | unplugged, brightness 50%, case on (whoops), ambient about 15 C                                                |
 
 First THrottling imminent (much later):
+```
 <i>AndroidPlayer "Samsung_SM A137F@ADB:R58T9052TRP:0"</i> [Adaptive Performance] SkinTemp=0.85 PerformanceMode=Standard
 Performance level CPU=-1/-1 GPU=-1/-1 thermal warn=ThrottlingImminent(1) thermal level=0.85 mode=Automatic
 Average GPU frametime = 19.30 ms (Current = 19.95 ms)
@@ -51,6 +52,7 @@ CPU Boost Mode False, GPU Boost Mode False
 Cluster Info = Big Cores: 0 Medium Cores: 0 Little Cores: 0
 FPS = 47.81
 Performance Mode = Standard
+```
 
 ***Lab 8B, build 0.8.0, 14/11/2026***
 ```bash

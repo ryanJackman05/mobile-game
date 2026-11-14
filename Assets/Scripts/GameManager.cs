@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameState state;
     public event System.Action<GameState> StateChanged;
     private CancellationTokenSource _cts;
+    private LifecycleGuard _lifecycleGuard;
 
     public TextMeshProUGUI scoreText;
     public PlayerCarController playerCar; // Player will assign itself at start.
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if(current != null) Destroy((this));
         current = this;
+        _lifecycleGuard = FindAnyObjectByType<LifecycleGuard>();
         
         // initialise pools
         zombiePool = new Pool(zombiePrefab);
@@ -99,7 +101,6 @@ public class GameManager : MonoBehaviour
         // Check playerCar exists
         // playerCar.reset
         playerCar.ResetCar();
-        playerCar.ResetCar();
         
         // place starting obstacles / zombies
         // start obstacle interval timer
@@ -107,6 +108,8 @@ public class GameManager : MonoBehaviour
         // play
         state = GameState.Playing;
         StateChanged?.Invoke(GameState.Playing);
+        _lifecycleGuard.SetPaused(false);
+        
         Telemetry.Log("level_start",
             ("level_id", "Game"),
             ("attempt", ++attempt),

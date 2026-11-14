@@ -18,7 +18,7 @@ public class ScrollWithWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (material != null){
+        if (material != null && !LifecycleGuard.IsPaused){
             _renderer.material.mainTextureOffset += scrollMult * (GameManager.currentSpeed * Time.deltaTime);
         }
     }

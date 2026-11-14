@@ -7,7 +7,7 @@ public class MoveWithWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.z < -10) gameObject.SetActive(false);
+        if (transform.position.z < -10 && !gameObject.CompareTag("Player")) gameObject.SetActive(false);
         
         if (!LifecycleGuard.IsPaused)
         {
