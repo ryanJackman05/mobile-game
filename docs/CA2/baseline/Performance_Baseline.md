@@ -26,7 +26,7 @@ Target: 2-3 seconds max
 ### APK Size:
 35.0 MB (ARM32)
 
-There will be time inconsistencies due to me failing to perform the After captures immediately after the soak
+Note: There may be time inconsistencies due to me failing to perform the After captures immediately after the soak
 
 | Field | Value                                                                                                          |
 |-------|----------------------------------------------------------------------------------------------------------------|
@@ -41,6 +41,7 @@ There will be time inconsistencies due to me failing to perform the After captur
 | Conditions | unplugged, brightness 50%, case on (whoops), ambient about 15 C                                                |
 
 First THrottling imminent (much later):
+```
 <i>AndroidPlayer "Samsung_SM A137F@ADB:R58T9052TRP:0"</i> [Adaptive Performance] SkinTemp=0.85 PerformanceMode=Standard
 Performance level CPU=-1/-1 GPU=-1/-1 thermal warn=ThrottlingImminent(1) thermal level=0.85 mode=Automatic
 Average GPU frametime = 19.30 ms (Current = 19.95 ms)
@@ -51,6 +52,45 @@ CPU Boost Mode False, GPU Boost Mode False
 Cluster Info = Big Cores: 0 Medium Cores: 0 Little Cores: 0
 FPS = 47.81
 Performance Mode = Standard
+```
+
+## Lab 8B
+***build 0.8.0, 14/11/2026***
+```bash
+R:\Unity Projects\mobile-game>adb shell am start -W com.ryanJackman.coolMobileGame/com.unity3d.player.UnityPlayerGameActivity
+Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ryanJackman.coolMobileGame/com.unity3d.player.UnityPlayerGameActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.ryanJackman.coolMobileGame/com.unity3d.player.UnityPlayerGameActivity
+TotalTime: 674
+WaitTime: 700
+Complete
+
+R:\Unity Projects\mobile-game>adb shell am start -W com.ryanJackman.coolMobileGame/com.unity3d.player.UnityPlayerGameActivity
+Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.ryanJackman.coolMobileGame/com.unity3d.player.UnityPlayerGameActivity }
+Warning: Activity not started, its current task has been brought to the front
+Status: ok
+LaunchState: HOT
+Activity: com.ryanJackman.coolMobileGame/com.unity3d.player.UnityPlayerGameActivity
+TotalTime: 99
+WaitTime: 107
+Complete
+
+R:\Unity Projects\mobile-game>adb shell dumpsys meminfo com.ryanJackman.coolMobileGame | findstr "TOTAL PSS"
+        TOTAL   226109   162696    54188      503   302160    46865    38677     8187
+           TOTAL PSS:   226109            TOTAL RSS:   302160       TOTAL SWAP PSS:      503
+
+R:\Unity Projects\mobile-game>
+```
+
+TotalTime: 
+- 674ms + interactive(2.83s) = 3504ms COLD
+- 99ms + interactive(2.83s) = 2929ms WARM
+
+Memory:
+TOTAL PSS: 226109 (KB) -> 220.80957 MB
+
+Total Mem on Phone: 3779816 kB -> 3,691.2265625 MB
 
 
 

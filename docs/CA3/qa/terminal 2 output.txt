@@ -1,0 +1,248 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+R:\Unity Projects\mobile-game>adb logcat --pid=$(adb shell pidof com.ryanJackman.coolMobileGame)
+logcat: pid $(adb out of range.
+
+R:\Unity Projects\mobile-game>adb logcat -s ActivityManager:E AndroidRuntime:E DEBUG:F Unity:E
+--------- beginning of main
+11-14 17:12:08.474 28326 28351 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:17:08.075 29828 29847 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:18:43.266 30326 30347 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:19:42.709 30580 30599 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:20:37.497 31115 31136 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:21:32.560 31407 31433 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:22:29.258 31682 31699 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:23:15.042 31919 31938 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:24:00.901 32220 32242 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:24:49.001 32500 32519 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:25:52.783 32723 32742 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:26:36.754 12087   653 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:26:36.754 12087   653 E ActivityManager: java.lang.Throwable
+11-14 17:26:36.754 12087   653 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:26:36.754 12087   653 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:26:36.754 12087   653 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:26:36.754 12087   653 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:26:36.754 12087   653 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:26:36.754 12087   653 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:26:36.754 12087   653 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:26:36.754 12087   653 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:26:36.957 12087   681 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:26:36.957 12087   681 E ActivityManager: java.lang.Throwable
+11-14 17:26:36.957 12087   681 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:26:36.957 12087   681 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:26:36.957 12087   681 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:26:36.957 12087   681 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:26:36.957 12087   681 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:26:36.957 12087   681 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:26:36.957 12087   681 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:26:36.957 12087   681 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:26:37.748 12087   839 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:26:37.748 12087   839 E ActivityManager: java.lang.Throwable
+11-14 17:26:37.748 12087   839 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:26:37.748 12087   839 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:26:37.748 12087   839 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:26:37.748 12087   839 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:26:37.748 12087   839 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:26:37.748 12087   839 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:26:37.748 12087   839 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:26:37.748 12087   839 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:26:52.327  1767  1791 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:27:13.773 12087  2113 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:27:13.773 12087  2113 E ActivityManager: java.lang.Throwable
+11-14 17:27:13.773 12087  2113 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:13.773 12087  2113 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:13.773 12087  2113 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:13.773 12087  2113 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:13.773 12087  2113 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:13.773 12087  2113 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:27:13.773 12087  2113 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:27:13.773 12087  2113 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:27:13.984 12087  2135 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:27:13.984 12087  2135 E ActivityManager: java.lang.Throwable
+11-14 17:27:13.984 12087  2135 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:13.984 12087  2135 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:13.984 12087  2135 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:13.984 12087  2135 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:13.984 12087  2135 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:13.984 12087  2135 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:27:13.984 12087  2135 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:27:13.984 12087  2135 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:27:14.000 12087 12803 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.PB_SYNC from system 12510:com.android.phone/1001 pkg com.android.phone
+11-14 17:27:14.000 12087 12803 E ActivityManager: java.lang.Throwable
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at android.app.IActivityManager$Stub.onTransact$broadcastIntentWithFeature$(IActivityManager.java:11722)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:2986)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:3199)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at android.os.Binder.execTransactInternal(Binder.java:1380)
+11-14 17:27:14.000 12087 12803 E ActivityManager:       at android.os.Binder.execTransact(Binder.java:1311)
+11-14 17:27:15.997 12087  2356 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:27:15.997 12087  2356 E ActivityManager: java.lang.Throwable
+11-14 17:27:15.997 12087  2356 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:15.997 12087  2356 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:15.997 12087  2356 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:15.997 12087  2356 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:15.997 12087  2356 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:15.997 12087  2356 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:27:15.997 12087  2356 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:27:15.997 12087  2356 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:27:19.415 12087  2739 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:27:19.415 12087  2739 E ActivityManager: java.lang.Throwable
+11-14 17:27:19.415 12087  2739 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:19.415 12087  2739 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:19.415 12087  2739 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:19.415 12087  2739 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:19.415 12087  2739 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:19.415 12087  2739 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:27:19.415 12087  2739 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:27:19.415 12087  2739 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:27:21.428 12087  2905 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:27:21.428 12087  2905 E ActivityManager: java.lang.Throwable
+11-14 17:27:21.428 12087  2905 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:21.428 12087  2905 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:21.428 12087  2905 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:21.428 12087  2905 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:21.428 12087  2905 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:21.428 12087  2905 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:27:21.428 12087  2905 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:27:21.428 12087  2905 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:27:22.227  2883  2909 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:27:24.681 12087 12786 E ActivityManager: Sending non-protected broadcast com.samsung.android.wifi.NETWORK_LOCATION from system 12087:system/1000 pkg android
+11-14 17:27:24.681 12087 12786 E ActivityManager: java.lang.Throwable
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentInPackage(ActivityManagerService.java:18310)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService$LocalService.broadcastIntentInPackage(ActivityManagerService.java:21265)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.android.server.am.PendingIntentRecord.sendInner(PendingIntentRecord.java:740)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.sendIntentSender(ActivityManagerService.java:6609)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.sendIntentSender(ActivityManagerService.java:6562)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at android.app.PendingIntent.sendAndReturnResult(PendingIntent.java:1100)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at android.app.PendingIntent.send(PendingIntent.java:1069)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at android.app.PendingIntent.send(PendingIntent.java:986)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at o.a.run(SourceFile:550)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at android.os.Handler.handleCallback(Handler.java:958)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at android.os.Handler.dispatchMessage(Handler.java:99)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at android.os.Looper.loopOnce(Looper.java:230)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at android.os.Looper.loop(Looper.java:319)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at com.samsung.android.location.o.run(SourceFile:1985)
+11-14 17:27:24.681 12087 12786 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:27:42.572 12087  3456 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:27:42.572 12087  3456 E ActivityManager: java.lang.Throwable
+11-14 17:27:42.572 12087  3456 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:42.572 12087  3456 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:42.572 12087  3456 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:42.572 12087  3456 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:42.572 12087  3456 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:42.572 12087  3456 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:27:42.572 12087  3456 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:27:42.572 12087  3456 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:27:42.793 12087  3478 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:27:42.793 12087  3478 E ActivityManager: java.lang.Throwable
+11-14 17:27:42.793 12087  3478 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:42.793 12087  3478 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:42.793 12087  3478 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:42.793 12087  3478 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:42.793 12087  3478 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:42.793 12087  3478 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:27:42.793 12087  3478 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:27:42.793 12087  3478 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:27:43.478 12087  3496 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:27:43.478 12087  3496 E ActivityManager: java.lang.Throwable
+11-14 17:27:43.478 12087  3496 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:27:43.478 12087  3496 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:27:43.478 12087  3496 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:27:43.478 12087  3496 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:27:43.478 12087  3496 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:27:43.478 12087  3496 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:27:43.478 12087  3496 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:27:43.478 12087  3496 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:28:43.224  3677  3697 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:29:17.987 12087  4701 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:29:17.987 12087  4701 E ActivityManager: java.lang.Throwable
+11-14 17:29:17.987 12087  4701 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:29:17.987 12087  4701 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:29:17.987 12087  4701 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:29:17.987 12087  4701 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:29:17.987 12087  4701 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:29:17.987 12087  4701 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:29:17.987 12087  4701 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:29:17.987 12087  4701 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:29:18.195 12087  4717 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:29:18.195 12087  4717 E ActivityManager: java.lang.Throwable
+11-14 17:29:18.195 12087  4717 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:29:18.195 12087  4717 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:29:18.195 12087  4717 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:29:18.195 12087  4717 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:29:18.195 12087  4717 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:29:18.195 12087  4717 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:29:18.195 12087  4717 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:29:18.195 12087  4717 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:29:18.389 12087 12313 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.PB_SYNC from system 12510:com.android.phone/1001 pkg com.android.phone
+11-14 17:29:18.389 12087 12313 E ActivityManager: java.lang.Throwable
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at android.app.IActivityManager$Stub.onTransact$broadcastIntentWithFeature$(IActivityManager.java:11722)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:2986)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:3199)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at android.os.Binder.execTransactInternal(Binder.java:1380)
+11-14 17:29:18.389 12087 12313 E ActivityManager:       at android.os.Binder.execTransact(Binder.java:1311)
+11-14 17:29:20.504 12087  4981 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:29:20.504 12087  4981 E ActivityManager: java.lang.Throwable
+11-14 17:29:20.504 12087  4981 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:29:20.504 12087  4981 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:29:20.504 12087  4981 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:29:20.504 12087  4981 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:29:20.504 12087  4981 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:29:20.504 12087  4981 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:29:20.504 12087  4981 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:29:20.504 12087  4981 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:29:22.891 12087  5193 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:29:22.891 12087  5193 E ActivityManager: java.lang.Throwable
+11-14 17:29:22.891 12087  5193 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:29:22.891 12087  5193 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:29:22.891 12087  5193 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:29:22.891 12087  5193 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:29:22.891 12087  5193 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:29:22.891 12087  5193 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:29:22.891 12087  5193 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:29:22.891 12087  5193 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:29:24.818 12087  5289 E ActivityManager: Sending non-protected broadcast com.samsung.intent.action.MDE_SUGGESTION_NOTIFY from system 12087:system/1000 pkg android
+11-14 17:29:24.818 12087  5289 E ActivityManager: java.lang.Throwable
+11-14 17:29:24.818 12087  5289 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:29:24.818 12087  5289 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:29:24.818 12087  5289 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:29:24.818 12087  5289 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17159)
+11-14 17:29:24.818 12087  5289 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(ActivityManagerService.java:18266)
+11-14 17:29:24.818 12087  5289 E ActivityManager:       at android.app.ContextImpl.sendBroadcast(ContextImpl.java:1285)
+11-14 17:29:24.818 12087  5289 E ActivityManager:       at com.samsung.android.server.wifi.ap.SemWifiApUtils$2.run(SemWifiApUtils.java:24)
+11-14 17:29:24.818 12087  5289 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:29:28.121 12087 12786 E ActivityManager: Sending non-protected broadcast com.samsung.android.wifi.NETWORK_LOCATION from system 12087:system/1000 pkg android
+11-14 17:29:28.121 12087 12786 E ActivityManager: java.lang.Throwable
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.checkBroadcastFromSystem(ActivityManagerService.java:17094)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLockedTraced(ActivityManagerService.java:18039)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentLocked(ActivityManagerService.java:17182)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.broadcastIntentInPackage(ActivityManagerService.java:18310)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService$LocalService.broadcastIntentInPackage(ActivityManagerService.java:21265)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.android.server.am.PendingIntentRecord.sendInner(PendingIntentRecord.java:740)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.sendIntentSender(ActivityManagerService.java:6609)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.android.server.am.ActivityManagerService.sendIntentSender(ActivityManagerService.java:6562)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at android.app.PendingIntent.sendAndReturnResult(PendingIntent.java:1100)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at android.app.PendingIntent.send(PendingIntent.java:1069)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at android.app.PendingIntent.send(PendingIntent.java:986)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at o.a.run(SourceFile:550)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at android.os.Handler.handleCallback(Handler.java:958)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at android.os.Handler.dispatchMessage(Handler.java:99)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at android.os.Looper.loopOnce(Looper.java:230)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at android.os.Looper.loop(Looper.java:319)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at com.samsung.android.location.o.run(SourceFile:1985)
+11-14 17:29:28.121 12087 12786 E ActivityManager:       at java.lang.Thread.run(Thread.java:1571)
+11-14 17:29:44.384  5391  5418 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
+11-14 17:33:31.267  5745  5768 E Unity   : java.lang.ClassNotFoundException: Didn't find class "com.google.android.play.core.assetpacks.AssetPackManager" on path: DexPathList[[zip file "/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk"],nativeLibraryDirectories=[/data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/lib/arm, /data/app/~~nzUKw58V4yLwP1cuLCSENQ==/com.ryanJackman.coolMobileGame-eKXfxSrh56xDdlwoZvYxtw==/base.apk!/lib/armeabi-v7a, /system/lib, /system_ext/lib]]
