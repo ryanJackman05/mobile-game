@@ -213,3 +213,6 @@ TODO Fuel Meter; new player lose condition. If fuel is not collected often enoug
 TODO Fuel item and Repair kit item.
 
 14-11
+
+versionCode=100005 minSdk=26 targetSdk=36
+versionName=0.8.0
