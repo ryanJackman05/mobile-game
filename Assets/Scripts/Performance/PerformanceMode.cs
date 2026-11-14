@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+// should still work on top of the deviceTier toggle
 public enum PerfMode {Balanced = 0, HighFPS = 1, LowFPS = 2};
 public class PerformanceMode : MonoBehaviour
 {
