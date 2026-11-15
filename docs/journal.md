@@ -205,17 +205,17 @@ Lab7B:
 sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better target.
 
 Review of requirements for CA2 (not including Labs)
-TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
-TODO Move Upgrade button to MainMenu, make it upgrade player's health OR damage resistance, link player health to fail condition, and make zombies damage the car
+TODO DONE (15-11) I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
+TODO DONE (15-11) Move Upgrade button to MainMenu, make it upgrade player's health OR damage resistance, link player health to fail condition, and make zombies damage the car
 TODO SO Zombies - DONE (behaviour in, see 15-11; animations + tuning left)
 TODO Fuel Meter; new player lose condition. If fuel is not collected often enough, player car Die()
-TODO Fuel item and Repair kit item.
+TODO Fuel item and Repair kit item. (Repair kit DONE 15-11; fuel not decided)
 
 14-11
 
 TODO Skipping Lab 8B, part CDE, need to return later after more is added to base game
 TODO Async Pack 3: Peer APK Distribution & Survey is now live. It runs to Sun 29 Nov 2026 and feeds the CA3 QA evidence pack:
-TODO add haptic feedback to actions
+TODO DONE (15-11) add haptic feedback to actions
 TODO DONE (15-11) Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate().
 
 TODO Lab9A Part C needs to be revisted for future changes and for audio, materials, and UI. Was required for demo, now should be part of the CA2 entirely
@@ -234,7 +234,7 @@ Zombies (first pass, code only). EnemyController is now a state machine: Waiting
 
 
 Zombie scraping. While a zombie hangs on a window its trigger collider is switched back on. Because it's now a child of the car's Rigidbody it can't set off the car's own Top/Front triggers, but it does report obstacles it brushes past, which throws it off harder than shaking does (plus a haptic pulse). An obstacle is anything on the "Obstacle" layer; until that layer exists, it's any solid collider that has MoveWithWorld and isn't a zombie or the car. The car's ground-check raycast now ignores triggers.
-TODO Set up layers: Player, Enemy, Obstacle, and the Enemy row in the physics collision matrix (see priorities.md).
+TODO DONE (15-11) Set up layers: Player, Enemy, Obstacle, and the Enemy row in the physics collision matrix (see priorities.md).
 
 Health, health bar and variable speed.
 - Health is the fail condition (as before, health 0 -> Die -> GameOver). Low speed is a penalty only, not a fail state (decision recorded in priorities.md).

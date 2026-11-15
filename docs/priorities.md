@@ -17,8 +17,8 @@ The MDA, the code and the journal each describe a different way to lose:
 Original recommendation: keep **health**. It's already wired to zombies and to the upgrade (`maxHealth` grows with level), and the MDA's repair pickup fits it. Drop fuel. Speed could become a penalty (scrapes slow you down) rather than a fail state. Once decided, update the MDA so the doc and the game agree.
 
 Smaller conflicts with the MDA:
-- Hitting a zombie head-on slows you down in the MDA, but the code gives +25 coins.
-- The MDA knocks zombies off by driving into obstacles. The code currently uses hard steering. Scraping the car's side against an obstacle could be added as a second way.
+- [x] Hitting a zombie head-on slows you down in the MDA, but the code gives +25 coins. (Resolved: it now does both.)
+- [x] The MDA knocks zombies off by driving into obstacles. (Resolved: scraping obstacles knocks them off, as well as hard steering.)
 
 ## P0: has a deadline or blocks a build
 
@@ -28,17 +28,17 @@ Smaller conflicts with the MDA:
 ## P1: the core loop works and is readable
 
 - [x] **Zombies finished:** animations, remove the placeholder capsule, tuning, knock-off by scraping obstacles.
-- [x] **Health bar on screen.** Script done (`UI_HealthBar`); needs the UI object in the Game scene.
-- [x] **Health as the fail condition, plus the Upgrade button on the main menu** (journal). Code done; move the button in the Editor.
+- [x] **Health bar on screen** (`UI_HealthBar` in the Game scene).
+- [x] **Health as the fail condition, plus the Upgrade button on the main menu** (journal).
 - [x] **Variable speed:** slowdowns on scrapes, slow areas and head-on zombie hits, recovering to the base ramp.
-- [x] **Game over presentation and cause:** cause in telemetry and on the results panel, panel delayed 1.2s, overrun death stalls instead of tumbling. Results labels need wiring in the Editor.
-- [x] **Haptics:** zombie landing, hit and scraped off, car scrapes, crashes. Pickups move with the repair pickup (P2).
+- [x] **Game over presentation and cause:** cause in telemetry and on the results panel, panel delayed 1.2s, overrun death stalls instead of tumbling. Results labels wired.
+- [x] **Haptics:** zombie landing, hit and scraped off, car scrapes, crashes, repair pickups.
 - [ ] **Death feels off.** The 1.2s results delay (`UI_ResultsMenu.showDelay`) only works if the death itself reads clearly: add feedback during it (e.g. crash sound, camera shake, a "CRASHED" / "OVERRUN" flash, slow-mo) or set the delay to 0.
 
 ## P2: content from the MDA's mechanics
 
-- [x] **Repair pickup.** Repair Box children on obstacle prefabs, re-rolled each spawn by `ObstaclePickups` (15-11). Remove MoveWithWorld from the Repair Box prefab. Pickup haptics included.
-- [ ] **Basic audio**, plus revisiting Lab 9A Part C for audio, materials and UI. AudioManager and all sound calls done (15-11); find the clips in [audio.md](audio.md) and set up in Boot.
+- [x] **Repair pickup.** Repair Box children on obstacle prefabs, re-rolled each spawn by `ObstaclePickups` on gap1, ramp and ramp & container (15-11). Pickup haptics included.
+- [ ] **Basic audio**, plus revisiting Lab 9A Part C for audio, materials and UI. AudioManager is in Boot and all sound calls are done (15-11). Still to do: the remaining clips and music in [audio.md](audio.md), plus materials and UI from Lab 9A Part C.
 - [ ] **Chunk-based spawning** (vertical slice: 10+ chunks). Pickups in hard-to-reach spots depend on chunks. This also covers per-type obstacle pools (`GameManager.cs:37`).
 - [ ] **Lab 8B parts C–E.**
 
@@ -57,7 +57,7 @@ Smaller conflicts with the MDA:
 
 ## TODOs with no detail: rewrite or delete
 
-- [ ] `GameManager.cs:84`: `NewGame() //TODO`
+- [x] `GameManager.cs`: `NewGame() //TODO` (NewGame now resets pools, speed, car and health; comment removed)
 - [ ] `GameManager.cs:122`: is the `Paused` state used?
 - [ ] `TextScale.cs:6`
 - [ ] `SceneLoader.cs:37`: pool prewarm

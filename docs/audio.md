@@ -17,10 +17,10 @@ Every sound below is already called from code through `AudioManager`. Until a cl
 | `ZombieRunOver`    | Head-on hit with the front                     | Wet thud/splat on a bumper                                        |          |
 | `CarScrape`        | Car body scrapes an obstacle                   | Short metal scrape (max 1 per 0.3s)                               | y        |
 | `SlowArea`         | Driving over a slow-area hazard                | Gravel crunch or oil squelch                                      | y        |
-| `Crash`            | Front crash, flip, or leaving the road         | Big car impact, metal and glass                                   |          |
+| `Crash`            | Front crash, flip, or leaving the road         | Big car impact, metal and glass                                   | y        |
 | `Overrun`          | Health reaches 0                               | Engine sputtering out/stalling, ideally with a zombie roar        | y        |
 | `RepairPickup`     | Collecting a repair box                        | Ratchet/wrench + positive chime                                   | y        |
-| `GameOverSting`    | Results panel appears                          | 1-2s low, ominous sting                                           |          |
+| `GameOverSting`    | Results panel appears                          | 1-2s low, ominous sting                                           | y        |
 
 ## Loops
 

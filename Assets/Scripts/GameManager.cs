@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = currentDistance.ToString("F2");
     }
 
-    public void NewGame() //TODO
+    public void NewGame()
     {
         // Initialise Pools
         zombiePool.Reset();

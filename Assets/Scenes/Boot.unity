@@ -668,14 +668,16 @@ MonoBehaviour:
     playWhilePaused: 0
   - name: ZombieLand
     id: 5
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 5cdfe08f238e0ac48b890d585cb9c2d9, type: 3}
     volume: 1
     pitchJitter: 0.05
     minInterval: 0.05
     playWhilePaused: 0
   - name: ZombieClaw
     id: 6
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: da26732940b8c67439b4c5a8e103e409, type: 3}
     volume: 1
     pitchJitter: 0.05
     minInterval: 0.8
@@ -704,7 +706,8 @@ MonoBehaviour:
     playWhilePaused: 0
   - name: SlowArea
     id: 10
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 292fa21bec051384db83e890ea9b0970, type: 3}
     volume: 1
     pitchJitter: 0.05
     minInterval: 0.05
