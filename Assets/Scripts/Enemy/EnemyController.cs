@@ -19,9 +19,15 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float flankGap = 1.6f;        // how far out from the car's centre line it runs
 
     [Header("Leap")]
-    [SerializeField] float leapDuration = 0.45f;
+    [SerializeField] float leapDuration = 0.45f;     // longest leap; shortened when the window is about to pass
+    [SerializeField] float minLeapDuration = 0.2f;
     [SerializeField] float leapHeight = 1.2f;
     [SerializeField] float maxLeapSideDistance = 3f;
+    [Tooltip("Must be at least this far out from the car's centre line (car space) to leap, i.e. beside the car, not in front of it. Car half-width is ~0.83.")]
+    [SerializeField] float minLeapSideOffset = 1.1f;
+    [Tooltip("Max distance ahead of the target window (car space) to start a leap. Stops leaps from far in front at high speed.")]
+    [SerializeField] float maxLeapLead = 2.5f;
+    float currentLeapDuration;
     [SerializeField] Vector3 hangOffset = new Vector3(0.35f, -0.2f, 0f); // x is mirrored per side, relative to the window trigger
 
     [Header("Attached")]
@@ -147,6 +153,14 @@ public class EnemyController : MonoBehaviour
         if (timeToMeet < -0.1f || timeToMeet > leapDuration) return;
         if (Mathf.Abs(pos.x - slot.position.x) > maxLeapSideDistance) return;
 
+        // Only leap from beside the car, never from in front of it (car space, so it still holds while the car is turned)
+        Transform carT = car.transform;
+        Vector3 local = carT.InverseTransformPoint(pos);
+        Vector3 slotLocal = carT.InverseTransformPoint(slot.position);
+        float windowSide = Mathf.Sign(slotLocal.x);
+        if (local.x * windowSide < minLeapSideOffset) return;  // in the car's path: get run over instead
+        if (local.z - slotLocal.z > maxLeapLead) return;       // too far ahead: wait until the window is closer
+
         if (car.ClaimWindow(w, this))
         {
             ClaimedWindow = w;
@@ -154,6 +168,7 @@ public class EnemyController : MonoBehaviour
             side = slot.localPosition.x >= 0 ? 1 : -1;
             leapStart = pos;
             leapT = 0f;
+            currentLeapDuration = Mathf.Clamp(timeToMeet, minLeapDuration, leapDuration); // arrive as the window passes
             moveWithWorld.enabled = false; // we move the start point with the world ourselves
             if (col != null) col.enabled = false; // don't touch the car's crash triggers (Top) on the way in
             SetState(State.Leaping);
@@ -168,7 +183,7 @@ public class EnemyController : MonoBehaviour
         if (window == null) { Drop(); return; }
 
         leapStart.z += GameManager.currentSpeed * dt; // take-off point keeps scrolling with the ground
-        leapT = Mathf.Min(1f, leapT + dt / leapDuration);
+        leapT = Mathf.Min(1f, leapT + dt / currentLeapDuration);
 
         // Re-aim at the window every frame so steering mid-leap doesn't make it miss
         Vector3 target = window.TransformPoint(HangLocalPosition);

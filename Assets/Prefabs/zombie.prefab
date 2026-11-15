@@ -84,12 +84,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   noticeDistance: 30
-  lateralRunSpeed: 4
-  forwardRunSpeed: 3
+  lateralRunSpeed: 2
+  forwardRunSpeed: -0.5
   flankGap: 1.6
   leapDuration: 0.45
+  minLeapDuration: 0.2
   leapHeight: 1.2
-  maxLeapSideDistance: 3
+  maxLeapSideDistance: 4
+  minLeapSideOffset: 1.1
+  maxLeapLead: 2.5
   hangOffset: {x: 0.35, y: -0.2, z: 0}
   damagePerSecond: 4
   shakeOffTurnRate: 1.5
