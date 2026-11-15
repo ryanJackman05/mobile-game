@@ -38,6 +38,7 @@ public class RepairPickup : MonoBehaviour
 
         car.Repair(healAmount);
         Haptics.Pulse();
+        AudioManager.Play(Sfx.RepairPickup);
         gameObject.SetActive(false); // ObstaclePickups re-rolls it next time the obstacle spawns
     }
 }

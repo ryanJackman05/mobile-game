@@ -98,7 +98,10 @@ public class EnemyController : MonoBehaviour
         {
             case State.Waiting:
                 if (playing && transform.position.z - car.transform.position.z < noticeDistance)
+                {
                     SetState(State.Chasing);
+                    AudioManager.Play(Sfx.ZombieNotice);
+                }
                 break;
             case State.Chasing:
                 if (playing) Chase(dt);
@@ -154,6 +157,7 @@ public class EnemyController : MonoBehaviour
             moveWithWorld.enabled = false; // we move the start point with the world ourselves
             if (col != null) col.enabled = false; // don't touch the car's crash triggers (Top) on the way in
             SetState(State.Leaping);
+            AudioManager.Play(Sfx.ZombieLeap);
         }
     }
 
@@ -190,6 +194,7 @@ public class EnemyController : MonoBehaviour
         damageAcc = 0f;
         shake = 0f;
         Haptics.Pulse();
+        AudioManager.Play(Sfx.ZombieLand);
         SetState(State.Attached);
     }
 
@@ -203,6 +208,7 @@ public class EnemyController : MonoBehaviour
         {
             damageAcc -= whole;
             car.TakeDamage(whole);
+            AudioManager.Play(Sfx.ZombieClaw); // minInterval on the clip keeps this from firing every tick
         }
 
         // Hard steering builds up "shake"; easing off lets it recover
@@ -229,6 +235,7 @@ public class EnemyController : MonoBehaviour
         moveWithWorld.enabled = true;
         if (col != null) col.enabled = false; // no second hit (or coins) from the car's Front trigger while falling
         fallVelocity = new Vector3(side * throwVel.x, throwVel.y, 0f);
+        AudioManager.Play(Sfx.ZombieKnockedOff);
         SetState(State.Falling);
     }
 

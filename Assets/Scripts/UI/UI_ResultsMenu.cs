@@ -36,6 +36,7 @@ public class UI_ResultsMenu : MonoBehaviour
         if (causeLabel != null) causeLabel.SetText(CauseText(GameManager.current.LastCause));
         if (distanceLabel != null) distanceLabel.SetText("Distance {0:0}", (float)GameManager.current.Distance);
         panel.SetActive(true);
+        AudioManager.Play(Sfx.GameOverSting);
     }
 
     static string CauseText(GameManager.DeathCause cause) => cause switch

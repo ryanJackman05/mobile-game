@@ -15,5 +15,6 @@ public class SlowArea : MonoBehaviour
         if (other.attachedRigidbody.GetComponent<PlayerCarController>() == null) return;
         used = true;
         GameManager.current.ApplySpeedPenalty(speedPenalty);
+        AudioManager.Play(Sfx.SlowArea);
     }
 }

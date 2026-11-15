@@ -38,7 +38,7 @@ Smaller conflicts with the MDA:
 ## P2: content from the MDA's mechanics
 
 - [x] **Repair pickup.** Repair Box children on obstacle prefabs, re-rolled each spawn by `ObstaclePickups` (15-11). Remove MoveWithWorld from the Repair Box prefab. Pickup haptics included.
-- [ ] **Basic audio**, plus revisiting Lab 9A Part C for audio, materials and UI.
+- [ ] **Basic audio**, plus revisiting Lab 9A Part C for audio, materials and UI. AudioManager and all sound calls done (15-11); find the clips in [audio.md](audio.md) and set up in Boot.
 - [ ] **Chunk-based spawning** (vertical slice: 10+ chunks). Pickups in hard-to-reach spots depend on chunks. This also covers per-type obstacle pools (`GameManager.cs:37`).
 - [ ] **Lab 8B parts C–E.**
 

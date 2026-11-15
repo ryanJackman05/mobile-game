@@ -147,6 +147,7 @@ public class GameManager : MonoBehaviour
     {
         if (Wallet.wallet != null) Wallet.wallet.Earn(amount);
         roundCoinsEarned += amount;
+        AudioManager.Play(Sfx.CoinEarned);
     }
 
     public void GameOver(DeathCause cause = DeathCause.Unknown)

@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 408003346}
   - component: {fileID: 408003345}
   - component: {fileID: 408003348}
+  - component: {fileID: 408003349}
   m_Layer: 5
   m_Name: start game
   m_TagString: Untagged
@@ -419,6 +420,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadScene
   sceneName: Game
+--- !u!114 &408003349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408003343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc59b0f13cf0fd44bd069cad23d924a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_ButtonSound
+  sound: 0
 --- !u!1 &433709381
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +444,7 @@ GameObject:
   - component: {fileID: 433709382}
   - component: {fileID: 433709383}
   - component: {fileID: 433709384}
+  - component: {fileID: 433709385}
   m_Layer: 5
   m_Name: High FPS
   m_TagString: Untagged
@@ -531,6 +546,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_PerformanceModeToggle
   toggle: {fileID: 433709383}
+--- !u!114 &433709385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433709381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc59b0f13cf0fd44bd069cad23d924a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_ButtonSound
+  sound: 0
 --- !u!1 &454707025
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +973,7 @@ GameObject:
   - component: {fileID: 625040876}
   - component: {fileID: 625040875}
   - component: {fileID: 625040878}
+  - component: {fileID: 625040879}
   m_Layer: 5
   m_Name: Upgrade Button
   m_TagString: Untagged
@@ -1081,6 +1110,19 @@ MonoBehaviour:
   coinsLabel: {fileID: 51561983}
   upgradeLabel: {fileID: 1604265497}
   upgradeButton: {fileID: 625040875}
+--- !u!114 &625040879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625040873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc59b0f13cf0fd44bd069cad23d924a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_ButtonSound
+  sound: 0
 --- !u!1 &668734877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,6 +1307,7 @@ GameObject:
   - component: {fileID: 1175049354}
   - component: {fileID: 1175049353}
   - component: {fileID: 1175049352}
+  - component: {fileID: 1175049355}
   m_Layer: 5
   m_Name: Buy
   m_TagString: Untagged
@@ -1386,6 +1429,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175049349}
   m_CullTransparentMesh: 1
+--- !u!114 &1175049355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175049349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc59b0f13cf0fd44bd069cad23d924a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_ButtonSound
+  sound: 1
 --- !u!1 &1251323381
 GameObject:
   m_ObjectHideFlags: 0

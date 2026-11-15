@@ -265,3 +265,10 @@ Repair pickup, reworked. Pooling pickups separately didn't work: with MoveWithWo
 - Pickups are now children of obstacle prefabs. ObstaclePickups on the obstacle root re-rolls them in OnEnable on every spawn (30% chance, max 1 shown by default), so collected boxes come back.
 - RepairPickup no longer requires MoveWithWorld. PickupSpot and the GameManager pickup pool/free spawning are removed.
 - Open-road pickups need no code: a "pickup only" obstacle prefab (empty root + MoveWithWorld + ObstaclePickups + a Repair Box child) in the obstacle list.
+
+Audio system.
+- AudioManager (Assets/Scripts/Audio) lives in the Boot scene and persists (DontDestroyOnLoad). Static calls: AudioManager.Play(Sfx.X), SetEngine(running, speed), SetSkid(0..1). All are no-ops if there's no AudioManager, so the Game scene still runs on its own.
+- One-shots use a pre-made pool of 8 AudioSources (no allocation per sound), random clip and pitch jitter per sound, and a per-sound minimum interval so bursts (many zombies groaning) don't stack. UI clicks use 2 sources that ignore AudioListener.pause, so the pause menu still clicks.
+- Loops: engine pitch follows world speed, tyre screech volume follows yaw rate, both fade out at game over. Music is picked per scene by name with a fade, using unscaled time (no coroutines).
+- Music/SFX volume are PlayerPrefs settings like Haptics, with UI_VolumeSlider for a settings menu. UI_ButtonSound adds a click to any Button/Toggle without OnClick wiring.
+- 15 sound calls hooked into zombies, car, slow areas, pickups, coins, upgrades and the results panel. Shopping list and import settings in docs/audio.md.

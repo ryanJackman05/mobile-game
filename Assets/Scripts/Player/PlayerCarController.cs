@@ -15,6 +15,7 @@ public class PlayerCarController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] float scrapePenalty = 0.2f;
     [SerializeField] float scrapeCooldown = 0.5f; // one long scrape along a wall shouldn't stack penalties every frame
     float lastScrapeTime = -10f;
+    [SerializeField] Vector2 skidYawRate = new Vector2(0.8f, 2.5f); // yaw speed (rad/s) where tyre screech starts / is loudest
 
     [SerializeField] private Rigidbody body;
     [SerializeField] private MoveWithWorld moveWithWorld;
@@ -55,6 +56,9 @@ public class PlayerCarController : MonoBehaviour
     void Update()
     {
         if(LifecycleGuard.IsPaused) return;
+        bool running = GameManager.current.state == GameManager.GameState.Playing;
+        AudioManager.SetEngine(running, Mathf.Abs(GameManager.currentSpeed));
+        AudioManager.SetSkid(running ? Mathf.InverseLerp(skidYawRate.x, skidYawRate.y, Mathf.Abs(body.angularVelocity.y)) : 0f);
         roadCheck.localEulerAngles = new Vector3(0, currentTurn * 60, 0); // visual/debug only, forces use the body pose below
     }
 
@@ -86,6 +90,7 @@ public class PlayerCarController : MonoBehaviour
     {
         GameManager.current.EarnCoins(25);
         Haptics.Pulse();
+        AudioManager.Play(Sfx.ZombieRunOver);
         GameManager.current.ApplySpeedPenalty(zombieHitPenalty);
     }
 
@@ -106,6 +111,7 @@ public class PlayerCarController : MonoBehaviour
         if (collision.contactCount > 0 && Mathf.Abs(collision.GetContact(0).normal.y) > 0.5f) return;
         lastScrapeTime = Time.time;
         Haptics.Pulse();
+        AudioManager.Play(Sfx.CarScrape);
         GameManager.current.ApplySpeedPenalty(scrapePenalty);
     }
 
@@ -193,7 +199,7 @@ public class PlayerCarController : MonoBehaviour
     {
         body.constraints = withConstraints ? RigidbodyConstraints.FreezePositionZ : RigidbodyConstraints.None; // loosen constraints for physics
         moveWithWorld.enabled = !withConstraints;
-        if (GameManager.current.state == GameManager.GameState.Playing) Haptics.Pulse();
+        if (GameManager.current.state == GameManager.GameState.Playing) { Haptics.Pulse(); AudioManager.Play(Sfx.Crash); }
         GameManager.current.GameOver(cause);
     }
     void Die() // called when HP is below 0
@@ -201,6 +207,7 @@ public class PlayerCarController : MonoBehaviour
         // Overrun: unlike a crash, the car isn't thrown about. Constraints stay on, steering stops with the game state,
         // and the car stalls and coasts to a halt as the world slows, with the zombies still hanging on.
         body.angularVelocity = Vector3.zero;
+        AudioManager.Play(Sfx.Overrun);
         GameManager.current.GameOver(GameManager.DeathCause.Overrun);
     }
 
@@ -224,6 +231,9 @@ public class PlayerCarController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("OutOfBounds"))
+        {
+            if (GameManager.current.state == GameManager.GameState.Playing) AudioManager.Play(Sfx.Crash);
             GameManager.current.GameOver(GameManager.DeathCause.OutOfBounds);
+        }
     }
 }

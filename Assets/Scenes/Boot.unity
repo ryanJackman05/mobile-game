@@ -598,6 +598,175 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &670641090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 670641092}
+  - component: {fileID: 670641091}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &670641091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670641090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c6d5131767ff542bac736f4c332e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  sfx:
+  - name: UiClick
+    id: 0
+    clips:
+    - {fileID: 8300000, guid: 858acf210744de042ba14af27ba29f93, type: 3}
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 1
+  - name: UpgradeBought
+    id: 1
+    clips:
+    - {fileID: 8300000, guid: 9f790fb4f057c524fa909ada062cb9ae, type: 3}
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: CoinEarned
+    id: 2
+    clips:
+    - {fileID: 8300000, guid: 84e18d7fb68ef3f46b460e3dcad60748, type: 3}
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: ZombieNotice
+    id: 3
+    clips: []
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 1.5
+    playWhilePaused: 0
+  - name: ZombieLeap
+    id: 4
+    clips: []
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: ZombieLand
+    id: 5
+    clips: []
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: ZombieClaw
+    id: 6
+    clips: []
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.8
+    playWhilePaused: 0
+  - name: ZombieKnockedOff
+    id: 7
+    clips: []
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: ZombieRunOver
+    id: 8
+    clips: []
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: CarScrape
+    id: 9
+    clips:
+    - {fileID: 8300000, guid: 96f0d6a7a00870645b2d1bffdd9ec623, type: 3}
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.3
+    playWhilePaused: 0
+  - name: SlowArea
+    id: 10
+    clips: []
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: Crash
+    id: 11
+    clips:
+    - {fileID: 8300000, guid: 67e0b1f2e852fa148b0b96bc9838671b, type: 3}
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: Overrun
+    id: 12
+    clips:
+    - {fileID: 8300000, guid: 1e1e1eccbde530c4faf5f244676e7bca, type: 3}
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: RepairPickup
+    id: 13
+    clips:
+    - {fileID: 8300000, guid: 810cafd7793b5ea43850a7e8fe995616, type: 3}
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  - name: GameOverSting
+    id: 14
+    clips:
+    - {fileID: 8300000, guid: 7329df6bad86ff1418453f43f1b782b5, type: 3}
+    volume: 1
+    pitchJitter: 0.05
+    minInterval: 0.05
+    playWhilePaused: 0
+  voices: 8
+  music: []
+  musicVolume: 0.6
+  musicFadeTime: 0.8
+  engineLoop: {fileID: 8300000, guid: 771ce407ce807b74885ec23ebd1e6647, type: 3}
+  engineVolume: 0.5
+  enginePitch: {x: 0.8, y: 1.6}
+  engineTopSpeed: 40
+  skidLoop: {fileID: 8300000, guid: f632e2ace80a32e47a2c531f64901a50, type: 3}
+  skidVolume: 0.4
+  loopFadeSpeed: 4
+--- !u!4 &670641092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670641090}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &820414814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,3 +1269,4 @@ SceneRoots:
   - {fileID: 878632561}
   - {fileID: 283220546}
   - {fileID: 2048586642}
+  - {fileID: 670641092}

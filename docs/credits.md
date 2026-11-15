@@ -6,21 +6,53 @@ Pause
 https://opengameart.org/content/gui-pack
 
 ## Textures
-Road, Dirt,
+Road, Dirt:
+https://ambientcg.com
 
 ## Sound
 
+UI click
+https://opengameart.org/content/click
+
+Coin Earned
+https://opengameart.org/content/metal-impact-sounds
+
+Coin Pickup
+https://opengameart.org/content/metal-thing-falling
+
+Zombie Attack
+https://opengameart.org/content/metal-hit-0
+
+Car scrape
+https://pixabay.com/sound-effects/film-special-effects-scratching-metal-4-188119/
+
+Rough Terrain
+https://pixabay.com/sound-effects/film-special-effects-rough-metal-scrape-textured-103667/
+
+Car stall
+https://pixabay.com/sound-effects/film-special-effects-car-engine-failure-352768/
+
+Powerup
+https://opengameart.org/content/up-3x
+
+Game Over Sting
+https://pixabay.com/sound-effects/film-special-effects-ominous-47658/
+
+Car Crash
+https://www.zapsplat.com/music/car-crash-skid-them-smash-heavy-metal-and-glass-shatter/?_gl=1*1viz2bn*_up*MQ..*_ga*NTYyNDI1ODYzLjE3OTQ3NzQ1NTY.*_ga_901GQX73MS*czE3OTQ3NzQ1NTUkbzEkZzEkdDE3OTQ3NzQ5NTQkajYwJGwwJGgw
+
 ## Models
-Lower poly zombie
-https://sketchfab.com/3d-models/zombie-low-poly-d7974ad623ff4186b9c2141eb16e8892
 
 Car
 https://sketchfab.com/3d-models/zombie-pickup-truck-23708528454e43b58e02d78fd427c240
 
-Zombie
-https://sketchfab.com/3d-models/zombie-25c230a1e2f2462fa3de298fc8bca30a
+Zombie & Animations
+https://www.mixamo.com/#/?page=1&query=zombie&type=Character Model "Romero"
 
 Container
 https://opengameart.org/content/container-0
+
+Toolbox
+https://opengameart.org/content/toolbox
 
 ## Misc
