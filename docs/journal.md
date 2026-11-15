@@ -248,3 +248,10 @@ Health, health bar and variable speed.
 Front hitbox split. The wide Front trigger was crashing on obstacles beside the car. 
 CrashDetector now has Kills Enemies and Crashes options (both on by default), and no CrashDetector crashes on other triggers any more (slow areas used to end the run via Front). 
 Setup: Front = wide, Crashes off (rams zombies only). New FrontCrash = slim, bonnet-width, Kills Enemies off (obstacle crashes only). Top = Ground Only. Watch: FrontCrash touching a ramp slope ends the run, so keep it above the slope's leading edge.
+
+Rest of P1: game over cause and presentation, haptics.
+- GameOver takes a DeathCause (Crashed, Flipped, OutOfBounds, Overrun). Front crash = Crashed, Top (Ground Only) = Flipped, Game Over zones = OutOfBounds, health 0 = Overrun. Logged as `cause` in level_gameOver.
+- Bug fixed: coins_earned in telemetry was always 0 (roundCoinsEarned was never added to). Zombie coins now go through GameManager.EarnCoins.
+- Results panel waits 1.2s (realtime) so the crash or stall is visible, then shows the cause and distance (optional labels on UI_ResultsMenu).
+- Overrun death: the car no longer has its constraints released, so it stalls and coasts to a stop with zombies still on it instead of tumbling like a crash.
+- Haptic pulse on crashes added; zombie hit, scrape and knock-off were already in. Pickups wait for the repair pickup.

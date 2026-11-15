@@ -7,7 +7,10 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager current; // singleton
-    public enum GameState { Playing, Paused, GameOver } 
+    public enum GameState { Playing, Paused, GameOver }
+    public enum DeathCause { Unknown, Crashed, Flipped, OutOfBounds, Overrun }
+    public DeathCause LastCause { get; private set; }
+    public double Distance => currentDistance;
     public GameState state;
     public event System.Action<GameState> StateChanged;
     private CancellationTokenSource _cts;
@@ -139,10 +142,18 @@ public class GameManager : MonoBehaviour
         StateChanged?.Invoke(GameState.Paused); // todo check if this state will be used by anything
     }
 
-    public void GameOver()
+    // Coins earned during play go through here so the round total reaches telemetry (coins_earned was always 0).
+    public void EarnCoins(int amount)
+    {
+        if (Wallet.wallet != null) Wallet.wallet.Earn(amount);
+        roundCoinsEarned += amount;
+    }
+
+    public void GameOver(DeathCause cause = DeathCause.Unknown)
     {
         if (state == GameState.GameOver)  return;
-        
+        LastCause = cause;
+
         // immediately slow down scrolling
         _cts = new CancellationTokenSource();
         _ = SlowDown(_cts.Token); // assigns awaitable to var so the following code can continue
@@ -158,12 +169,12 @@ public class GameManager : MonoBehaviour
             ("level_id", "Game"),
             ("time_s", Time.time - roundStartTime),
             ("coins_earned", roundCoinsEarned),
-            ("score", currentDistance));
-        // todo add cause ^^^ 
-        
-        // bring up end screen menu, lingering on stopped scene todo might be called by StateChanged elsewhere
-        
-        Debug.Log("Game Over");
+            ("score", currentDistance),
+            ("cause", cause.ToString()));
+
+        // the results panel (UI_ResultsMenu) listens to StateChanged and appears after a short delay
+
+        Debug.Log("Game Over: " + cause);
     }
     private async Awaitable SlowDown(CancellationToken cancellationToken)
     {

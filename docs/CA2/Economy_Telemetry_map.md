@@ -5,7 +5,7 @@ Info about output, Call locations, and purpose
    |-------|-------------------|------------|---------------------|
    | `session_start` | `app_version` (string), `device_model` (string), `android` (string) | first frame of Boot | which build and device produced this log |
    | `level_start` | `level_id` (string), `attempt` (int), `coins` (int) | new run starts | the attempt number starting from 1; entry wealth |
-   | `level_gameOver` | `level_id`, `time_s` (float), `coins_earned` (int), `score` (int) | on player crash, flip, or death | run time; score as distance; and total coins earned |
+   | `level_gameOver` | `level_id`, `time_s` (float), `coins_earned` (int), `score` (int), `cause` (string: Crashed, Flipped, OutOfBounds, Overrun) | on player crash, flip, leaving the road, or health reaching 0 | run time; score as distance; total coins earned; what ends runs |
    | `upgrade_purchased` | `upgrade_id` (id), `level` (int), `cost` (int), `coins_left` (int) | inside Wallet `TryUpgrade` if successful, before Changed event | when the first upgrade lands; spend pacing |
 
 

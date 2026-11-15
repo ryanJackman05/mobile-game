@@ -19,7 +19,8 @@ public class CrashDetector : MonoBehaviour
             SendMessageUpwards("HitEnemy");
         }
         else if (crashes && !other.isTrigger && (!groundOnly || IsGround(other))){ // triggers (slow areas, game over zones) never crash
-            SendMessageUpwards("Crash", withConstraints);
+            var car = GetComponentInParent<PlayerCarController>();
+            if (car != null) car.Crash(withConstraints, groundOnly ? GameManager.DeathCause.Flipped : GameManager.DeathCause.Crashed);
         }
     }
 

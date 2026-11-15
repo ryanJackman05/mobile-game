@@ -31,8 +31,9 @@ Smaller conflicts with the MDA:
 - [x] **Health bar on screen.** Script done (`UI_HealthBar`); needs the UI object in the Game scene.
 - [x] **Health as the fail condition, plus the Upgrade button on the main menu** (journal). Code done; move the button in the Editor.
 - [x] **Variable speed:** slowdowns on scrapes, slow areas and head-on zombie hits, recovering to the base ramp.
-- [ ] **Game over presentation and cause:** add the cause to telemetry (`GameManager.cs:145`) and a unique death (`PlayerCarController.cs`).
-- [ ] **Haptics** on zombie hits and pickups (`Haptics.cs:13`). Landing on a window is done.
+- [x] **Game over presentation and cause:** cause in telemetry and on the results panel, panel delayed 1.2s, overrun death stalls instead of tumbling. Results labels need wiring in the Editor.
+- [x] **Haptics:** zombie landing, hit and scraped off, car scrapes, crashes. Pickups move with the repair pickup (P2).
+- [ ] **Death feels off.** The 1.2s results delay (`UI_ResultsMenu.showDelay`) only works if the death itself reads clearly: add feedback during it (e.g. crash sound, camera shake, a "CRASHED" / "OVERRUN" flash, slow-mo) or set the delay to 0.
 
 ## P2: content from the MDA's mechanics
 

@@ -84,11 +84,7 @@ public class PlayerCarController : MonoBehaviour
 
     void HitEnemy()
     {
-        if (Wallet.wallet != null)
-        {
-            Wallet.wallet.Earn(25);
-
-        }
+        GameManager.current.EarnCoins(25);
         Haptics.Pulse();
         GameManager.current.ApplySpeedPenalty(zombieHitPenalty);
     }
@@ -187,17 +183,19 @@ public class PlayerCarController : MonoBehaviour
         transform.Rotate(0, amount, 0);
     }
 
-    void Crash(bool withConstraints) // called by crash colliders on car body
+    public void Crash(bool withConstraints, GameManager.DeathCause cause) // called by crash colliders on car body
     {
         body.constraints = withConstraints ? RigidbodyConstraints.FreezePositionZ : RigidbodyConstraints.None; // loosen constraints for physics
         moveWithWorld.enabled = !withConstraints;
-        GameManager.current.GameOver();
+        if (GameManager.current.state == GameManager.GameState.Playing) Haptics.Pulse();
+        GameManager.current.GameOver(cause);
     }
     void Die() // called when HP is below 0
     {
-        body.constraints = RigidbodyConstraints.None; // loosen constraints for physics
-        GameManager.current.GameOver();
-        // todo unique death
+        // Overrun: unlike a crash, the car isn't thrown about. Constraints stay on, steering stops with the game state,
+        // and the car stalls and coasts to a halt as the world slows, with the zombies still hanging on.
+        body.angularVelocity = Vector3.zero;
+        GameManager.current.GameOver(GameManager.DeathCause.Overrun);
     }
 
     public void ResetCar()
@@ -220,6 +218,6 @@ public class PlayerCarController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("OutOfBounds"))
-            GameManager.current.GameOver();
+            GameManager.current.GameOver(GameManager.DeathCause.OutOfBounds);
     }
 }
