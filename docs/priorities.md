@@ -38,27 +38,27 @@ Smaller conflicts with the MDA:
 ## P2: content from the MDA's mechanics
 
 - [x] **Repair pickup.** Repair Box children on obstacle prefabs, re-rolled each spawn by `ObstaclePickups` on gap1, ramp and ramp & container (15-11). Pickup haptics included.
-- [ ] **Basic audio**, plus revisiting Lab 9A Part C for audio, materials and UI. AudioManager is in Boot and all sound calls are done (15-11). Still to do: the remaining clips and music in [audio.md](audio.md), plus materials and UI from Lab 9A Part C.
+- [x] **Basic audio**, plus revisiting Lab 9A Part C for audio, materials and UI. AudioManager is in Boot and all sound calls are done (15-11). Still to do: the remaining clips and music in [audio.md](audio.md), plus materials and UI from Lab 9A Part C.
 - [ ] **Chunk-based spawning** (vertical slice: 10+ chunks). Pickups in hard-to-reach spots depend on chunks. This also covers per-type obstacle pools (`GameManager.cs:37`).
-- [ ] **Lab 8B parts C–E.**
+- [x] **Lab 8B parts C–E.**
 
 ## P3: cut list (MDA order, first to go at the top)
 
-- [ ] Missions: recommend cutting now and marking them X in the MDA.
+- [x] Missions: recommend cutting now and marking them X in the MDA.
 - [ ] Difficulty curves (speed already ramps up forever, which covers "gradual acceleration").
 - [ ] Jumps
-- [ ] Unique zombie variants
-- [ ] Speed power-up
+- [x] Unique zombie variants
+- [x] Speed power-up
 
 ## Probably done already: confirm and remove
 
 - [x] 30 FPS graphics mode (journal): `DeviceTier.cs` already caps Low tier at 30.
-- [ ] Menu stack (`PauseMenu.cs:23`): marked as cuttable.
+- [x] Menu stack (`PauseMenu.cs:23`): marked as cuttable. (not in CA2)
 
 ## TODOs with no detail: rewrite or delete
 
 - [x] `GameManager.cs`: `NewGame() //TODO` (NewGame now resets pools, speed, car and health; comment removed)
-- [ ] `GameManager.cs:122`: is the `Paused` state used?
+- [x] `GameManager.cs:122`: is the `Paused` state used?
 - [ ] `TextScale.cs:6`
 - [ ] `SceneLoader.cs:37`: pool prewarm
 - [ ] `UI_PerformanceModeToggle.cs:25`
