@@ -19,7 +19,7 @@ public class Wallet : MonoBehaviour
         Coins -= NextCost;
         int cost = NextCost;
         Level++; 
-        Telemetry.Log("upgrade_purchased", ("upgrade_id", "speed"),
+        Telemetry.Log("upgrade_purchased", ("upgrade_id", "health"),
             ("level", Level), ("cost", cost), ("coins_left", Coins));
         Changed?.Invoke(); return true;
     }

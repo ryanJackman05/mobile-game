@@ -7,7 +7,14 @@ public class PlayerCarController : MonoBehaviour
     public float driveForce;
     public float currentTurn;
     
-    public int health, maxHealth, startMaxHealth; // todo consider adding / changing to FUEL
+    public int health, maxHealth, startMaxHealth;
+    public event System.Action<int, int> HealthChanged; // (health, maxHealth), for the HUD
+
+    [Header("Speed penalties (share of current speed lost)")]
+    [SerializeField, Range(0f, 1f)] float zombieHitPenalty = 0.15f;
+    [SerializeField, Range(0f, 1f)] float scrapePenalty = 0.2f;
+    [SerializeField] float scrapeCooldown = 0.5f; // one long scrape along a wall shouldn't stack penalties every frame
+    float lastScrapeTime = -10f;
 
     [SerializeField] private Rigidbody body;
     [SerializeField] private MoveWithWorld moveWithWorld;
@@ -80,13 +87,30 @@ public class PlayerCarController : MonoBehaviour
         if (Wallet.wallet != null)
         {
             Wallet.wallet.Earn(25);
-            
+
         }
+        Haptics.Pulse();
+        GameManager.current.ApplySpeedPenalty(zombieHitPenalty);
     }
+
+    // Wallet.Changed fires on every coin earned as well as on upgrades, so this only recalculates the cap.
+    // (It used to heal 40 each time, so running over a zombie also healed the car.) Each round starts full in ResetCar.
     void UpgradeHealth()
     {
         maxHealth = startMaxHealth + (Wallet.wallet.Level * 10);
-        ChangeHealth(40);
+        if (health > maxHealth) health = maxHealth;
+        HealthChanged?.Invoke(health, maxHealth);
+    }
+
+    // Car body brushing past an obstacle's side. Driving up a ramp (contact normal pointing up) doesn't count.
+    void OnCollisionEnter(Collision collision)
+    {
+        if (Time.time - lastScrapeTime < scrapeCooldown) return;
+        if (!Obstacles.IsObstacle(collision.collider)) return;
+        if (collision.contactCount > 0 && Mathf.Abs(collision.GetContact(0).normal.y) > 0.5f) return;
+        lastScrapeTime = Time.time;
+        Haptics.Pulse();
+        GameManager.current.ApplySpeedPenalty(scrapePenalty);
     }
 
     // ---- Zombie window slots ----
@@ -139,8 +163,11 @@ public class PlayerCarController : MonoBehaviour
             health = maxHealth;
         else if (health <= 0){
             health = 0;
+            HealthChanged?.Invoke(health, maxHealth);
             Die();
+            return;
         }
+        HealthChanged?.Invoke(health, maxHealth);
     }
     
     // might be needed to assist lifting the car on a jump ramp
@@ -187,6 +214,7 @@ public class PlayerCarController : MonoBehaviour
         // zombies drain health now, so each round must start full (may run before OnEnable on the first round)
         if (Wallet.wallet != null) maxHealth = startMaxHealth + Wallet.wallet.Level * 10;
         health = maxHealth;
+        HealthChanged?.Invoke(health, maxHealth);
     }
 
     void OnTriggerEnter(Collider other)

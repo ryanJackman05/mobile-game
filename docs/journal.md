@@ -235,3 +235,12 @@ Zombies (first pass, code only). EnemyController is now a state machine: Waiting
 
 Zombie scraping. While a zombie hangs on a window its trigger collider is switched back on. Because it's now a child of the car's Rigidbody it can't set off the car's own Top/Front triggers, but it does report obstacles it brushes past, which throws it off harder than shaking does (plus a haptic pulse). An obstacle is anything on the "Obstacle" layer; until that layer exists, it's any solid collider that has MoveWithWorld and isn't a zombie or the car. The car's ground-check raycast now ignores triggers.
 TODO Set up layers: Player, Enemy, Obstacle, and the Enemy row in the physics collision matrix (see priorities.md).
+
+Health, health bar and variable speed.
+- Health is the fail condition (as before, health 0 -> Die -> GameOver). Low speed is a penalty only, not a fail state (decision recorded in priorities.md).
+- Bug fixed: UpgradeHealth ran on every Wallet.Changed, including coins earned, and healed 40 each time, so running over a zombie also healed the car. It now only recalculates maxHealth; ResetCar fills health each round.
+- PlayerCarController.HealthChanged event + UI_HealthBar (filled Image, colour gradient, optional "64/110" label).
+- Speed: GameManager now has baseSpeed (the difficulty ramp) and currentSpeed (what the world scrolls at). ApplySpeedPenalty knocks a share off currentSpeed (never below 35% of base) and it recovers toward baseSpeed at 2/s. The ramp no longer runs during GameOver, which was making the world creep after the slowdown finished.
+- Penalties: side scrapes on obstacles 20% (0.5s cooldown, ramps excluded by contact normal), SlowArea hazards 25% once per spawn, head-on zombie hits 15% (coins kept, plus a haptic pulse).
+- Upgrade is now "Max health +10", telemetry upgrade_id "health". UI_WalletHUD fields are optional so the button can move to the main menu.
+- Shared Obstacles.IsObstacle() used by zombie scraping and car scrapes.

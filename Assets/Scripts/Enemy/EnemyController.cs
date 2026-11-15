@@ -36,21 +36,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float gravity = 20f;
     [SerializeField] Vector2 throwVelocity = new Vector2(4f, 3f); // outward, up
 
-    // Obstacles live on the "Obstacle" layer. Until that layer exists, anything solid that scrolls with the world counts.
-    static int obstacleLayer = -2; // -2 = not looked up yet
-    static int ObstacleLayer
-    {
-        get
-        {
-            if (obstacleLayer == -2)
-            {
-                obstacleLayer = LayerMask.NameToLayer("Obstacle");
-                if (obstacleLayer < 0) Debug.LogWarning("[Zombie] No 'Obstacle' layer, falling back to MoveWithWorld check");
-            }
-            return obstacleLayer;
-        }
-    }
-
     [Header("Animation (optional)")]
     [SerializeField] Animator animator;              // int parameter "State" = (int)State, skipped if missing
     static readonly int StateParam = Animator.StringToHash("State");
@@ -229,18 +214,9 @@ public class EnemyController : MonoBehaviour
     // Scraped off: the car drove close enough to an obstacle that it hit the hanging zombie
     void OnTriggerEnter(Collider other)
     {
-        if (CurrentState != State.Attached || !IsObstacle(other)) return;
+        if (CurrentState != State.Attached || !Obstacles.IsObstacle(other)) return;
         Haptics.Pulse();
         Drop(scrapeVelocity);
-    }
-
-    static bool IsObstacle(Collider other)
-    {
-        if (other.isTrigger) return false; // slow areas and the car's own trigger zones aren't solid
-        if (ObstacleLayer >= 0) return other.gameObject.layer == ObstacleLayer;
-        return other.GetComponentInParent<MoveWithWorld>() != null
-               && other.GetComponentInParent<EnemyController>() == null
-               && !other.transform.root.CompareTag("Player");
     }
 
     public void Drop() => Drop(throwVelocity);

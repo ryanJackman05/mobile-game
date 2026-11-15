@@ -20,7 +20,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2 spawnDistanceRange;
     [SerializeField] private float interPoleDistance;
     
-    public static float currentSpeed;
+    public static float currentSpeed; // what the world actually scrolls at (negative)
+    private float baseSpeed;          // the difficulty ramp; currentSpeed recovers toward this after penalties
+
+    [Header("Speed penalties")]
+    [SerializeField] private float speedRampPerMinute = 3f;
+    [SerializeField] private float speedRecoveryPerSecond = 2f; // how fast currentSpeed climbs back to baseSpeed
+    [SerializeField, Range(0f, 1f)] private float minSpeedFraction = 0.35f; // penalties can't drop below this share of baseSpeed
     private static double currentDistance;
     public static float roadWidth;
     
@@ -76,8 +82,11 @@ public class GameManager : MonoBehaviour
         if(poleDistance <= 0) SpawnPole();
         
         currentDistance -= dist;
-        currentSpeed -= (3 * Time.deltaTime / 60);
-        //print(currentSpeed);
+        if (state == GameState.Playing) // during GameOver the SlowDown routine owns currentSpeed
+        {
+            baseSpeed -= speedRampPerMinute * Time.deltaTime / 60f;
+            currentSpeed = Mathf.MoveTowards(currentSpeed, baseSpeed, speedRecoveryPerSecond * Time.deltaTime);
+        }
         scoreText.text = currentDistance.ToString("F2");
     }
 
@@ -92,7 +101,7 @@ public class GameManager : MonoBehaviour
         if (_cts != null){
             _cts.Cancel(); _cts.Dispose(); _cts = null; } // completely reset the cancel token
 
-        currentSpeed = startSpeed;
+        currentSpeed = baseSpeed = startSpeed;
         roadWidth = startWidth;
         currentDistance = 0;
         roundStartTime = Time.time;
@@ -114,6 +123,14 @@ public class GameManager : MonoBehaviour
             ("level_id", "Game"),
             ("attempt", ++attempt),
             ("coins", Wallet.wallet.Coins));
+    }
+
+    // Knock a share of the current speed off (scrapes, slow areas, zombie hits). It recovers back to baseSpeed over time.
+    public void ApplySpeedPenalty(float fraction)
+    {
+        if (state != GameState.Playing) return;
+        float floor = baseSpeed * minSpeedFraction; // speeds are negative, so the floor is the value closest to 0
+        currentSpeed = Mathf.Min(currentSpeed * (1f - fraction), floor);
     }
 
     public void Pause() // can be called by LifeCycleGuard to trigger pause state. 

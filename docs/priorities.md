@@ -12,7 +12,9 @@ The MDA, the code and the journal each describe a different way to lose:
 | Code (now) | Health reaches 0, drained by zombies on the windows. Also crashing (Front/Top triggers) and going out of bounds. |
 | Journal | Fuel meter: lose if fuel isn't collected often enough. |
 
-Recommendation: keep **health**. It's already wired to zombies and to the upgrade (`maxHealth` grows with level), and the MDA's repair pickup fits it. Drop fuel. Speed could become a penalty (scrapes slow you down) rather than a fail state. Once decided, update the MDA so the doc and the game agree.
+**Decided (15-11): health is the fail condition. Speed is a penalty only (scrapes, slow areas, head-on zombie hits).** Fuel not decided yet. Still to do: update the MDA to match.
+
+Original recommendation: keep **health**. It's already wired to zombies and to the upgrade (`maxHealth` grows with level), and the MDA's repair pickup fits it. Drop fuel. Speed could become a penalty (scrapes slow you down) rather than a fail state. Once decided, update the MDA so the doc and the game agree.
 
 Smaller conflicts with the MDA:
 - Hitting a zombie head-on slows you down in the MDA, but the code gives +25 coins.
@@ -26,8 +28,9 @@ Smaller conflicts with the MDA:
 ## P1: the core loop works and is readable
 
 - [x] **Zombies finished:** animations, remove the placeholder capsule, tuning, knock-off by scraping obstacles.
-- [ ] **Health bar on screen.** Zombies drain health but nothing shows it.
-- [ ] **Health as the fail condition, plus the Upgrade button on the main menu** (journal). The health part is mostly done.
+- [ ] **Health bar on screen.** Script done (`UI_HealthBar`); needs the UI object in the Game scene.
+- [ ] **Health as the fail condition, plus the Upgrade button on the main menu** (journal). Code done; move the button in the Editor.
+- [x] **Variable speed:** slowdowns on scrapes, slow areas and head-on zombie hits, recovering to the base ramp.
 - [ ] **Game over presentation and cause:** add the cause to telemetry (`GameManager.cs:145`) and a unique death (`PlayerCarController.cs`).
 - [ ] **Haptics** on zombie hits and pickups (`Haptics.cs:13`). Landing on a window is done.
 
