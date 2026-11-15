@@ -219,5 +219,5 @@ TODO Async Pack 3: Peer APK Distribution & Survey is now live. It runs to Sun 29
 TODO add haptic feedback to actions
 TODO Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate(): forces are currently applied per rendered frame, so car push/steering is frame-rate dependent (stronger in Editor than on A13). Will need turnMult/driveForce retuning after.
 
-TODO Lab9A Part C. Was required for demo, now should be part of the CA2 entirely
+TODO Lab9A Part C needs to be revisted for future changes and for audio, materials, and UI. Was required for demo, now should be part of the CA2 entirely
 
