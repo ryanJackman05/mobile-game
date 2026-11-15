@@ -272,3 +272,5 @@ Audio system.
 - Loops: engine pitch follows world speed, tyre screech volume follows yaw rate, both fade out at game over. Music is picked per scene by name with a fade, using unscaled time (no coroutines).
 - Music/SFX volume are PlayerPrefs settings like Haptics, with UI_VolumeSlider for a settings menu. UI_ButtonSound adds a click to any Button/Toggle without OnClick wiring.
 - 15 sound calls hooked into zombies, car, slow areas, pickups, coins, upgrades and the results panel. Shopping list and import settings in docs/audio.md.
+
+High score. Best distance is saved in PlayerPrefs (`highscore.distance`, HighScore.cs) at game over, and the results panel shows "Best 1234" or "New best!" through an optional Best Label on UI_ResultsMenu. Distance now only counts while playing, so the coast after a crash no longer adds to the score and the panel matches what was saved. level_gameOver logs `new_best`.

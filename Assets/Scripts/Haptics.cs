@@ -13,6 +13,6 @@ public class Haptics : MonoBehaviour
     public static void Pulse() // used on: zombie landing/hit/scraped off, car scrape, crash, repair pickup. (Jumps are on the cut list.)
     {
         if (!Enabled) return;
-        Handheld.Vibrate();   // one fixed pulse; no duration or intensity control
+        Handheld.Vibrate();
     }
 }

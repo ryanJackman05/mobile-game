@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public enum DeathCause { Unknown, Crashed, Flipped, OutOfBounds, Overrun }
     public DeathCause LastCause { get; private set; }
     public double Distance => currentDistance;
+    public bool LastRoundNewBest { get; private set; }
     public GameState state;
     public event System.Action<GameState> StateChanged;
     private CancellationTokenSource _cts;
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
         poleDistance += dist;
         if(poleDistance <= 0) SpawnPole();
 
-        currentDistance -= dist;
+        if (state == GameState.Playing) currentDistance -= dist; // the coast after a crash doesn't count, so the score matches the saved best
         if (state == GameState.Playing) // during GameOver the SlowDown routine owns currentSpeed
         {
             baseSpeed -= speedRampPerMinute * Time.deltaTime / 60f;
@@ -154,6 +155,7 @@ public class GameManager : MonoBehaviour
     {
         if (state == GameState.GameOver)  return;
         LastCause = cause;
+        LastRoundNewBest = HighScore.Submit((float)currentDistance);
 
         // immediately slow down scrolling
         _cts = new CancellationTokenSource();
@@ -171,7 +173,8 @@ public class GameManager : MonoBehaviour
             ("time_s", Time.time - roundStartTime),
             ("coins_earned", roundCoinsEarned),
             ("score", currentDistance),
-            ("cause", cause.ToString()));
+            ("cause", cause.ToString()),
+            ("new_best", LastRoundNewBest));
 
         // the results panel (UI_ResultsMenu) listens to StateChanged and appears after a short delay
 
@@ -205,7 +208,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnZombie()
     {
-        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 1, 50), Quaternion.identity);
+        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 1, 80), Quaternion.identity);
         
         // reset timer
         zombieDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
@@ -215,13 +218,13 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 1, 50), Quaternion.identity);
+            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 1, 80), Quaternion.identity);
         }
     }
 
     void SpawnObstacle()
     {
-        obstaclePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
+        obstaclePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 80), Quaternion.identity);
 
         // reset timer
         obstacleDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
@@ -229,8 +232,8 @@ public class GameManager : MonoBehaviour
     
     void SpawnPole()
     {
-        telephonePolePool.spawn(new Vector3(-roadWidth/2 - 1, 0, 50), Quaternion.identity);
-        telephonePolePool.spawn(new Vector3(roadWidth/2 + 1, 0, 50), Quaternion.identity);
+        telephonePolePool.spawn(new Vector3(-roadWidth/2 - 1, 0, 80), Quaternion.identity);
+        telephonePolePool.spawn(new Vector3(roadWidth/2 + 1, 0, 80), Quaternion.identity);
         // reset timer
         poleDistance = interPoleDistance;
     }

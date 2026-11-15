@@ -6,6 +6,7 @@ public class UI_ResultsMenu : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] TextMeshProUGUI causeLabel;    // optional: "Overrun by zombies"
     [SerializeField] TextMeshProUGUI distanceLabel; // optional: "Distance 1234"
+    [SerializeField] TextMeshProUGUI bestLabel;     // optional: "Best 1234" or "New best!"
     [SerializeField] float showDelay = 1.2f;        // let the crash/stall play out before the panel covers it
     // TODO death feels off in play: either add feedback during this delay (sound, camera shake, cause flash) or set it to 0. See docs/priorities.md P1.
 
@@ -35,6 +36,11 @@ public class UI_ResultsMenu : MonoBehaviour
         showTimer = -1f;
         if (causeLabel != null) causeLabel.SetText(CauseText(GameManager.current.LastCause));
         if (distanceLabel != null) distanceLabel.SetText("Distance {0:0}", (float)GameManager.current.Distance);
+        if (bestLabel != null)
+        {
+            if (GameManager.current.LastRoundNewBest) bestLabel.SetText("New best!");
+            else bestLabel.SetText("Best {0:0}", HighScore.Best);
+        }
         panel.SetActive(true);
         AudioManager.Play(Sfx.GameOverSting);
     }
