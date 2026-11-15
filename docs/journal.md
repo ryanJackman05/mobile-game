@@ -206,7 +206,6 @@ sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better
 
 Review of requirements for CA2 (not including Labs)
 TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
-TODO Car bounces wildly when ResetCar() called while falling at high speed. Also, sometimes the car object is disabled entirely when the new round starts.
 TODO Move Upgrade button to MainMenu, make it upgrade player's health OR damage resistance, link player health to fail condition, and make zombies damage the car
 TODO Zombies
 TODO Fuel Meter; new player lose condition. If fuel is not collected often enough, player car Die()
@@ -217,7 +216,11 @@ TODO Fuel item and Repair kit item.
 TODO Skipping Lab 8B, part CDE, need to return later after more is added to base game
 TODO Async Pack 3: Peer APK Distribution & Survey is now live. It runs to Sun 29 Nov 2026 and feeds the CA3 QA evidence pack:
 TODO add haptic feedback to actions
-TODO Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate(): forces are currently applied per rendered frame, so car push/steering is frame-rate dependent (stronger in Editor than on A13). Will need turnMult/driveForce retuning after.
+DONE (15-11) Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate().
 
 TODO Lab9A Part C needs to be revisted for future changes and for audio, materials, and UI. Was required for demo, now should be part of the CA2 entirely
+
+15-11
+
+Car prep for zombies. Drive and steer forces now run in FixedUpdate, using the Rigidbody's pose rather than the transform. Rigidbody interpolation is switched on (in Awake) so zombies attached to the window triggers (FL/FR/BL/BR) move smoothly with the car instead of stepping at the physics rate.
 

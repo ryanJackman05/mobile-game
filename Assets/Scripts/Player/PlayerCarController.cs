@@ -16,29 +16,44 @@ public class PlayerCarController : MonoBehaviour
     void OnEnable() { Wallet.wallet.Changed += UpgradeHealth; UpgradeHealth();}
     void OnDisable() { Wallet.wallet.Changed -= UpgradeHealth; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Vector3 roadCheckLocalPos; // front axle point, relative to the car
+
     void Awake()
     {
-        
+        // Smooth the rendered car between physics steps so anything attached to it (e.g. zombies on the windows) doesn't jitter.
+        body.interpolation = RigidbodyInterpolation.Interpolate;
+        roadCheckLocalPos = roadCheck.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(LifecycleGuard.IsPaused) return;
-        // check that front wheels are on ground
-        if(Physics.Raycast(roadCheck.position, Vector3.down, .6f))
-        {
-            Vector3 transformForward = transform.forward;
-            transformForward.Scale(new Vector3(1, 0, 1));
-            roadCheck.localEulerAngles = new Vector3(0, currentTurn * 60, 0);
-            body.AddForceAtPosition(transformForward * -GameManager.currentSpeed, roadCheck.position); // car rolls regardless of game state
-            
-            if (GameManager.current.state == GameManager.GameState.Playing) // car can only be steered in play
-                body.AddForceAtPosition((roadCheck.forward * turnMult /* * -GameManager.currentSpeed*/), roadCheck.position);
-            //transform.Rotate(0, currentTurn * turnMult, 0);
-        }
+        roadCheck.localEulerAngles = new Vector3(0, currentTurn * 60, 0); // visual/debug only, forces use the body pose below
+    }
 
-        // TODO use addForceAtpoint instead? OR manipulate car rig via scripts, depending on how car ends up being built.
+    // Forces go on the physics step so drive/steer strength doesn't depend on frame rate.
+    // With interpolation on, transform is the smoothed render pose, so read the pose from the Rigidbody instead.
+    void FixedUpdate()
+    {
+        if(LifecycleGuard.IsPaused) return;
+
+        Quaternion rot = body.rotation;
+        Vector3 axlePoint = body.position + rot * roadCheckLocalPos;
+
+        // check that front wheels are on ground
+        if(Physics.Raycast(axlePoint, Vector3.down, .6f))
+        {
+            Vector3 flatForward = rot * Vector3.forward;
+            flatForward.y = 0;
+            body.AddForceAtPosition(flatForward * -GameManager.currentSpeed, axlePoint); // car rolls regardless of game state
+
+            if (GameManager.current.state == GameManager.GameState.Playing) // car can only be steered in play
+            {
+                Vector3 steerDir = rot * Quaternion.Euler(0, currentTurn * 60, 0) * Vector3.forward;
+                body.AddForceAtPosition(steerDir * turnMult, axlePoint);
+            }
+        }
     }
 
     void HitEnemy()
