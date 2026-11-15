@@ -7,16 +7,10 @@ Remaining issues and missing features at the end of feature work (15-11-2026). C
 - Lab 8A QA tests: scenarios 1 and 2 throw strange console log exceptions. See [test-plan.md](docs/CA3/qa/test-plan.md).
 - Async Pack 3 (peer APK and survey, closes Sun 29 Nov 2026): [device-matrix.md](docs/CA3/qa/device-matrix.md) and [form-link.md](docs/CA3/qa/survey/form-link.md) are still placeholders.
 
-## Build
-
-- Adaptive Performance logging is still on in all three provider settings (`Assets/Adaptive Performance/Settings/`). Turn it off for the CA2 build.
-- Debug logs still print in play: `[AP] ...` (AdaptiveBootstrap), `[perf] scene ... loaded` (SceneLoader), `Show: ...` (UI_ResultsMenu), `Game Over: ...` (GameManager).
-- ThermalOverlay (ms / thermal debug text) is visible in the Game scene.
-
 ## Gameplay
 
 - Death doesn't feel right. The results panel waits 1.2s (`UI_ResultsMenu.showDelay`) without enough feedback during that time (no camera shake, cause flash or similar). Either add feedback or set the delay to 0.
-- No chunk-based spawning. Obstacles, zombies and poles spawn at random positions on distance timers. The MDA's vertical slice asked for 10+ chunks.
+- No chunk-based spawning. Obstacles, zombies and poles spawn at random positions on distance timers. The MDA's vertical slice asked for 10+ chunks, but this was a typo caused by copy-pasting the spec.
 - Repair pickups only appear on 3 obstacle types (gap1, ramp, ramp & container). There are no open-road pickups.
 - Jumps are not implemented. Ramps exist as obstacles, but there's no jump handling (`PlayerCarController.Jump` / `StopJump` are empty).
 - No difficulty curve beyond a constant speed ramp (+3 per minute, no cap). Spawn rates and road width don't change with difficulty.
@@ -27,7 +21,6 @@ Remaining issues and missing features at the end of feature work (15-11-2026). C
 ## Audio
 
 - Missing SFX: ZombieNotice, ZombieLeap, ZombieLand, ZombieClaw, ZombieKnockedOff, ZombieRunOver. These events are silent.
-- No music for MainMenu or Game.
 - No volume settings in any menu (`UI_VolumeSlider` exists but isn't placed).
 
 ## Art and UI

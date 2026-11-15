@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
             baseSpeed -= speedRampPerMinute * Time.deltaTime / 60f;
             currentSpeed = Mathf.MoveTowards(currentSpeed, baseSpeed, speedRecoveryPerSecond * Time.deltaTime);
         }
-        scoreText.text = currentDistance.ToString("F2");
+        scoreText.SetText("{0:2}m", (float)currentDistance); // TMP formats into its own buffer: no string allocation per frame
     }
 
     public void NewGame()

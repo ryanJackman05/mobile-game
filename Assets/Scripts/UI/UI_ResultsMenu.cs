@@ -35,11 +35,11 @@ public class UI_ResultsMenu : MonoBehaviour
 
         showTimer = -1f;
         if (causeLabel != null) causeLabel.SetText(CauseText(GameManager.current.LastCause));
-        if (distanceLabel != null) distanceLabel.SetText("Distance {0:0}", (float)GameManager.current.Distance);
+        if (distanceLabel != null) distanceLabel.SetText("Distance {0:2}m", (float)GameManager.current.Distance);
         if (bestLabel != null)
         {
             if (GameManager.current.LastRoundNewBest) bestLabel.SetText("New best!");
-            else bestLabel.SetText("Best {0:0}", HighScore.Best);
+            else bestLabel.SetText("Best {0:2}m", HighScore.Best);
         }
         panel.SetActive(true);
         AudioManager.Play(Sfx.GameOverSting);
