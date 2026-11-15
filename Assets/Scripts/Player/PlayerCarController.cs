@@ -146,6 +146,12 @@ public class PlayerCarController : MonoBehaviour
 
     public Transform GetWindow(int i) => windowSlots[i];
 
+    public void Repair(int amount)
+    {
+        if (GameManager.current.state != GameManager.GameState.Playing) return;
+        ChangeHealth(amount);
+    }
+
     public void TakeDamage(int amount)
     {
         if (GameManager.current.state != GameManager.GameState.Playing) return;

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject zombiePrefab;
     [SerializeField] GameObject[] obstaclePrefabs; // todo perhaps convert to multiple small pools later, one for each specific obstacle type, and one large pool for basic props
     [SerializeField] GameObject telephonePolePrefab;
-    
+
     // public ObjectPool<item>
     // public ObjectPool<Obstacle> // 2 of each variant should be good
     
@@ -62,8 +62,8 @@ public class GameManager : MonoBehaviour
         obstaclePool.CreatePool(10);
         
         telephonePolePool = new Pool(telephonePolePrefab);
-        telephonePolePool.CreatePool(3);
-        
+        telephonePolePool.CreatePool(6);
+
         NewGame();
     }
 
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         if(obstacleDistance <= 0) SpawnObstacle();
         poleDistance += dist;
         if(poleDistance <= 0) SpawnPole();
-        
+
         currentDistance -= dist;
         if (state == GameState.Playing) // during GameOver the SlowDown routine owns currentSpeed
         {
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         // Initialise Pools
         zombiePool.Reset();
         obstaclePool.Reset();
-        // todo itemPool.Reset();
+        // repair pickups are children of obstacles (ObstaclePickups), so the obstacle pool resets them too
         
         // reset values & difficulty
         if (_cts != null){
@@ -221,14 +221,15 @@ public class GameManager : MonoBehaviour
     void SpawnObstacle()
     {
         obstaclePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
-        
+
         // reset timer
         obstacleDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
     }
     
     void SpawnPole()
     {
-        telephonePolePool.spawn(new Vector3(-roadWidth*1.3f, 0, 50), Quaternion.identity);
+        telephonePolePool.spawn(new Vector3(-roadWidth/2 - 1, 0, 50), Quaternion.identity);
+        telephonePolePool.spawn(new Vector3(roadWidth/2 + 1, 0, 50), Quaternion.identity);
         // reset timer
         poleDistance = interPoleDistance;
     }

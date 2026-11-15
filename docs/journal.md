@@ -255,3 +255,13 @@ Rest of P1: game over cause and presentation, haptics.
 - Results panel waits 1.2s (realtime) so the crash or stall is visible, then shows the cause and distance (optional labels on UI_ResultsMenu).
 - Overrun death: the car no longer has its constraints released, so it stalls and coasts to a stop with zombies still on it instead of tumbling like a crash.
 - Haptic pulse on crashes added; zombie hit, scrape and knock-off were already in. Pickups wait for the repair pickup.
+
+Repair pickup.
+- RepairPickup: trigger, scrolls with MoveWithWorld, heals 30 when the car drives through it (only while playing), haptic pulse, returns to the pool. A zombie hanging on the car can't collect it for you. Optional "visual" child spins and bobs.
+- Placement follows the MDA's "hard-to-reach spots": obstacle prefabs can have PickupSpot children (empty child, green gizmo). When an obstacle spawns there's a 30% chance a pickup appears on one of its spots. Without chunks yet, there's also an occasional pickup in the open road every 200-350 units.
+- GameManager: itemPool (4, uncapped) created only if repairPickupPrefab is assigned, reset in NewGame (closes the old itemPool TODO).
+
+Repair pickup, reworked. Pooling pickups separately didn't work: with MoveWithWorld on a pickup parented to an obstacle it scrolled twice as fast, and a collected box stayed off when the obstacle came back from the pool.
+- Pickups are now children of obstacle prefabs. ObstaclePickups on the obstacle root re-rolls them in OnEnable on every spawn (30% chance, max 1 shown by default), so collected boxes come back.
+- RepairPickup no longer requires MoveWithWorld. PickupSpot and the GameManager pickup pool/free spawning are removed.
+- Open-road pickups need no code: a "pickup only" obstacle prefab (empty root + MoveWithWorld + ObstaclePickups + a Repair Box child) in the obstacle list.
