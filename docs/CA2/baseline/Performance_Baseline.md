@@ -93,5 +93,43 @@ TOTAL PSS: 226109 (KB) -> 220.80957 MB
 Total Mem on Phone: 3779816 kB -> 3,691.2265625 MB
 
 
+Lab 9A
+
+| Category                 | Budget (MB) | Measured (MB) | Inside? |
+|--------------------------|-------------|---------------|---------|
+| Textures (incl. atlases) | 50MB        | 4.7MB         | Y       |
+| Audio                    | 20MB        | 5.7MB         | Y       |
+| Managed heap             | 30MB        | 16.4MB        | Y       |
+| Total PSS (from Week 8)  | 1GB         | 220MB         | Y       |
+
+
+- frame time mean: 17ms
+- 99th percentile: 39.2ms
+- draw calls and batches (Rendering module):
+
+### Old Numbers (week 3):
+
+SetPass - 125 at start, stable 9
+
+(Batches not recorded)
+
+GC alloc - none
+
+
+![img.png](new_capture.png)
+
+### New Numbers:
+
+main-thread ms - avg 17ms
+
+SetPass - average of 12, peaks at 18
+
+Batches count stays at 0 for whole capture (?)
+
+GC alloc - none
+
+
+Likely due to improved pooling, the lab downscaling & optimisation instructions, and good coding practice, all the performance values have significantly improved.
+
 
 
