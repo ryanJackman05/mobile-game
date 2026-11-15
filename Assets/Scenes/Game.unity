@@ -718,6 +718,7 @@ Transform:
   - {fileID: 2181706}
   - {fileID: 1007021601}
   - {fileID: 1147084278}
+  - {fileID: 740898244}
   m_Father: {fileID: 417864546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &164990735
@@ -3200,7 +3201,7 @@ GameObject:
   - component: {fileID: 533109701}
   - component: {fileID: 533109700}
   m_Layer: 8
-  m_Name: Bonnet
+  m_Name: top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3869,6 +3870,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676465485}
   m_CullTransparentMesh: 1
+--- !u!1 &740898243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 740898244}
+  - component: {fileID: 740898246}
+  - component: {fileID: 740898245}
+  m_Layer: 8
+  m_Name: Front Crash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &740898244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740898243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.143, z: 1.899}
+  m_LocalScale: {x: 1.35, y: 0.52, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 136598042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &740898245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740898243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0138c5fcd15e19f44a73aac33b8948b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrashDetector
+  withConstraints: 0
+  killsEnemies: 0
+  crashes: 1
+  groundOnly: 0
+--- !u!65 &740898246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740898243}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &744275025
 GameObject:
   m_ObjectHideFlags: 0
@@ -5033,7 +5104,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.721, z: -0.782}
-  m_LocalScale: {x: 1.49, y: 0.32, z: 2.5}
+  m_LocalScale: {x: 0.81, y: 0.32, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 136598042}
@@ -5072,6 +5143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrashDetector
   withConstraints: 1
+  killsEnemies: 1
+  crashes: 1
+  groundOnly: 1
 --- !u!1 &1063219416
 GameObject:
   m_ObjectHideFlags: 0
@@ -5454,8 +5528,8 @@ Transform:
   m_GameObject: {fileID: 1147084277}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.15, z: 2.139}
-  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.06, z: 2.139}
+  m_LocalScale: {x: 1.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 136598042}
@@ -5473,6 +5547,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrashDetector
   withConstraints: 0
+  killsEnemies: 1
+  crashes: 0
+  groundOnly: 0
 --- !u!65 &1147084280
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8820,7 +8897,7 @@ GameObject:
   - component: {fileID: 1891813033}
   - component: {fileID: 1891813032}
   m_Layer: 8
-  m_Name: Car
+  m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

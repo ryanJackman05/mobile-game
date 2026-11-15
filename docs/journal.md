@@ -244,3 +244,7 @@ Health, health bar and variable speed.
 - Penalties: side scrapes on obstacles 20% (0.5s cooldown, ramps excluded by contact normal), SlowArea hazards 25% once per spawn, head-on zombie hits 15% (coins kept, plus a haptic pulse).
 - Upgrade is now "Max health +10", telemetry upgrade_id "health". UI_WalletHUD fields are optional so the button can move to the main menu.
 - Shared Obstacles.IsObstacle() used by zombie scraping and car scrapes.
+
+Front hitbox split. The wide Front trigger was crashing on obstacles beside the car. 
+CrashDetector now has Kills Enemies and Crashes options (both on by default), and no CrashDetector crashes on other triggers any more (slow areas used to end the run via Front). 
+Setup: Front = wide, Crashes off (rams zombies only). New FrontCrash = slim, bonnet-width, Kills Enemies off (obstacle crashes only). Top = Ground Only. Watch: FrontCrash touching a ramp slope ends the run, so keep it above the slope's leading edge.
