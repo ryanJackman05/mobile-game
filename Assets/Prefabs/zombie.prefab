@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6466206556506273536}
   - component: {fileID: 1357275747905532634}
   - component: {fileID: 7761527446967883993}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -94,6 +94,7 @@ MonoBehaviour:
   damagePerSecond: 4
   shakeOffTurnRate: 1.5
   shakeOffTime: 0.6
+  scrapeVelocity: {x: 6, y: 4}
   gravity: 20
   throwVelocity: {x: 4, y: 3}
   animator: {fileID: 7513306519035458838}

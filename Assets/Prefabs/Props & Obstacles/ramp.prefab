@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 207506123367885016}
   - component: {fileID: 1961368094834519881}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 2923613609448027214}
   - component: {fileID: 1872525711713379363}
   - component: {fileID: 703348417989122330}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: slope
   m_TagString: Untagged
   m_Icon: {fileID: 0}

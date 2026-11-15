@@ -61,7 +61,7 @@ public class PlayerCarController : MonoBehaviour
         Vector3 axlePoint = body.position + rot * roadCheckLocalPos;
 
         // check that front wheels are on ground
-        if(Physics.Raycast(axlePoint, Vector3.down, .6f))
+        if(Physics.Raycast(axlePoint, Vector3.down, .6f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)) // triggers (slow areas, zombies) aren't ground
         {
             Vector3 flatForward = rot * Vector3.forward;
             flatForward.y = 0;

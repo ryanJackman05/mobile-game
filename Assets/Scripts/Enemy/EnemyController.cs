@@ -2,7 +2,8 @@ using UnityEngine;
 
 // Zombie behaviour. The world scrolls toward -z (GameManager.currentSpeed is negative) and the car sits near z = 0.
 // Zombies spawn ahead, ride the ground with MoveWithWorld, then run alongside the car, leap onto a free window
-// trigger (FL/FR/BL/BR on the car) and drain health until the car shakes them off with hard steering.
+// trigger (FL/FR/BL/BR on the car) and drain health until the car shakes them off with hard steering
+// or scrapes them off against an obstacle.
 //
 // Waiting -> Chasing -> Leaping -> Attached -> Falling -> Down
 //                 \-> GaveUp (passed the car without a free window)
@@ -28,9 +29,27 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float shakeOffTurnRate = 1.5f;  // car yaw speed (rad/s) that counts as shaking
     [SerializeField] float shakeOffTime = 0.6f;      // seconds of hard steering needed to throw it off
 
+    [Header("Scrape")]
+    [SerializeField] Vector2 scrapeVelocity = new Vector2(6f, 4f); // outward, up: harder throw than shaking off
+
     [Header("Fall")]
     [SerializeField] float gravity = 20f;
     [SerializeField] Vector2 throwVelocity = new Vector2(4f, 3f); // outward, up
+
+    // Obstacles live on the "Obstacle" layer. Until that layer exists, anything solid that scrolls with the world counts.
+    static int obstacleLayer = -2; // -2 = not looked up yet
+    static int ObstacleLayer
+    {
+        get
+        {
+            if (obstacleLayer == -2)
+            {
+                obstacleLayer = LayerMask.NameToLayer("Obstacle");
+                if (obstacleLayer < 0) Debug.LogWarning("[Zombie] No 'Obstacle' layer, falling back to MoveWithWorld check");
+            }
+            return obstacleLayer;
+        }
+    }
 
     [Header("Animation (optional)")]
     [SerializeField] Animator animator;              // int parameter "State" = (int)State, skipped if missing
@@ -66,7 +85,7 @@ public class EnemyController : MonoBehaviour
         // Pool.spawn has already placed us on the ground
         groundY = transform.position.y;
         transform.rotation = Quaternion.LookRotation(Vector3.back); // face the oncoming car
-        //moveWithWorld.enabled = true;
+        moveWithWorld.enabled = true; // may have been switched off mid-leap/hang before this zombie was pooled
         if (col != null) col.enabled = true;
         ClaimedWindow = -1;
         window = null;
@@ -180,6 +199,9 @@ public class EnemyController : MonoBehaviour
         transform.SetParent(window, false);
         transform.localPosition = HangLocalPosition;
         transform.localRotation = Quaternion.LookRotation(Vector3.right * -side); // face the car
+        // Collider back on: it's now part of the car's Rigidbody, so it only reports what the zombie's body brushes past
+        // (obstacles, see OnTriggerEnter). Colliders on the same Rigidbody never trigger each other, so Top/Front stay quiet.
+        if (col != null) col.enabled = true;
         damageAcc = 0f;
         shake = 0f;
         Haptics.Pulse();
@@ -201,16 +223,36 @@ public class EnemyController : MonoBehaviour
         // Hard steering builds up "shake"; easing off lets it recover
         float yawRate = Mathf.Abs(car.Body.angularVelocity.y);
         shake = yawRate > shakeOffTurnRate ? shake + dt : Mathf.Max(0f, shake - 0.5f * dt);
-        if (shake >= shakeOffTime) Drop();
+        if (shake >= shakeOffTime) Drop(throwVelocity);
     }
 
-    // Let go of the car (shaken off, or lost the window mid-leap)
-    public void Drop()
+    // Scraped off: the car drove close enough to an obstacle that it hit the hanging zombie
+    void OnTriggerEnter(Collider other)
+    {
+        if (CurrentState != State.Attached || !IsObstacle(other)) return;
+        Haptics.Pulse();
+        Drop(scrapeVelocity);
+    }
+
+    static bool IsObstacle(Collider other)
+    {
+        if (other.isTrigger) return false; // slow areas and the car's own trigger zones aren't solid
+        if (ObstacleLayer >= 0) return other.gameObject.layer == ObstacleLayer;
+        return other.GetComponentInParent<MoveWithWorld>() != null
+               && other.GetComponentInParent<EnemyController>() == null
+               && !other.transform.root.CompareTag("Player");
+    }
+
+    public void Drop() => Drop(throwVelocity);
+
+    // Let go of the car (shaken off, scraped off, or lost the window mid-leap)
+    void Drop(Vector2 throwVel)
     {
         ReleaseWindow();
         transform.SetParent(null, true);
         moveWithWorld.enabled = true;
-        fallVelocity = new Vector3(side * throwVelocity.x, throwVelocity.y, 0f);
+        if (col != null) col.enabled = false; // no second hit (or coins) from the car's Front trigger while falling
+        fallVelocity = new Vector3(side * throwVel.x, throwVel.y, 0f);
         SetState(State.Falling);
     }
 

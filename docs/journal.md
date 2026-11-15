@@ -232,3 +232,6 @@ Zombies (first pass, code only). EnemyController is now a state machine: Waiting
 - Supporting changes: MoveWithWorld now moves in world space (zombies rotate), Pool.spawn unparents objects, ResetCar refills health, zombie collider is a trigger.
 - Still needed: run/jump/cling animations (Animator int parameter "State"), remove the placeholder capsule mesh, tune numbers in play.
 
+
+Zombie scraping. While a zombie hangs on a window its trigger collider is switched back on. Because it's now a child of the car's Rigidbody it can't set off the car's own Top/Front triggers, but it does report obstacles it brushes past, which throws it off harder than shaking does (plus a haptic pulse). An obstacle is anything on the "Obstacle" layer; until that layer exists, it's any solid collider that has MoveWithWorld and isn't a zombie or the car. The car's ground-check raycast now ignores triggers.
+TODO Set up layers: Player, Enemy, Obstacle, and the Enemy row in the physics collision matrix (see priorities.md).
