@@ -117,3 +117,5 @@ InitTestScene*.unity*
 # other
 docs/CA2/baseline/thermal-soak/before.data
 docs/CA2/baseline/thermal-soak/after.data
+
+/Assets/PlayerPrefsEditor/
