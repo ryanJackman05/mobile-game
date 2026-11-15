@@ -207,7 +207,7 @@ sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better
 Review of requirements for CA2 (not including Labs)
 TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
 TODO Move Upgrade button to MainMenu, make it upgrade player's health OR damage resistance, link player health to fail condition, and make zombies damage the car
-TODO Zombies (behaviour in, see 15-11; animations + tuning left)
+TODO SO Zombies - DONE (behaviour in, see 15-11; animations + tuning left)
 TODO Fuel Meter; new player lose condition. If fuel is not collected often enough, player car Die()
 TODO Fuel item and Repair kit item.
 
@@ -216,13 +216,14 @@ TODO Fuel item and Repair kit item.
 TODO Skipping Lab 8B, part CDE, need to return later after more is added to base game
 TODO Async Pack 3: Peer APK Distribution & Survey is now live. It runs to Sun 29 Nov 2026 and feeds the CA3 QA evidence pack:
 TODO add haptic feedback to actions
-DONE (15-11) Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate().
+TODO DONE (15-11) Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate().
 
 TODO Lab9A Part C needs to be revisted for future changes and for audio, materials, and UI. Was required for demo, now should be part of the CA2 entirely
 
 15-11
 
-Car prep for zombies. Drive and steer forces now run in FixedUpdate, using the Rigidbody's pose rather than the transform. Rigidbody interpolation is switched on (in Awake) so zombies attached to the window triggers (FL/FR/BL/BR) move smoothly with the car instead of stepping at the physics rate.
+Car prep for zombies. Drive and steer forces now run in FixedUpdate, using the Rigidbody's pose rather than the transform. 
+Rigidbody interpolation is switched on (in Awake) so zombies attached to the window triggers (FL/FR/BL/BR) move smoothly with the car instead of stepping at the physics rate.
 
 Zombies (first pass, code only). EnemyController is now a state machine: Waiting -> Chasing -> Leaping -> Attached -> Falling -> Down (or GaveUp if it passes the car with no free window).
 - Chasing: runs out to the car's flank and forward with the car, on top of MoveWithWorld's scroll.
