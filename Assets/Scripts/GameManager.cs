@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnZombie()
     {
-        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
+        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 1, 50), Quaternion.identity);
         
         // reset timer
         zombieDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
+            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 1, 50), Quaternion.identity);
         }
     }
 

@@ -18,8 +18,27 @@ public class PlayerCarController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Vector3 roadCheckLocalPos; // front axle point, relative to the car
 
+    // Zombie landing zones: the window triggers under "Triggers". Found by name if not assigned in the Inspector.
+    [SerializeField] private Transform[] windowSlots;
+    private EnemyController[] windowOccupants;
+    public Rigidbody Body => body;
+
     void Awake()
     {
+        if (windowSlots == null || windowSlots.Length == 0)
+        {
+            string[] names = { "Triggers/FL", "Triggers/FR", "Triggers/BL", "Triggers/BR" };
+            var found = new System.Collections.Generic.List<Transform>();
+            foreach (var n in names)
+            {
+                var t = transform.Find(n);
+                if (t != null) found.Add(t);
+                else Debug.LogWarning($"[Car] window slot '{n}' not found");
+            }
+            windowSlots = found.ToArray();
+        }
+        windowOccupants = new EnemyController[windowSlots.Length];
+
         // Smooth the rendered car between physics steps so anything attached to it (e.g. zombies on the windows) doesn't jitter.
         body.interpolation = RigidbodyInterpolation.Interpolate;
         roadCheckLocalPos = roadCheck.localPosition;
@@ -68,6 +87,49 @@ public class PlayerCarController : MonoBehaviour
     {
         maxHealth = startMaxHealth + (Wallet.wallet.Level * 10);
         ChangeHealth(40);
+    }
+
+    // ---- Zombie window slots ----
+
+    // Free window on the given side (-1 left, +1 right) whose z is closest to fromZ (world space). Returns -1 if none.
+    public int FindFreeWindow(int side, float fromZ)
+    {
+        int best = -1;
+        float bestDist = float.MaxValue;
+        for (int i = 0; i < windowSlots.Length; i++)
+        {
+            if (IsOccupied(i)) continue;
+            if (Mathf.Sign(windowSlots[i].localPosition.x) != side) continue;
+            float d = Mathf.Abs(windowSlots[i].position.z - fromZ);
+            if (d < bestDist) { bestDist = d; best = i; }
+        }
+        return best;
+    }
+
+    bool IsOccupied(int i)
+    {
+        var o = windowOccupants[i];
+        return o != null && o.isActiveAndEnabled && o.ClaimedWindow == i; // stale claims (pooled/killed zombies) count as free
+    }
+
+    public bool ClaimWindow(int i, EnemyController zombie)
+    {
+        if (i < 0 || i >= windowSlots.Length || IsOccupied(i)) return false;
+        windowOccupants[i] = zombie;
+        return true;
+    }
+
+    public void ReleaseWindow(int i, EnemyController zombie)
+    {
+        if (i >= 0 && i < windowOccupants.Length && windowOccupants[i] == zombie) windowOccupants[i] = null;
+    }
+
+    public Transform GetWindow(int i) => windowSlots[i];
+
+    public void TakeDamage(int amount)
+    {
+        if (GameManager.current.state != GameManager.GameState.Playing) return;
+        ChangeHealth(-amount);
     }
 
     void ChangeHealth(int healthChange)
@@ -121,6 +183,10 @@ public class PlayerCarController : MonoBehaviour
 
         body.linearVelocity = Vector3.zero;
         body.angularVelocity = Vector3.zero;
+
+        // zombies drain health now, so each round must start full (may run before OnEnable on the first round)
+        if (Wallet.wallet != null) maxHealth = startMaxHealth + Wallet.wallet.Level * 10;
+        health = maxHealth;
     }
 
     void OnTriggerEnter(Collider other)

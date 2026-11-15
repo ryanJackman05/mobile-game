@@ -207,7 +207,7 @@ sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better
 Review of requirements for CA2 (not including Labs)
 TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
 TODO Move Upgrade button to MainMenu, make it upgrade player's health OR damage resistance, link player health to fail condition, and make zombies damage the car
-TODO Zombies
+TODO Zombies (behaviour in, see 15-11; animations + tuning left)
 TODO Fuel Meter; new player lose condition. If fuel is not collected often enough, player car Die()
 TODO Fuel item and Repair kit item.
 
@@ -223,4 +223,11 @@ TODO Lab9A Part C needs to be revisted for future changes and for audio, materia
 15-11
 
 Car prep for zombies. Drive and steer forces now run in FixedUpdate, using the Rigidbody's pose rather than the transform. Rigidbody interpolation is switched on (in Awake) so zombies attached to the window triggers (FL/FR/BL/BR) move smoothly with the car instead of stepping at the physics rate.
+
+Zombies (first pass, code only). EnemyController is now a state machine: Waiting -> Chasing -> Leaping -> Attached -> Falling -> Down (or GaveUp if it passes the car with no free window).
+- Chasing: runs out to the car's flank and forward with the car, on top of MoveWithWorld's scroll.
+- Leaping: claims a free window trigger (FL/FR/BL/BR) on its side, max one zombie per window, then arcs onto it, re-aiming every frame so steering mid-leap doesn't make it miss. Its collider is off so it can't set off the Top crash trigger.
+- Attached: parented to the window, drains car health, haptic pulse on landing. Holding a hard turn for ~0.6s throws it off.
+- Supporting changes: MoveWithWorld now moves in world space (zombies rotate), Pool.spawn unparents objects, ResetCar refills health, zombie collider is a trigger.
+- Still needed: run/jump/cling animations (Animator int parameter "State"), remove the placeholder capsule mesh, tune numbers in play.
 
