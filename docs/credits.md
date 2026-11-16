@@ -1,6 +1,6 @@
 # Game asset credits & sources
 ### A number of assets in this game will inevitably be from free packages and open license art/sound/etc. Here is where all of the sources will be documented
-
+Claude code assisted with a number of development points, including zombies, audio, and bug fixing.
 ## Sprites & Icons
 Pause
 https://opengameart.org/content/gui-pack
