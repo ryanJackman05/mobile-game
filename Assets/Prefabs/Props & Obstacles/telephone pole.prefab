@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1844220733252605744}
   - component: {fileID: 5558810996798595486}
   - component: {fileID: 8314005315097860483}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 9180597245724249557}
   - component: {fileID: 3792017534207102936}
   - component: {fileID: 280565387674226039}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: arm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 2661540602480314011}
   - component: {fileID: 1882976768095590955}
   - component: {fileID: 4341092017001848254}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: telephone pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}

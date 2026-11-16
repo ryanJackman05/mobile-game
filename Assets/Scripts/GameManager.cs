@@ -7,7 +7,11 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager current; // singleton
-    public enum GameState { Playing, Paused, GameOver } 
+    public enum GameState { Playing, Paused, GameOver }
+    public enum DeathCause { Unknown, Crashed, Flipped, OutOfBounds, Overrun }
+    public DeathCause LastCause { get; private set; }
+    public double Distance => currentDistance;
+    public bool LastRoundNewBest { get; private set; }
     public GameState state;
     public event System.Action<GameState> StateChanged;
     private CancellationTokenSource _cts;
@@ -20,7 +24,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector2 spawnDistanceRange;
     [SerializeField] private float interPoleDistance;
     
-    public static float currentSpeed;
+    public static float currentSpeed; // what the world actually scrolls at (negative)
+    private float baseSpeed;          // the difficulty ramp; currentSpeed recovers toward this after penalties
+
+    [Header("Speed penalties")]
+    [SerializeField] private float speedRampPerMinute = 3f;
+    [SerializeField] private float speedRecoveryPerSecond = 2f; // how fast currentSpeed climbs back to baseSpeed
+    [SerializeField, Range(0f, 1f)] private float minSpeedFraction = 0.35f; // penalties can't drop below this share of baseSpeed
     private static double currentDistance;
     public static float roadWidth;
     
@@ -36,7 +46,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject zombiePrefab;
     [SerializeField] GameObject[] obstaclePrefabs; // todo perhaps convert to multiple small pools later, one for each specific obstacle type, and one large pool for basic props
     [SerializeField] GameObject telephonePolePrefab;
-    
+
     // public ObjectPool<item>
     // public ObjectPool<Obstacle> // 2 of each variant should be good
     
@@ -53,8 +63,8 @@ public class GameManager : MonoBehaviour
         obstaclePool.CreatePool(10);
         
         telephonePolePool = new Pool(telephonePolePrefab);
-        telephonePolePool.CreatePool(3);
-        
+        telephonePolePool.CreatePool(6);
+
         NewGame();
     }
 
@@ -74,25 +84,28 @@ public class GameManager : MonoBehaviour
         if(obstacleDistance <= 0) SpawnObstacle();
         poleDistance += dist;
         if(poleDistance <= 0) SpawnPole();
-        
-        currentDistance -= dist;
-        currentSpeed -= (3 * Time.deltaTime / 60);
-        //print(currentSpeed);
-        scoreText.text = currentDistance.ToString("F2");
+
+        if (state == GameState.Playing) currentDistance -= dist; // the coast after a crash doesn't count, so the score matches the saved best
+        if (state == GameState.Playing) // during GameOver the SlowDown routine owns currentSpeed
+        {
+            baseSpeed -= speedRampPerMinute * Time.deltaTime / 60f;
+            currentSpeed = Mathf.MoveTowards(currentSpeed, baseSpeed, speedRecoveryPerSecond * Time.deltaTime);
+        }
+        scoreText.SetText("{0:2}m", (float)currentDistance); // TMP formats into its own buffer: no string allocation per frame
     }
 
-    public void NewGame() //TODO
+    public void NewGame()
     {
         // Initialise Pools
         zombiePool.Reset();
         obstaclePool.Reset();
-        // todo itemPool.Reset();
+        // repair pickups are children of obstacles (ObstaclePickups), so the obstacle pool resets them too
         
         // reset values & difficulty
         if (_cts != null){
             _cts.Cancel(); _cts.Dispose(); _cts = null; } // completely reset the cancel token
 
-        currentSpeed = startSpeed;
+        currentSpeed = baseSpeed = startSpeed;
         roadWidth = startWidth;
         currentDistance = 0;
         roundStartTime = Time.time;
@@ -116,16 +129,34 @@ public class GameManager : MonoBehaviour
             ("coins", Wallet.wallet.Coins));
     }
 
+    // Knock a share of the current speed off (scrapes, slow areas, zombie hits). It recovers back to baseSpeed over time.
+    public void ApplySpeedPenalty(float fraction)
+    {
+        if (state != GameState.Playing) return;
+        float floor = baseSpeed * minSpeedFraction; // speeds are negative, so the floor is the value closest to 0
+        currentSpeed = Mathf.Min(currentSpeed * (1f - fraction), floor);
+    }
+
     public void Pause() // can be called by LifeCycleGuard to trigger pause state. 
     {
         state = GameState.Paused;
         StateChanged?.Invoke(GameState.Paused); // todo check if this state will be used by anything
     }
 
-    public void GameOver()
+    // Coins earned during play go through here so the round total reaches telemetry (coins_earned was always 0).
+    public void EarnCoins(int amount)
+    {
+        if (Wallet.wallet != null) Wallet.wallet.Earn(amount);
+        roundCoinsEarned += amount;
+        AudioManager.Play(Sfx.CoinEarned);
+    }
+
+    public void GameOver(DeathCause cause = DeathCause.Unknown)
     {
         if (state == GameState.GameOver)  return;
-        
+        LastCause = cause;
+        LastRoundNewBest = HighScore.Submit((float)currentDistance);
+
         // immediately slow down scrolling
         _cts = new CancellationTokenSource();
         _ = SlowDown(_cts.Token); // assigns awaitable to var so the following code can continue
@@ -141,12 +172,13 @@ public class GameManager : MonoBehaviour
             ("level_id", "Game"),
             ("time_s", Time.time - roundStartTime),
             ("coins_earned", roundCoinsEarned),
-            ("score", currentDistance));
-        // todo add cause ^^^ 
-        
-        // bring up end screen menu, lingering on stopped scene todo might be called by StateChanged elsewhere
-        
-        Debug.Log("Game Over");
+            ("score", currentDistance),
+            ("cause", cause.ToString()),
+            ("new_best", LastRoundNewBest));
+
+        // the results panel (UI_ResultsMenu) listens to StateChanged and appears after a short delay
+
+        Debug.Log("Game Over: " + cause);
     }
     private async Awaitable SlowDown(CancellationToken cancellationToken)
     {
@@ -176,7 +208,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnZombie()
     {
-        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
+        zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 1, 80), Quaternion.identity);
         
         // reset timer
         zombieDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
@@ -186,21 +218,22 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
+            zombiePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 1, 80), Quaternion.identity);
         }
     }
 
     void SpawnObstacle()
     {
-        obstaclePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 50), Quaternion.identity);
-        
+        obstaclePool.spawn(new Vector3(Random.Range(-roadWidth/2, roadWidth/2), 0, 80), Quaternion.identity);
+
         // reset timer
         obstacleDistance = Random.Range(spawnDistanceRange.x, spawnDistanceRange.y);
     }
     
     void SpawnPole()
     {
-        telephonePolePool.spawn(new Vector3(-roadWidth*1.3f, 0, 50), Quaternion.identity);
+        telephonePolePool.spawn(new Vector3(-roadWidth/2 - 1, 0, 80), Quaternion.identity);
+        telephonePolePool.spawn(new Vector3(roadWidth/2 + 1, 0, 80), Quaternion.identity);
         // reset timer
         poleDistance = interPoleDistance;
     }

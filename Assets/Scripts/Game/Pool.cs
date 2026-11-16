@@ -48,7 +48,8 @@ public class Pool
         
         do {
             var p_object = pool[index];
-            if (!p_object.activeInHierarchy){
+            if (!p_object.activeSelf){ // activeSelf: a zombie pooled while hanging off the car is still parented to it
+                p_object.transform.SetParent(null, false);
                 p_object.transform.position = position;
                 p_object.transform.rotation = rotation;
                 p_object.SetActive(true);

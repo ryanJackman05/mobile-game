@@ -30,6 +30,9 @@ Will update again later.
 ---
 
 **The screenshots and data can be found in this folder. See below**
+
 [capture data](w03-profile.data)
+
 [Frame Debugger Screenshot](w03-gpu-pass.png)
+
 [Analyser Bad Frame Screenshot](w03-bad-frame.png)

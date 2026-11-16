@@ -1,8 +1,16 @@
+using TMPro;
 using UnityEngine;
 
 public class UI_ResultsMenu : MonoBehaviour
 {
     [SerializeField] GameObject panel;
+    [SerializeField] TextMeshProUGUI causeLabel;    // optional: "Overrun by zombies"
+    [SerializeField] TextMeshProUGUI distanceLabel; // optional: "Distance 1234"
+    [SerializeField] TextMeshProUGUI bestLabel;     // optional: "Best 1234" or "New best!"
+    [SerializeField] float showDelay = 1.2f;        // let the crash/stall play out before the panel covers it
+    // TODO death feels off in play: either add feedback during this delay (sound, camera shake, cause flash) or set it to 0. See docs/priorities.md P1.
+
+    float showTimer = -1f; // counts down to showing the panel; < 0 = nothing pending
 
     void Start()  { GameManager.current.StateChanged += Show; Show(GameManager.GameState.Playing); }  // at startup, add Show as a listener to PauseChanged
     // IMPORTANT NOTE: Events can only be linked like this when the subscribing method has the same argument signature/type as the Action calling it
@@ -10,13 +18,41 @@ public class UI_ResultsMenu : MonoBehaviour
 
     void Show(GameManager.GameState state)
     {
-        Debug.Log("Show: "+state);
-        if(state == GameManager.GameState.GameOver){
-            panel.SetActive(true);
-        }
+        if(state == GameManager.GameState.GameOver)
+            showTimer = showDelay;
         else
+        {
+            showTimer = -1f; // restarted before the panel appeared
             panel.SetActive(false);
+        }
     }
-    
+
+    void Update()
+    {
+        if (showTimer < 0f) return;
+        showTimer -= Time.unscaledDeltaTime; // unscaled: still counts if the game is paused meanwhile
+        if (showTimer > 0f) return;
+
+        showTimer = -1f;
+        if (causeLabel != null) causeLabel.SetText(CauseText(GameManager.current.LastCause));
+        if (distanceLabel != null) distanceLabel.SetText("Distance {0:2}m", (float)GameManager.current.Distance);
+        if (bestLabel != null)
+        {
+            if (GameManager.current.LastRoundNewBest) bestLabel.SetText("New best!");
+            else bestLabel.SetText("Best {0:2}m", HighScore.Best);
+        }
+        panel.SetActive(true);
+        AudioManager.Play(Sfx.GameOverSting);
+    }
+
+    static string CauseText(GameManager.DeathCause cause) => cause switch
+    {
+        GameManager.DeathCause.Crashed     => "Crashed",
+        GameManager.DeathCause.Flipped     => "Flipped",
+        GameManager.DeathCause.OutOfBounds => "Off the road",
+        GameManager.DeathCause.Overrun     => "Overrun by zombies",
+        _                                  => "Game over",
+    };
+
     public void OnRestartPressed() => GameManager.current.NewGame();
 }

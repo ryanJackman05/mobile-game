@@ -205,19 +205,72 @@ Lab7B:
 sustained budget for my phone: 60FPS is not feasable, and 30FPS will be a better target.
 
 Review of requirements for CA2 (not including Labs)
-TODO I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
-TODO Car bounces wildly when ResetCar() called while falling at high speed. Also, sometimes the car object is disabled entirely when the new round starts.
-TODO Move Upgrade button to MainMenu, make it upgrade player's health OR damage resistance, link player health to fail condition, and make zombies damage the car
-TODO Zombies
+TODO DONE (15-11) I will add a new graphics mode for best performance that caps at 30, at a slightly lower resolution
+TODO DONE (15-11) Move Upgrade button to MainMenu, make it upgrade player's health OR damage resistance, link player health to fail condition, and make zombies damage the car
+TODO SO Zombies - DONE (behaviour in, see 15-11; animations + tuning left)
 TODO Fuel Meter; new player lose condition. If fuel is not collected often enough, player car Die()
-TODO Fuel item and Repair kit item.
+TODO Fuel item and Repair kit item. (Repair kit DONE 15-11; fuel not decided)
 
 14-11
 
 TODO Skipping Lab 8B, part CDE, need to return later after more is added to base game
 TODO Async Pack 3: Peer APK Distribution & Survey is now live. It runs to Sun 29 Nov 2026 and feeds the CA3 QA evidence pack:
-TODO add haptic feedback to actions
-TODO Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate(): forces are currently applied per rendered frame, so car push/steering is frame-rate dependent (stronger in Editor than on A13). Will need turnMult/driveForce retuning after.
+TODO DONE (15-11) add haptic feedback to actions
+TODO DONE (15-11) Move PlayerCarController force code (AddForceAtPosition) from Update() to FixedUpdate().
 
 TODO Lab9A Part C needs to be revisted for future changes and for audio, materials, and UI. Was required for demo, now should be part of the CA2 entirely
 
+15-11
+
+Car prep for zombies. Drive and steer forces now run in FixedUpdate, using the Rigidbody's pose rather than the transform. 
+Rigidbody interpolation is switched on (in Awake) so zombies attached to the window triggers (FL/FR/BL/BR) move smoothly with the car instead of stepping at the physics rate.
+
+Zombies (first pass, code only). EnemyController is now a state machine: Waiting -> Chasing -> Leaping -> Attached -> Falling -> Down (or GaveUp if it passes the car with no free window).
+- Chasing: runs out to the car's flank and forward with the car, on top of MoveWithWorld's scroll.
+- Leaping: claims a free window trigger (FL/FR/BL/BR) on its side, max one zombie per window, then arcs onto it, re-aiming every frame so steering mid-leap doesn't make it miss. Its collider is off so it can't set off the Top crash trigger.
+- Attached: parented to the window, drains car health, haptic pulse on landing. Holding a hard turn for ~0.6s throws it off.
+- Supporting changes: MoveWithWorld now moves in world space (zombies rotate), Pool.spawn unparents objects, ResetCar refills health, zombie collider is a trigger.
+- Still needed: run/jump/cling animations (Animator int parameter "State"), remove the placeholder capsule mesh, tune numbers in play.
+
+
+Zombie scraping. While a zombie hangs on a window its trigger collider is switched back on. Because it's now a child of the car's Rigidbody it can't set off the car's own Top/Front triggers, but it does report obstacles it brushes past, which throws it off harder than shaking does (plus a haptic pulse). An obstacle is anything on the "Obstacle" layer; until that layer exists, it's any solid collider that has MoveWithWorld and isn't a zombie or the car. The car's ground-check raycast now ignores triggers.
+TODO DONE (15-11) Set up layers: Player, Enemy, Obstacle, and the Enemy row in the physics collision matrix (see priorities.md).
+
+Health, health bar and variable speed.
+- Health is the fail condition (as before, health 0 -> Die -> GameOver). Low speed is a penalty only, not a fail state (decision recorded in priorities.md).
+- Bug fixed: UpgradeHealth ran on every Wallet.Changed, including coins earned, and healed 40 each time, so running over a zombie also healed the car. It now only recalculates maxHealth; ResetCar fills health each round.
+- PlayerCarController.HealthChanged event + UI_HealthBar (filled Image, colour gradient, optional "64/110" label).
+- Speed: GameManager now has baseSpeed (the difficulty ramp) and currentSpeed (what the world scrolls at). ApplySpeedPenalty knocks a share off currentSpeed (never below 35% of base) and it recovers toward baseSpeed at 2/s. The ramp no longer runs during GameOver, which was making the world creep after the slowdown finished.
+- Penalties: side scrapes on obstacles 20% (0.5s cooldown, ramps excluded by contact normal), SlowArea hazards 25% once per spawn, head-on zombie hits 15% (coins kept, plus a haptic pulse).
+- Upgrade is now "Max health +10", telemetry upgrade_id "health". UI_WalletHUD fields are optional so the button can move to the main menu.
+- Shared Obstacles.IsObstacle() used by zombie scraping and car scrapes.
+
+Front hitbox split. The wide Front trigger was crashing on obstacles beside the car. 
+CrashDetector now has Kills Enemies and Crashes options (both on by default), and no CrashDetector crashes on other triggers any more (slow areas used to end the run via Front). 
+Setup: Front = wide, Crashes off (rams zombies only). New FrontCrash = slim, bonnet-width, Kills Enemies off (obstacle crashes only). Top = Ground Only. Watch: FrontCrash touching a ramp slope ends the run, so keep it above the slope's leading edge.
+
+Rest of P1: game over cause and presentation, haptics.
+- GameOver takes a DeathCause (Crashed, Flipped, OutOfBounds, Overrun). Front crash = Crashed, Top (Ground Only) = Flipped, Game Over zones = OutOfBounds, health 0 = Overrun. Logged as `cause` in level_gameOver.
+- Bug fixed: coins_earned in telemetry was always 0 (roundCoinsEarned was never added to). Zombie coins now go through GameManager.EarnCoins.
+- Results panel waits 1.2s (realtime) so the crash or stall is visible, then shows the cause and distance (optional labels on UI_ResultsMenu).
+- Overrun death: the car no longer has its constraints released, so it stalls and coasts to a stop with zombies still on it instead of tumbling like a crash.
+- Haptic pulse on crashes added; zombie hit, scrape and knock-off were already in. Pickups wait for the repair pickup.
+
+Repair pickup.
+- RepairPickup: trigger, scrolls with MoveWithWorld, heals 30 when the car drives through it (only while playing), haptic pulse, returns to the pool. A zombie hanging on the car can't collect it for you. Optional "visual" child spins and bobs.
+- Placement follows the MDA's "hard-to-reach spots": obstacle prefabs can have PickupSpot children (empty child, green gizmo). When an obstacle spawns there's a 30% chance a pickup appears on one of its spots. Without chunks yet, there's also an occasional pickup in the open road every 200-350 units.
+- GameManager: itemPool (4, uncapped) created only if repairPickupPrefab is assigned, reset in NewGame (closes the old itemPool TODO).
+
+Repair pickup, reworked. Pooling pickups separately didn't work: with MoveWithWorld on a pickup parented to an obstacle it scrolled twice as fast, and a collected box stayed off when the obstacle came back from the pool.
+- Pickups are now children of obstacle prefabs. ObstaclePickups on the obstacle root re-rolls them in OnEnable on every spawn (30% chance, max 1 shown by default), so collected boxes come back.
+- RepairPickup no longer requires MoveWithWorld. PickupSpot and the GameManager pickup pool/free spawning are removed.
+- Open-road pickups need no code: a "pickup only" obstacle prefab (empty root + MoveWithWorld + ObstaclePickups + a Repair Box child) in the obstacle list.
+
+Audio system.
+- AudioManager (Assets/Scripts/Audio) lives in the Boot scene and persists (DontDestroyOnLoad). Static calls: AudioManager.Play(Sfx.X), SetEngine(running, speed), SetSkid(0..1). All are no-ops if there's no AudioManager, so the Game scene still runs on its own.
+- One-shots use a pre-made pool of 8 AudioSources (no allocation per sound), random clip and pitch jitter per sound, and a per-sound minimum interval so bursts (many zombies groaning) don't stack. UI clicks use 2 sources that ignore AudioListener.pause, so the pause menu still clicks.
+- Loops: engine pitch follows world speed, tyre screech volume follows yaw rate, both fade out at game over. Music is picked per scene by name with a fade, using unscaled time (no coroutines).
+- Music/SFX volume are PlayerPrefs settings like Haptics, with UI_VolumeSlider for a settings menu. UI_ButtonSound adds a click to any Button/Toggle without OnClick wiring.
+- 15 sound calls hooked into zombies, car, slow areas, pickups, coins, upgrades and the results panel. Shopping list and import settings in docs/audio.md.
+
+High score. Best distance is saved in PlayerPrefs (`highscore.distance`, HighScore.cs) at game over, and the results panel shows "Best 1234" or "New best!" through an optional Best Label on UI_ResultsMenu. Distance now only counts while playing, so the coast after a crash no longer adds to the score and the panel matches what was saved. level_gameOver logs `new_best`.

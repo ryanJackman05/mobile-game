@@ -38,21 +38,21 @@ level environments will change as time goes on, correlating with the difficulty 
 # Platform features (haptics, safe-area handling; store/testing tracks = awareness only)
 
 # Performance budget (target frame-time, memory, load time)
-30FPS minimum (33.3ms)
+- 30FPS minimum (33.3ms) ACHIEVED
 
-Memory (???GB)
+- Memory <1GB ACHIEVED
 
-Load time: < 10 secs
+- Load time: < 10 secs ACHIEVED
 
 # Monetisation (if any) & ethics notes
 None
 
 # Risks & cuts list 
 ### top of list is first to go, and will be marked with X when omitted
-- missions
+- X missions (cut in CA2)
 - difficulty curves
 - Jumps
-- unique zombie variants
+- X unique zombie variants (cut in CA2)
 - speed power up
 - repair power up
 

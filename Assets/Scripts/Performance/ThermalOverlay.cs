@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AdaptivePerformance;
 using TMPro;
@@ -6,6 +7,11 @@ public class ThermalOverlay : MonoBehaviour
 {
     public TMP_Text label;
     float ms;
+
+    private void OnEnable()
+    {
+        if(!Debug.isDebugBuild) gameObject.SetActive(false);
+    }
 
     void Update()
     {
